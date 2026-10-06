@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novrist Novi Florist</title>
+
+<style>
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f8eeee;
+color:#795866;
+overflow-x:hidden;
+}
+
+.page{
+width:100%;
+min-height:100vh;
+background:
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,.35) 0px,
+rgba(255,255,255,.35) 2px,
+transparent 2px,
+transparent 5px
+),
+#f9eeee;
+padding:35px 7%;
+position:relative;
+}
+
+.container{
+max-width:1160px;
+margin:auto;
+background:#fffaf8;
+border-left:5px solid #d68aaa;
+border-right:5px solid #d68aaa;
+padding:30px;
+min-height:100vh;
+box-shadow:0 0 25px rgba(120,70,90,.15);
+position:relative;
+z-index:2;
+}
+
+.btn-kembali{
+background:#fff7f5;
+border:3px solid #d38bab;
+border-radius:10px;
+padding:10px 22px;
+font-size:16px;
+font-weight:bold;
+color:#91506e;
+cursor:pointer;
+box-shadow:4px 4px 0 #c8dce2;
+margin-bottom:15px;
+}
+
+.btn-kembali:hover{
+transform:translateY(-2px);
+}
+
+.header{
+background:#fff5e9;
+border:4px dashed #cf7ea3;
+border-radius:20px;
+padding:25px;
+text-align:center;
+box-shadow:8px 8px 0 #d8c2cd;
+margin-bottom:45px;
+}
+
+.header h1{
+font-family:Georgia,serif;
+font-size:42px;
+color:#96516e;
+margin:0 0 10px;
+}
+
+.tagline{
+font-size:20px;
+font-style:italic;
+font-weight:bold;
+color:#856472;
+margin:0;
+}
+
+.section{
+background:#fffafa;
+border:3px solid #df9bb8;
+border-radius:20px;
+padding:25px;
+margin-bottom:28px;
+box-shadow:8px 8px 0 #e6d1da;
+}
+
+.section h2{
+font-family:Georgia,serif;
+font-size:30px;
+color:#92506e;
+margin:0 0 20px;
+padding-bottom:12px;
+border-bottom:3px dashed #d18bab;
+}
+
+.produk{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.produk-item{
+background:#fff4f5;
+border:2px solid #e1a0b9;
+border-radius:15px;
+padding:20px;
+text-align:center;
+box-shadow:4px 4px 0 #e5d3db;
+transition:.2s;
+}
+
+.produk-item:hover{
+transform:translateY(-5px) rotate(-1deg);
+}
+
+.produk-gambar{
+height:100px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:70px;
+margin-bottom:10px;
+}
+
+.produk-item h3{
+font-family:Georgia,serif;
+font-size:23px;
+color:#92506e;
+margin:8px 0;
+}
+
+.deskripsi{
+font-size:14px;
+line-height:1.5;
+min-height:45px;
+margin-bottom:10px;
+}
+
+.harga{
+font-weight:bold;
+font-size:18px;
+color:#a34f74;
+margin-bottom:15px;
+}
+
+.btnTambah{
+background:#b05f83;
+border:2px solid #8f4968;
+color:white;
+font-weight:bold;
+padding:10px 16px;
+border-radius:9px;
+cursor:pointer;
+box-shadow:3px 3px 0 #d5bdc8;
+}
+
+.btnTambah:hover{
+background:#96516e;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#fff2f5;
+border:1px solid #dfabc0;
+border-radius:10px;
+padding:12px;
+margin-bottom:8px;
+}
+
+.cart-empty{
+background:#fff2f5;
+padding:18px;
+border-radius:10px;
+font-size:18px;
+}
+
+.total-box{
+background:#e4f1f4;
+border:3px solid #b2d0d7;
+border-radius:12px;
+padding:18px;
+margin-top:15px;
+font-size:18px;
+font-weight:bold;
+line-height:1.8;
+}
+
+#btnCheckout{
+margin-top:10px;
+background:#ad5d82;
+border:2px solid #8e4c6b;
+color:white;
+font-weight:bold;
+padding:12px 24px;
+border-radius:9px;
+cursor:pointer;
+font-size:16px;
+box-shadow:3px 3px 0 #d1bbc5;
+}
+
+#btnCheckout:hover{
+background:#914e6e;
+}
+
+.history-item{
+background:#fdf0f3;
+border-left:5px solid #c97d9d;
+padding:14px;
+margin-bottom:10px;
+border-radius:8px;
+line-height:1.6;
+}
+
+.modal{
+display:none;
+position:fixed;
+z-index:200;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(70,45,55,.5);
+}
+
+.modal-box{
+width:90%;
+max-width:500px;
+background:#fff9f7;
+border:4px solid #d58cac;
+border-radius:18px;
+padding:25px;
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+box-shadow:8px 8px 0 #d8c3cd;
+}
+
+.modal-box h2{
+font-family:Georgia,serif;
+color:#92506e;
+margin-top:0;
+}
+
+.modal-box label{
+display:block;
+font-weight:bold;
+margin-top:12px;
+margin-bottom:5px;
+}
+
+.modal-box input,
+.modal-box textarea{
+width:100%;
+padding:11px;
+border:2px solid #d9a2b8;
+border-radius:8px;
+font-family:Arial,sans-serif;
+font-size:14px;
+outline:none;
+}
+
+.modal-box textarea{
+height:90px;
+resize:none;
+}
+
+.modal-box input:focus,
+.modal-box textarea:focus{
+border-color:#a95c80;
+}
+
+.invalid{
+border-color:#d9534f!important;
+background:#fff0f0;
+}
+
+.err{
+display:none;
+color:#c0392b;
+font-size:13px;
+margin-top:4px;
+}
+
+.modal-buttons{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.modal-buttons button{
+padding:10px 18px;
+border-radius:8px;
+border:2px solid #8e4c6b;
+font-weight:bold;
+cursor:pointer;
+}
+
+#btnConfirm{
+background:#ad5d82;
+color:white;
+}
+
+#btnClose{
+background:#eee0e5;
+color:#754e60;
+}
+
+.mouse-light{
+position:fixed;
+width:180px;
+height:180px;
+border-radius:50%;
+background:radial-gradient(
+circle,
+rgba(255,182,211,.28),
+rgba(255,182,211,0) 70%
+);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:5;
+}
+
+.butterfly{
+position:fixed;
+left:100px;
+top:100px;
+width:70px;
+height:55px;
+z-index:100;
+pointer-events:none;
+transform:translate(-50%,-50%);
+transition:left .12s linear,top .12s linear;
+}
+
+.butterfly:before,
+.butterfly:after{
+content:"";
+position:absolute;
+top:7px;
+width:30px;
+height:38px;
+background:#ed82ad;
+border:3px solid #95516f;
+box-shadow:2px 2px 0 rgba(100,60,80,.2);
+}
+
+.butterfly:before{
+left:1px;
+border-radius:70% 30% 60% 40%;
+transform-origin:100% 70%;
+animation:wingLeft .45s infinite alternate;
+}
+
+.butterfly:after{
+right:1px;
+border-radius:30% 70% 40% 60%;
+transform-origin:0 70%;
+animation:wingRight .45s infinite alternate;
+}
+
+.butterfly span{
+position:absolute;
+left:31px;
+top:10px;
+width:8px;
+height:34px;
+background:#624452;
+border-radius:10px;
+z-index:2;
+}
+
+.butterfly span:before,
+.butterfly span:after{
+content:"";
+position:absolute;
+width:16px;
+height:14px;
+border-top:2px solid #624452;
+}
+
+.butterfly span:before{
+right:2px;
+top:-8px;
+transform:rotate(25deg);
+}
+
+.butterfly span:after{
+left:2px;
+top:-8px;
+transform:rotate(-25deg);
+}
+
+@keyframes wingLeft{
+from{
+transform:rotateY(0deg) rotate(-5deg);
+}
+to{
+transform:rotateY(60deg) rotate(-12deg);
+}
+}
+
+@keyframes wingRight{
+from{
+transform:rotateY(0deg) rotate(5deg);
+}
+to{
+transform:rotateY(-60deg) rotate(12deg);
+}
+}
+
+.decor{
+position:fixed;
+z-index:1;
+font-size:35px;
+opacity:.6;
+animation:float 4s ease-in-out infinite;
+pointer-events:none;
+}
+
+.decor.one{
+left:5%;
+top:25%;
+}
+
+.decor.two{
+right:6%;
+top:35%;
+animation-delay:1s;
+}
+
+.decor.three{
+left:8%;
+bottom:15%;
+animation-delay:2s;
+}
+
+.decor.four{
+right:7%;
+bottom:20%;
+animation-delay:1.5s;
+}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0) rotate(0deg);
+}
+50%{
+transform:translateY(-15px) rotate(8deg);
+}
+}
+
+@media(max-width:700px){
+
+.container{
+padding:18px;
+}
+
+.header h1{
+font-size:30px;
+}
+
+.produk{
+grid-template-columns:1fr;
+}
+
+.section h2{
+font-size:25px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="mouse-light"></div>
+
+<div class="butterfly">
+<span></span>
+</div>
+
+<div class="decor one">✦</div>
+<div class="decor two">✿</div>
+<div class="decor three">♡</div>
+<div class="decor four">✦</div>
+
+<div class="container">
+
+<button id="btnKembali" class="btn-kembali">
+Kembali ke Profil
+</button>
+
+<div class="header">
+<h1>Novrist(Novi Florist)</h1>
+<p class="tagline">Bunga cantik untuk setiap momen</p>
+</div>
+
+<div class="section">
+
+<h2>Daftar Bunga</h2>
+
+<div id="productList" class="produk"></div>
+
+</div>
+
+<div class="section">
+
+<h2>Keranjang Belanja</h2>
+
+<div id="cartList" class="cart-empty">
+Keranjang masih kosong.
+</div>
+
+<div id="cartTotal" class="total-box">
+Total: Rp 0
+</div>
+
+<button id="btnCheckout">
+Checkout
+</button>
+
+</div>
+
+<div class="section">
+
+<h2>Riwayat Pembelian</h2>
+
+<div id="historyList">
+Belum ada riwayat pembelian.
+</div>
+
+</div>
+
+</div>
+
+<div id="buyerModal" class="modal">
+
+<div class="modal-box">
+
+<h2>Data Pembeli</h2>
+
+<label for="buyerName">Nama</label>
+<input type="text" id="buyerName" placeholder="Masukkan nama">
+<div id="errBuyerName" class="err">
+Nama minimal 3 karakter.
+</div>
+
+<label for="buyerAddress">Alamat Lengkap</label>
+<textarea id="buyerAddress" placeholder="Contoh: Jl. Ahmad Yani No. 10, Pontianak, Kalimantan Barat"></textarea>
+<div class="err" id="errBuyerAddress">
+Alamat harus diisi minimal 10 karakter.
+</div>
+
+<label for="buyerPhone">Nomor HP</label>
+<input type="text" id="buyerPhone" placeholder="Contoh: 081234567890">
+<div id="errBuyerPhone" class="err">
+Nomor HP harus diawali 08 dan terdiri dari 10-15 angka.
+</div>
+
+<div class="modal-buttons">
+
+<button id="btnConfirm">
+Konfirmasi
+</button>
+
+<button id="btnClose">
+Batal
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

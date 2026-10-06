@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Profil Novi Aulia</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding:25px 15px;font-family:"Trebuchet MS",Arial,sans-serif;color:#5d4652;background:#f9e8eb;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:repeating-linear-gradient(0deg,rgba(255,255,255,.3) 0,rgba(255,255,255,.3) 2px,transparent 2px,transparent 5px),linear-gradient(135deg,#f5d9df 0%,#fff5ec 25%,#f7cbd8 48%,#e7d6e6 70%,#d6e4ee 100%)}
+body:after{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.7),transparent 22%),radial-gradient(circle at 80% 70%,rgba(255,210,225,.5),transparent 25%)}
+.mouse-light{position:fixed;width:170px;height:170px;border-radius:50%;pointer-events:none;z-index:5;background:radial-gradient(circle,rgba(255,255,255,.35),transparent 70%);transform:translate(-50%,-50%);transition:left .12s ease-out,top .12s ease-out}
+.butterfly{position:fixed;left:0;top:0;width:55px;height:45px;z-index:10;pointer-events:none;transform:translate(-50%,-50%);transition:left .18s ease-out,top .18s ease-out}
+.butterfly:before,.butterfly:after{content:"";position:absolute;top:8px;width:23px;height:30px;background:#e987ae;border:2px solid #a9567c}
+.butterfly:before{left:2px;border-radius:70% 30% 60% 40%;transform-origin:100% 70%;animation:wingLeft .5s infinite alternate}
+.butterfly:after{right:2px;border-radius:30% 70% 40% 60%;transform-origin:0 70%;animation:wingRight .5s infinite alternate}
+.butterfly span{position:absolute;left:25px;top:10px;width:6px;height:30px;background:#6d5260;border-radius:5px;z-index:2}
+.butterfly span:before,.butterfly span:after{content:"";position:absolute;width:13px;height:13px;border-top:2px solid #6d5260}
+.butterfly span:before{right:2px;top:-7px;transform:rotate(25deg)}
+.butterfly span:after{left:2px;top:-7px;transform:rotate(-25deg)}
+@keyframes wingLeft{to{transform:rotateY(55deg) rotate(-8deg)}}
+@keyframes wingRight{to{transform:rotateY(-55deg) rotate(8deg)}}
+.decor{position:fixed;z-index:0;pointer-events:none;font-size:35px;opacity:.65}
+.decor.one{left:5%;top:15%;animation:floatOne 5s ease-in-out infinite}
+.decor.two{right:7%;top:25%;animation:floatTwo 6s ease-in-out infinite}
+.decor.three{left:8%;bottom:12%;animation:floatOne 7s ease-in-out infinite reverse}
+.decor.four{right:8%;bottom:15%;animation:floatTwo 5s ease-in-out infinite reverse}
+@keyframes floatOne{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-18px) rotate(7deg)}}
+@keyframes floatTwo{0%,100%{transform:translate(0) rotate(5deg)}50%{transform:translate(10px,-15px) rotate(-7deg)}}
+.wrap{position:relative;z-index:2;max-width:900px;margin:auto;padding:24px;background:rgba(255,247,246,.86);border:3px solid #d58ba8;border-radius:22px;box-shadow:8px 9px 0 #b9cad5,0 15px 35px rgba(100,70,90,.2)}
+h1{margin:0 0 18px;padding:22px 15px;text-align:center;color:#934d6c;background:#fff4e8;border:3px dashed #c77d9d;border-radius:15px;font-family:Georgia,serif;letter-spacing:1px;box-shadow:6px 6px 0 #d5a6bb}
+section{margin:18px 0;padding:20px;background:rgba(255,250,247,.88);border:2px solid #d89ab1;border-radius:15px;box-shadow:5px 6px 0 rgba(174,128,151,.3)}
+h2{margin:0 0 15px;padding-bottom:9px;color:#914f6e;font-family:Georgia,serif;border-bottom:2px dashed #c987a3}
+h3{margin-bottom:5px;color:#9a5876}
+.card{display:flex;align-items:center;gap:16px;padding:17px;margin:12px 0;background:linear-gradient(135deg,#fff4ee,#f7dbe5);border:2px solid #d58ca7;border-radius:16px;box-shadow:5px 6px 0 #b9cad5;transition:transform .15s ease,box-shadow .2s ease}
+.avatar{width:78px;height:78px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#f7b9cf;border:3px solid #a85e7e;box-shadow:4px 5px 0 #b9cad5;color:#874b69}
+.avatar svg{width:46px;height:46px;stroke-width:1.8}
+.skill{display:inline-block;padding:6px 11px;margin:3px 2px;background:#e6d5e5;color:#76566b;border:2px solid #c8a7c0;border-radius:5px;font-size:12px;font-weight:bold;box-shadow:2px 2px 0 #d1c0ca}
+.form-ubah{display:none;margin:10px 0;padding:13px;background:#fff4f6;border:2px dashed #ca89a4;border-radius:10px}
+input,textarea{width:100%;padding:10px 12px;margin-bottom:5px;font:inherit;color:#624f58;background:#fffaf5;border:2px solid #d6a9b9;border-radius:7px;outline:none}
+input:focus,textarea:focus{border-color:#9d6580;background:#fff;box-shadow:3px 3px 0 #c5d4dd}
+textarea{min-height:90px;resize:vertical}
+input.invalid,textarea.invalid{border-color:#c86d8d;background:#fff0f4}
+label{display:block;margin-top:8px;margin-bottom:4px;color:#8d5871;font-weight:bold}
+button{padding:8px 16px;margin:4px 3px;color:#fff;background:#a86182;border:2px solid #8d4f6d;border-radius:7px;font-weight:bold;cursor:pointer;box-shadow:3px 3px 0 #b9cad5;transition:.2s}
+button:hover{background:#914f70;transform:translate(-1px,-2px);box-shadow:5px 5px 0 #a9bdc9}
+button.ghost{color:#8d5871;background:#fff5f2;border:2px solid #c993aa}
+.err{display:none;margin:2px 0 5px;color:#b95f7d;font-size:13px}
+.ok{display:none;margin-top:8px;padding:9px 12px;color:#61757b;background:#e3f0f2;border-left:4px solid #92b6c1;border-radius:5px;font-weight:bold}
+.toko-btn{display:block;margin:20px auto 5px;padding:11px 28px;font-size:15px}
+@media(max-width:600px){body{padding:10px}.wrap{padding:14px}.card{align-items:flex-start}.produk{grid-template-columns:1fr}button{width:100%;margin:4px 0}}
+</style>
+</head>
+<body>
+
+<div class="mouse-light"></div>
+<div class="butterfly"><span></span></div>
+
+<div class="decor one">✦</div>
+<div class="decor two">✿</div>
+<div class="decor three">♡</div>
+<div class="decor four">✦</div>
+
+<div class="wrap">
+
+<h1>Profil Novi Aulia</h1>
+
+<section>
+<h2>Identitas Saya</h2>
+
+<div class="card" id="profileCard">
+<div class="avatar">
+<i data-lucide="circle-user-round"></i>
+</div>
+
+<div style="flex:1">
+<h3 id="profileName">Novi Aulia</h3>
+<div id="profileJob">Web Developer & jQuery Enthusiast</div>
+
+<div id="skills">
+<span class="skill">HTML5</span>
+<span class="skill">CSS3</span>
+<span class="skill">JavaScript</span>
+<span class="skill">jQuery</span>
+</div>
+</div>
+</div>
+
+<button id="btnShowName">Ubah Nama</button>
+<button id="btnShowJob">Ubah Pekerjaan</button>
+
+<div id="nameForm" class="form-ubah">
+<input id="newName" type="text" placeholder="Masukkan nama baru">
+<div class="err" id="errNewName">Nama harus diisi minimal 3 karakter.</div>
+<button id="btnGantiNama">Simpan Nama</button>
+</div>
+
+<div id="jobForm" class="form-ubah">
+<input id="newJob" type="text" placeholder="Masukkan pekerjaan">
+<div class="err" id="errNewJob">Pekerjaan harus diisi minimal 3 karakter.</div>
+<button id="btnGantiJob">Simpan Pekerjaan</button>
+</div>
+
+<button id="btnSkill">Tambah Skill</button>
+<button id="btnAnimasi" class="ghost">Efek Fade & Slide</button>
+<button id="btnReset" class="ghost">Reset</button>
+
+</section>
+
+<section>
+<h2>Form Kontak dengan Validasi</h2>
+
+<form id="contactForm" novalidate>
+
+<label for="nama">Nama Lengkap</label>
+<input id="nama" type="text" placeholder="Masukkan nama lengkap">
+<div class="err" id="errNama">Masukkan nama minimal 3 karakter</div>
+
+<label for="email">Email</label>
+<input id="email" type="text" placeholder="contoh@email.com">
+<div class="err" id="errEmail">Format email tidak valid</div>
+
+<label for="pesan">Pesan</label>
+<textarea id="pesan" rows="4" placeholder="Tulis pesan Anda..."></textarea>
+<div class="err" id="errPesan">Tulis pesan minimal 10 karakter</div>
+
+<button type="submit">Kirim Pesan</button>
+<button type="button" id="btnResetForm" class="ghost">Reset</button>
+
+<div class="ok" id="successMessage">Pesan berhasil dikirim!</div>
+
+</form>
+
+<button id="btnToko" class="toko-btn">Kunjungi Toko</button>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+lucide.createIcons();
+</script>
+
+</body>
+</html>
