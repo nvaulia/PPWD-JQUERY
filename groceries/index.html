@@ -21,15 +21,7 @@ overflow-x:hidden;
 .page{
 width:100%;
 min-height:100vh;
-background:
-repeating-linear-gradient(
-0deg,
-rgba(255,255,255,.35) 0px,
-rgba(255,255,255,.35) 2px,
-transparent 2px,
-transparent 5px
-),
-#f9eeee;
+background:repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0px,rgba(255,255,255,.35) 2px,transparent 2px,transparent 5px),#f9eeee;
 padding:35px 7%;
 position:relative;
 }
@@ -105,6 +97,7 @@ color:#92506e;
 margin:0 0 20px;
 padding-bottom:12px;
 border-bottom:3px dashed #d18bab;
+cursor:pointer;
 }
 
 .produk{
@@ -327,11 +320,7 @@ position:fixed;
 width:180px;
 height:180px;
 border-radius:50%;
-background:radial-gradient(
-circle,
-rgba(255,182,211,.28),
-rgba(255,182,211,0) 70%
-);
+background:radial-gradient(circle,rgba(255,182,211,.28),rgba(255,182,211,0) 70%);
 pointer-events:none;
 transform:translate(-50%,-50%);
 z-index:5;
@@ -408,21 +397,13 @@ transform:rotate(-25deg);
 }
 
 @keyframes wingLeft{
-from{
-transform:rotateY(0deg) rotate(-5deg);
-}
-to{
-transform:rotateY(60deg) rotate(-12deg);
-}
+from{transform:rotateY(0deg) rotate(-5deg)}
+to{transform:rotateY(60deg) rotate(-12deg)}
 }
 
 @keyframes wingRight{
-from{
-transform:rotateY(0deg) rotate(5deg);
-}
-to{
-transform:rotateY(-60deg) rotate(12deg);
-}
+from{transform:rotateY(0deg) rotate(5deg)}
+to{transform:rotateY(-60deg) rotate(12deg)}
 }
 
 .decor{
@@ -458,12 +439,8 @@ animation-delay:1.5s;
 }
 
 @keyframes float{
-0%,100%{
-transform:translateY(0) rotate(0deg);
-}
-50%{
-transform:translateY(-15px) rotate(8deg);
-}
+0%,100%{transform:translateY(0) rotate(0deg)}
+50%{transform:translateY(-15px) rotate(8deg)}
 }
 
 @media(max-width:700px){
@@ -508,7 +485,7 @@ Kembali ke Profil
 </button>
 
 <div class="header">
-<h1>Novrist(Novi Florist)</h1>
+<h1>Novrist Novi Florist</h1>
 <p class="tagline">Bunga cantik untuk setiap momen</p>
 </div>
 
@@ -540,7 +517,7 @@ Checkout
 
 <div class="section">
 
-<h2>Riwayat Pembelian</h2>
+<h2 id="historyTitle">Riwayat Pembelian</h2>
 
 <div id="historyList">
 Belum ada riwayat pembelian.
@@ -556,6 +533,8 @@ Belum ada riwayat pembelian.
 
 <h2>Data Pembeli</h2>
 
+<form id="buyerForm">
+
 <label for="buyerName">Nama</label>
 <input type="text" id="buyerName" placeholder="Masukkan nama">
 <div id="errBuyerName" class="err">
@@ -564,7 +543,12 @@ Nama minimal 3 karakter.
 
 <label for="buyerAddress">Alamat Lengkap</label>
 <textarea id="buyerAddress" placeholder="Contoh: Jl. Ahmad Yani No. 10, Pontianak, Kalimantan Barat"></textarea>
-<div class="err" id="errBuyerAddress">
+
+<small style="display:block;margin-top:5px;color:#8a6875;">
+Isi alamat lengkap, seperti nama jalan, nomor rumah, kota, dan provinsi.
+</small>
+
+<div id="errBuyerAddress" class="err">
 Alamat harus diisi minimal 10 karakter.
 </div>
 
@@ -576,15 +560,17 @@ Nomor HP harus diawali 08 dan terdiri dari 10-15 angka.
 
 <div class="modal-buttons">
 
-<button id="btnConfirm">
+<button id="btnConfirm" type="submit">
 Konfirmasi
 </button>
 
-<button id="btnClose">
+<button id="btnClose" type="button">
 Batal
 </button>
 
 </div>
+
+</form>
 
 </div>
 

@@ -28,29 +28,26 @@ produk.forEach(function(p){
 
 $('#productList').append(`
 <div class="produk-item">
-
-<div class="produk-gambar">
-${p.ikon}
-</div>
-
+<div class="produk-gambar">${p.ikon}</div>
 <h3>${p.nama}</h3>
-
-<div class="deskripsi">
-${p.deskripsi}
-</div>
-
-<div class="harga">
-${rupiah(p.harga)}
-</div>
-
+<div class="deskripsi">${p.deskripsi}</div>
+<div class="harga">${rupiah(p.harga)}</div>
 <button class="btnTambah" data-id="${p.id}">
 Tambah ke Keranjang
 </button>
-
 </div>
 `);
 
 });
+
+$('.produk-item').hover(
+function(){
+$(this).css('box-shadow','6px 6px 0 #d5bdc8');
+},
+function(){
+$(this).css('box-shadow','4px 4px 0 #e5d3db');
+}
+);
 
 $(document).on('click','.btnTambah',function(){
 
@@ -93,7 +90,6 @@ $('#cartTotal').text('Total: Rp 0');
 totalAkhir=0;
 
 return;
-
 }
 
 $('#cartList').removeClass('cart-empty');
@@ -102,15 +98,8 @@ cart.forEach(function(item){
 
 $('#cartList').append(`
 <div class="cart-item">
-
-<span>
-${item.ikon} ${item.nama} x ${item.qty}
-</span>
-
-<span>
-${rupiah(item.harga*item.qty)}
-</span>
-
+<span>${item.ikon} ${item.nama} x ${item.qty}</span>
+<span>${rupiah(item.harga*item.qty)}</span>
 </div>
 `);
 
@@ -180,18 +169,10 @@ riwayat.forEach(function(r,i){
 
 $('#historyList').append(`
 <div class="history-item">
-
 Pembelian ${i+1}<br>
-
-Tanggal:
-${new Date(r.tanggal).toLocaleString('id-ID')}<br>
-
-Jumlah:
-${r.qty} barang<br>
-
-Total:
-${rupiah(r.total)}
-
+Tanggal: ${new Date(r.tanggal).toLocaleString('id-ID')}<br>
+Jumlah: ${r.qty} barang<br>
+Total: ${rupiah(r.total)}
 </div>
 `);
 
@@ -224,7 +205,9 @@ $('#buyerModal').fadeOut(200);
 
 });
 
-$('#btnConfirm').click(function(){
+$('#buyerForm').submit(function(e){
+
+e.preventDefault();
 
 const nama=$('#buyerName').val().trim();
 
@@ -276,9 +259,7 @@ return;
 }
 
 const qty=cart.reduce(function(sum,item){
-
 return sum+item.qty;
-
 },0);
 
 simpanRiwayat(totalAkhir,qty);
@@ -295,6 +276,12 @@ $('#buyerModal').fadeOut(200);
 
 $('#buyerName,#buyerAddress,#buyerPhone')
 .val('');
+
+});
+
+$('#historyTitle').click(function(){
+
+$('#historyList').slideToggle(300);
 
 });
 
