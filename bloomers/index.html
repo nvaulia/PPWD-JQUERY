@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Bloomé - Flowers for Every Moment
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+         ===================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="#home"
+                class="logo"
+            >
+
+                <i class="fas fa-seedling"></i>
+
+                <div>
+
+                    <span class="logo-name">
+                        Bloomé
+                    </span>
+
+                    <small>
+                        by Novi Aulia
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- MENU -->
+
+            <div
+                class="nav-menu"
+                id="navMenu"
+            >
+
+                <a
+                    href="#produk"
+                    class="nav-link active"
+                    data-filter="all"
+                >
+                    Semua
+                </a>
+
+                <a
+                    href="#produk"
+                    class="nav-link"
+                    data-filter="lily"
+                >
+                    Lily
+                </a>
+
+                <a
+                    href="#produk"
+                    class="nav-link"
+                    data-filter="rose"
+                >
+                    Rose
+                </a>
+
+                <a
+                    href="#produk"
+                    class="nav-link"
+                    data-filter="tulip"
+                >
+                    Tulip
+                </a>
+
+                <a
+                    href="#produk"
+                    class="nav-link"
+                    data-filter="peony"
+                >
+                    Peony
+                </a>
+
+                <a
+                    href="#produk"
+                    class="nav-link"
+                    data-filter="other"
+                >
+                    Lainnya
+                </a>
+
+            </div>
+
+
+            <!-- CART -->
+
+            <button
+                type="button"
+                class="cart-btn"
+                id="cartBtn"
+            >
+
+                <i class="fas fa-shopping-bag"></i>
+
+                <span class="cart-text">
+                    Keranjang
+                </span>
+
+                <span
+                    class="cart-badge"
+                    id="cartBadge"
+                >
+                    0
+                </span>
+
+            </button>
+
+
+            <!-- HAMBURGER -->
+
+            <button
+                type="button"
+                class="hamburger"
+                id="hamburger"
+                aria-label="Buka menu"
+            >
+
+                <i class="fas fa-bars"></i>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section
+        class="hero"
+        id="home"
+    >
+
+
+        <!-- Dekorasi bunga -->
+
+        <div class="flower-decoration flower-one">
+            ❀
+        </div>
+
+        <div class="flower-decoration flower-two">
+            ✿
+        </div>
+
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                WELCOME TO
+            </div>
+
+
+            <h1>
+                Bloomé
+            </h1>
+
+
+            <h2>
+                by Novi Aulia
+            </h2>
+
+
+            <p>
+                Flowers for Every Moment
+            </p>
+
+
+            <div class="hero-description">
+
+                Temukan bunga cantik untuk menemani
+                setiap momen spesialmu.
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchProduk"
+                    placeholder="Cari bunga favoritmu..."
+                    autocomplete="off"
+                >
+
+                <i class="fas fa-search"></i>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRODUK
+         ===================================================== -->
+
+    <section
+        class="produk-section"
+        id="produk"
+    >
+
+        <div class="section-header">
+
+
+            <div>
+
+                <div class="section-small">
+                    OUR COLLECTION
+                </div>
+
+
+                <h2>
+
+                    Pilihan Bunga
+
+                    <i class="fas fa-seedling"></i>
+
+                </h2>
+
+            </div>
+
+
+            <!-- FILTER -->
+
+            <div class="filter-btns">
+
+                <button
+                    type="button"
+                    class="filter-btn active"
+                    data-cat="all"
+                >
+                    Semua
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-cat="lily"
+                >
+                    Lily
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-cat="rose"
+                >
+                    Rose
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-cat="tulip"
+                >
+                    Tulip
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-cat="peony"
+                >
+                    Peony
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-cat="other"
+                >
+                    Lainnya
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TEMPAT CARD PRODUK
+             Produk akan dibuat oleh script.js
+             ================================================= -->
+
+        <div
+            class="produk-grid"
+            id="produkGrid"
+        >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CART OVERLAY
+         ===================================================== -->
+
+    <div
+        class="cart-overlay"
+        id="cartOverlay"
+    ></div>
+
+
+
+    <!-- =====================================================
+         CART SIDEBAR
+         ===================================================== -->
+
+    <aside
+        class="cart-sidebar"
+        id="cartSidebar"
+    >
+
+
+        <div class="cart-header">
+
+            <h3>
+
+                <i class="fas fa-shopping-bag"></i>
+
+                Keranjang Bloomé
+
+            </h3>
+
+
+            <button
+                type="button"
+                class="cart-close"
+                id="cartClose"
+                aria-label="Tutup keranjang"
+            >
+
+                <i class="fas fa-times"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- Isi keranjang -->
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+
+        </div>
+
+
+        <!-- Footer keranjang -->
+
+        <div class="cart-footer">
+
+            <div class="cart-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span
+                    class="total-price"
+                    id="cartTotal"
+                >
+                    Rp 0
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-checkout"
+                id="btnCheckout"
+            >
+
+                <i class="fas fa-check-circle"></i>
+
+                Checkout Sekarang
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MODAL DETAIL BUNGA
+         ===================================================== -->
+
+    <div
+        class="flower-modal"
+        id="flowerModal"
+    >
+
+
+        <!-- Background modal -->
+
+        <div class="flower-modal-overlay"></div>
+
+
+        <!-- Isi modal -->
+
+        <div class="flower-modal-content">
+
+
+            <!-- Tombol close -->
+
+            <button
+                type="button"
+                class="flower-modal-close"
+                id="flowerModalClose"
+                aria-label="Tutup detail bunga"
+            >
+
+                <i class="fas fa-times"></i>
+
+            </button>
+
+
+            <!-- FOTO BUNGA -->
+
+            <div class="flower-modal-image">
+
+                <img
+                    id="modalFlowerImage"
+                    src=""
+                    alt="Foto bunga"
+                >
+
+            </div>
+
+
+            <!-- INFORMASI BUNGA -->
+
+            <div class="flower-modal-info">
+
+
+                <span
+                    class="modal-category"
+                    id="modalFlowerCategory"
+                >
+                    FLOWER
+                </span>
+
+
+                <h2
+                    id="modalFlowerName"
+                >
+                    Nama Bunga
+                </h2>
+
+
+                <p
+                    class="modal-description"
+                    id="modalFlowerDescription"
+                >
+                    Deskripsi bunga.
+                </p>
+
+
+                <div class="modal-price">
+
+                    <span
+                        id="modalFlowerPrice"
+                    >
+                        Rp 0
+                    </span>
+
+                    <small>
+                        per bouquet
+                    </small>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-add-cart"
+                    id="modalAddCart"
+                >
+
+                    <i class="fas fa-shopping-bag"></i>
+
+                    Tambahkan ke Keranjang
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOAST NOTIFICATION
+         ===================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
+
+        <i class="fas fa-check-circle"></i>
+
+        <span id="toastMsg">
+            Berhasil
+        </span>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-logo">
+            Bloomé
+        </div>
+
+
+        <p>
+            Flowers for Every Moment
+        </p>
+
+
+        <div class="footer-line"></div>
+
+
+        <small>
+            © 2026 Bloomé by Novi Aulia
+        </small>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JQUERY
+         HARUS DI ATAS SCRIPT.JS
+         ===================================================== -->
+
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+    ></script>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT BLOOMÉ
+         ===================================================== -->
+
+    <script
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>
