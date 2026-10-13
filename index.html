@@ -3,581 +3,1214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Novrist Novi Florist</title>
+<title>Bloomé - Flowers for Every Moment</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
-*{
-box-sizing:border-box;
+:root {
+    --pink: #b85d78;
+    --pink-dark: #8f3f5b;
+    --rose: #f8e9ed;
+    --cream: #fffaf8;
+    --text: #45353b;
+    --muted: #88777d;
+    --shadow: 0 10px 28px rgba(117,62,79,.10);
 }
 
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f8eeee;
-color:#795866;
-overflow-x:hidden;
+* { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
-.page{
-width:100%;
-min-height:100vh;
-background:repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0px,rgba(255,255,255,.35) 2px,transparent 2px,transparent 5px),#f9eeee;
-padding:35px 7%;
-position:relative;
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
 }
 
-.container{
-max-width:1160px;
-margin:auto;
-background:#fffaf8;
-border-left:5px solid #d68aaa;
-border-right:5px solid #d68aaa;
-padding:30px;
-min-height:100vh;
-box-shadow:0 0 25px rgba(120,70,90,.15);
-position:relative;
-z-index:2;
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,250,248,.96);
+    box-shadow: 0 2px 14px rgba(80,45,55,.07);
 }
 
-.btn-kembali{
-background:#fff7f5;
-border:3px solid #d38bab;
-border-radius:10px;
-padding:10px 22px;
-font-size:16px;
-font-weight:bold;
-color:#91506e;
-cursor:pointer;
-box-shadow:4px 4px 0 #c8dce2;
-margin-bottom:15px;
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
 }
 
-.btn-kembali:hover{
-transform:translateY(-2px);
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--pink-dark);
 }
 
-.header{
-background:#fff5e9;
-border:4px dashed #cf7ea3;
-border-radius:20px;
-padding:25px;
-text-align:center;
-box-shadow:8px 8px 0 #d8c2cd;
-margin-bottom:45px;
+.logo > i { font-size: 30px; }
+
+.logo-name {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 700;
 }
 
-.header h1{
-font-family:Georgia,serif;
-font-size:42px;
-color:#96516e;
-margin:0 0 10px;
+.logo small {
+    font-size: 11px;
+    color: var(--muted);
 }
 
-.tagline{
-font-size:20px;
-font-style:italic;
-font-weight:bold;
-color:#856472;
-margin:0;
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto;
 }
 
-.section{
-background:#fffafa;
-border:3px solid #df9bb8;
-border-radius:20px;
-padding:25px;
-margin-bottom:28px;
-box-shadow:8px 8px 0 #e6d1da;
+.nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
 }
 
-.section h2{
-font-family:Georgia,serif;
-font-size:30px;
-color:#92506e;
-margin:0 0 20px;
-padding-bottom:12px;
-border-bottom:3px dashed #d18bab;
-cursor:pointer;
+.nav-link:hover,
+.nav-link.active {
+    color: var(--pink-dark);
+    border-color: var(--pink);
 }
 
-.produk{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
+.cart-btn, .hamburger {
+    border: 0;
+    background: var(--pink);
+    color: white;
+    border-radius: 24px;
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.produk-item{
-background:#fff4f5;
-border:2px solid #e1a0b9;
-border-radius:15px;
-padding:20px;
-text-align:center;
-box-shadow:4px 4px 0 #e5d3db;
-transition:.2s;
+.cart-badge {
+    background: white;
+    color: var(--pink-dark);
+    border-radius: 20px;
+    padding: 2px 7px;
+    font-size: 11px;
 }
 
-.produk-item:hover{
-transform:translateY(-5px) rotate(-1deg);
+.hamburger { display: none; }
+
+.hero {
+    min-height: 440px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 75px 20px;
+    background: linear-gradient(135deg,#f8e7ec,#fff7f0 55%,#f4e4e9);
+    overflow: hidden;
 }
 
-.produk-gambar{
-height:100px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:70px;
-margin-bottom:10px;
+.hero-content {
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
 }
 
-.produk-item h3{
-font-family:Georgia,serif;
-font-size:23px;
-color:#92506e;
-margin:8px 0;
+.hero-small, .section-small {
+    letter-spacing: 3px;
+    color: var(--pink-dark);
+    font-size: 11px;
+    font-weight: 600;
 }
 
-.deskripsi{
-font-size:14px;
-line-height:1.5;
-min-height:45px;
-margin-bottom:10px;
+.hero h1 {
+    font: 700 clamp(56px,9vw,92px)/1.1 'Playfair Display',serif;
+    color: var(--pink-dark);
+    margin: 12px 0;
 }
 
-.harga{
-font-weight:bold;
-font-size:18px;
-color:#a34f74;
-margin-bottom:15px;
+.hero h2 {
+    font: 500 22px 'Playfair Display',serif;
+    margin: 0 0 10px;
 }
 
-.btnTambah{
-background:#b05f83;
-border:2px solid #8f4968;
-color:white;
-font-weight:bold;
-padding:10px 16px;
-border-radius:9px;
-cursor:pointer;
-box-shadow:3px 3px 0 #d5bdc8;
+.hero p {
+    font-size: 17px;
+    letter-spacing: 1px;
 }
 
-.btnTambah:hover{
-background:#96516e;
+.hero-description {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 14px auto 25px;
 }
 
-.cart-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#fff2f5;
-border:1px solid #dfabc0;
-border-radius:10px;
-padding:12px;
-margin-bottom:8px;
+.flower-decoration {
+    position: absolute;
+    color: #d89aad;
+    font-size: 70px;
+    opacity: .35;
 }
 
-.cart-empty{
-background:#fff2f5;
-padding:18px;
-border-radius:10px;
-font-size:18px;
+.flower-one { top: 40px; left: 8%; }
+.flower-two { right: 9%; bottom: 30px; }
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 28px;
+    padding: 0 18px;
+    max-width: 460px;
+    margin: auto;
+    box-shadow: var(--shadow);
 }
 
-.total-box{
-background:#e4f1f4;
-border:3px solid #b2d0d7;
-border-radius:12px;
-padding:18px;
-margin-top:15px;
-font-size:18px;
-font-weight:bold;
-line-height:1.8;
+.search-box input {
+    border: 0;
+    outline: 0;
+    padding: 15px 0;
+    width: 100%;
+    background: transparent;
 }
 
-#btnCheckout{
-margin-top:10px;
-background:#ad5d82;
-border:2px solid #8e4c6b;
-color:white;
-font-weight:bold;
-padding:12px 24px;
-border-radius:9px;
-cursor:pointer;
-font-size:16px;
-box-shadow:3px 3px 0 #d1bbc5;
+.search-box i { color: var(--pink); }
+
+.produk-section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 64px 24px;
 }
 
-#btnCheckout:hover{
-background:#914e6e;
+.section-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
 }
 
-.history-item{
-background:#fdf0f3;
-border-left:5px solid #c97d9d;
-padding:14px;
-margin-bottom:10px;
-border-radius:8px;
-line-height:1.6;
+.section-header h2 {
+    font: 600 34px 'Playfair Display',serif;
+    margin: 8px 0 0;
 }
 
-.modal{
-display:none;
-position:fixed;
-z-index:200;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(70,45,55,.5);
+.section-header h2 i {
+    color: var(--pink);
+    font-size: 24px;
 }
 
-.modal-box{
-width:90%;
-max-width:500px;
-background:#fff9f7;
-border:4px solid #d58cac;
-border-radius:18px;
-padding:25px;
-position:absolute;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-box-shadow:8px 8px 0 #d8c3cd;
+.filter-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
-.modal-box h2{
-font-family:Georgia,serif;
-color:#92506e;
-margin-top:0;
+.filter-btn {
+    border: 1px solid #ead5dc;
+    background: white;
+    color: var(--pink-dark);
+    border-radius: 22px;
+    padding: 8px 15px;
+    font-size: 12px;
 }
 
-.modal-box label{
-display:block;
-font-weight:bold;
-margin-top:12px;
-margin-bottom:5px;
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: white;
 }
 
-.modal-box input,
-.modal-box textarea{
-width:100%;
-padding:11px;
-border:2px solid #d9a2b8;
-border-radius:8px;
-font-family:Arial,sans-serif;
-font-size:14px;
-outline:none;
+.produk-grid {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 22px;
 }
 
-.modal-box textarea{
-height:90px;
-resize:none;
+.produk-card {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: .2s;
+    cursor: pointer;
 }
 
-.modal-box input:focus,
-.modal-box textarea:focus{
-border-color:#a95c80;
+.produk-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 34px rgba(117,62,79,.15);
 }
 
-.invalid{
-border-color:#d9534f!important;
-background:#fff0f0;
+.produk-img {
+    height: 220px;
+    background: #f8edf0;
+    overflow: hidden;
 }
 
-.err{
-display:none;
-color:#c0392b;
-font-size:13px;
-margin-top:4px;
+.produk-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-.modal-buttons{
-display:flex;
-gap:10px;
-margin-top:20px;
+.produk-info { padding: 17px; }
+
+.produk-info h3 {
+    font: 600 19px 'Playfair Display',serif;
+    margin: 0 0 8px;
 }
 
-.modal-buttons button{
-padding:10px 18px;
-border-radius:8px;
-border:2px solid #8e4c6b;
-font-weight:bold;
-cursor:pointer;
+.desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--muted);
+    min-height: 40px;
 }
 
-#btnConfirm{
-background:#ad5d82;
-color:white;
+.produk-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 16px;
 }
 
-#btnClose{
-background:#eee0e5;
-color:#754e60;
+.produk-price {
+    font-weight: 600;
+    color: var(--pink-dark);
+    font-size: 15px;
 }
 
-.mouse-light{
-position:fixed;
-width:180px;
-height:180px;
-border-radius:50%;
-background:radial-gradient(circle,rgba(255,182,211,.28),rgba(255,182,211,0) 70%);
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:5;
+.produk-price small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 400;
 }
 
-.butterfly{
-position:fixed;
-left:100px;
-top:100px;
-width:70px;
-height:55px;
-z-index:100;
-pointer-events:none;
-transform:translate(-50%,-50%);
-transition:left .12s linear,top .12s linear;
+.btn-add-cart, .modal-add-cart, .btn-checkout {
+    border: 0;
+    background: var(--pink);
+    color: white;
+    border-radius: 24px;
+    padding: 11px 14px;
 }
 
-.butterfly:before,
-.butterfly:after{
-content:"";
-position:absolute;
-top:7px;
-width:30px;
-height:38px;
-background:#ed82ad;
-border:3px solid #95516f;
-box-shadow:2px 2px 0 rgba(100,60,80,.2);
+.btn-add-cart {
+    width: 38px;
+    height: 38px;
+    padding: 0;
 }
 
-.butterfly:before{
-left:1px;
-border-radius:70% 30% 60% 40%;
-transform-origin:100% 70%;
-animation:wingLeft .45s infinite alternate;
+.produk-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    background: white;
+    color: var(--pink-dark);
+    border-radius: 16px;
+    padding: 6px 10px;
+    font-size: 10px;
+    box-shadow: var(--shadow);
 }
 
-.butterfly:after{
-right:1px;
-border-radius:30% 70% 40% 60%;
-transform-origin:0 70%;
-animation:wingRight .45s infinite alternate;
+.produk-badge.hot {
+    background: var(--pink-dark);
+    color: white;
 }
 
-.butterfly span{
-position:absolute;
-left:31px;
-top:10px;
-width:8px;
-height:34px;
-background:#624452;
-border-radius:10px;
-z-index:2;
+.no-product {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px 15px;
+    color: var(--muted);
 }
 
-.butterfly span:before,
-.butterfly span:after{
-content:"";
-position:absolute;
-width:16px;
-height:14px;
-border-top:2px solid #624452;
+.cart-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(35,20,26,.4);
+    z-index: 90;
 }
 
-.butterfly span:before{
-right:2px;
-top:-8px;
-transform:rotate(25deg);
+.cart-sidebar {
+    position: fixed;
+    z-index: 100;
+    right: -440px;
+    top: 0;
+    width: min(420px,100%);
+    height: 100vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    transition: right .3s;
 }
 
-.butterfly span:after{
-left:2px;
-top:-8px;
-transform:rotate(-25deg);
+.cart-sidebar.open { right: 0; }
+
+.cart-header, .cart-footer {
+    padding: 20px;
+    border-bottom: 1px solid #f0e4e8;
 }
 
-@keyframes wingLeft{
-from{transform:rotateY(0deg) rotate(-5deg)}
-to{transform:rotateY(60deg) rotate(-12deg)}
+.cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-@keyframes wingRight{
-from{transform:rotateY(0deg) rotate(5deg)}
-to{transform:rotateY(-60deg) rotate(12deg)}
+.cart-header h3 {
+    font: 600 22px 'Playfair Display',serif;
+    margin: 0;
 }
 
-.decor{
-position:fixed;
-z-index:1;
-font-size:35px;
-opacity:.6;
-animation:float 4s ease-in-out infinite;
-pointer-events:none;
+.cart-close {
+    border: 0;
+    background: transparent;
+    font-size: 22px;
+    color: var(--pink-dark);
 }
 
-.decor.one{
-left:5%;
-top:25%;
+.cart-items {
+    padding: 16px 20px;
+    overflow: auto;
+    flex: 1;
 }
 
-.decor.two{
-right:6%;
-top:35%;
-animation-delay:1s;
+.cart-empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 55px 10px;
 }
 
-.decor.three{
-left:8%;
-bottom:15%;
-animation-delay:2s;
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f2e7eb;
 }
 
-.decor.four{
-right:7%;
-bottom:20%;
-animation-delay:1.5s;
+.cart-item-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-@keyframes float{
-0%,100%{transform:translateY(0) rotate(0deg)}
-50%{transform:translateY(-15px) rotate(8deg)}
+.cart-item-info { flex: 1; }
+.cart-item-info h5 { margin: 0 0 5px; font-size: 13px; }
+.cart-item-info .price { font-size: 12px; color: var(--pink-dark); }
+
+.qty-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
 }
 
-@media(max-width:700px){
-
-.container{
-padding:18px;
+.qty-btn {
+    border: 1px solid #ead5dc;
+    background: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
 }
 
-.header h1{
-font-size:30px;
+.cart-item-remove {
+    border: 0;
+    background: transparent;
+    color: #b76b7f;
 }
 
-.produk{
-grid-template-columns:1fr;
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 16px;
 }
 
-.section h2{
-font-size:25px;
+.flower-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
+.flower-modal.show { display: flex; }
+
+.flower-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(35,20,26,.55);
+}
+
+.flower-modal-content {
+    position: relative;
+    z-index: 1;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    max-width: 720px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: var(--shadow);
+}
+
+.flower-modal-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 2;
+    border: 0;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background: white;
+    color: var(--pink-dark);
+}
+
+.flower-modal-image {
+    min-height: 300px;
+    background: var(--rose);
+}
+
+.flower-modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flower-modal-info {
+    padding: 35px 25px;
+    align-self: center;
+}
+
+.modal-category {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--pink);
+}
+
+.flower-modal-info h2 {
+    font: 600 30px 'Playfair Display',serif;
+}
+
+.modal-description {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.modal-price {
+    font-size: 23px;
+    color: var(--pink-dark);
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+.modal-price small {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+}
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translate(-50%,20px);
+    opacity: 0;
+    pointer-events: none;
+    background: #49333c;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 28px;
+    z-index: 150;
+    transition: .25s;
+    box-shadow: var(--shadow);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%,0);
+}
+
+.mouse-flower {
+    position: fixed;
+    z-index: 200;
+    pointer-events: none;
+    animation: floatAway 1.2s forwards;
+}
+
+@keyframes floatAway {
+    to {
+        transform: translateY(-35px) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+.footer {
+    text-align: center;
+    padding: 35px 20px;
+    background: #f7e9ed;
+    color: var(--muted);
+}
+
+.footer-logo {
+    font: 700 30px 'Playfair Display',serif;
+    color: var(--pink-dark);
+}
+
+.footer-line {
+    width: 65px;
+    height: 2px;
+    background: var(--pink);
+    margin: 18px auto;
+}
+
+@media(max-width:950px) {
+    .produk-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .nav-menu { gap: 12px; }
+}
+
+@media(max-width:700px) {
+    .nav-container { padding: 12px 16px; gap: 12px; }
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        padding: 18px 22px;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-menu.show { display: flex; }
+    .hamburger { display: block; margin-left: auto; padding: 11px 13px; }
+    .cart-btn { padding: 10px 12px; }
+    .cart-text { display: none; }
+    .produk-section { padding: 42px 16px; }
+    .section-header h2 { font-size: 29px; }
+    .produk-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; }
+    .produk-img { height: 175px; }
+    .produk-info { padding: 12px; }
+    .produk-info h3 { font-size: 16px; }
+    .desc { font-size: 11px; }
+    .produk-price { font-size: 13px; }
+    .flower-modal-content {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        max-height: 90vh;
+        overflow: auto;
+    }
+    .flower-modal-image { height: 220px; min-height: 0; }
+    .flower-modal-info { padding: 24px; }
+    .flower-modal-info h2 { font-size: 25px; }
+}
+
+@media(max-width:380px) {
+    .produk-grid { grid-template-columns: 1fr; }
+    .produk-img { height: 230px; }
+    .logo-name { font-size: 21px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="mouse-light"></div>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#home" class="logo">
+            <i class="fas fa-seedling"></i>
+            <div>
+                <span class="logo-name">Bloomé</span>
+                <small>by Novi Aulia</small>
+            </div>
+        </a>
 
-<div class="butterfly">
-<span></span>
+        <div class="nav-menu" id="navMenu">
+            <a href="#produk" class="nav-link active" data-filter="all">Semua</a>
+            <a href="#produk" class="nav-link" data-filter="lily">Lily</a>
+            <a href="#produk" class="nav-link" data-filter="rose">Rose</a>
+            <a href="#produk" class="nav-link" data-filter="tulip">Tulip</a>
+            <a href="#produk" class="nav-link" data-filter="peony">Peony</a>
+            <a href="#produk" class="nav-link" data-filter="other">Lainnya</a>
+        </div>
+
+        <button type="button" class="cart-btn" id="cartBtn">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-text">Keranjang</span>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+
+        <button type="button" class="hamburger" id="hamburger" aria-label="Buka menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="flower-decoration flower-one">❀</div>
+    <div class="flower-decoration flower-two">✿</div>
+
+    <div class="hero-content">
+        <div class="hero-small">WELCOME TO</div>
+        <h1>Bloomé</h1>
+        <h2>by Novi Aulia</h2>
+        <p>Flowers for Every Moment</p>
+        <div class="hero-description">
+            Temukan bunga cantik untuk menemani setiap momen spesialmu.
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchProduk"
+                   placeholder="Cari bunga favoritmu..." autocomplete="off">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+</section>
+
+<section class="produk-section" id="produk">
+    <div class="section-header">
+        <div>
+            <div class="section-small">OUR COLLECTION</div>
+            <h2>Pilihan Bunga <i class="fas fa-seedling"></i></h2>
+        </div>
+
+        <div class="filter-btns">
+            <button class="filter-btn active" data-cat="all">Semua</button>
+            <button class="filter-btn" data-cat="lily">Lily</button>
+            <button class="filter-btn" data-cat="rose">Rose</button>
+            <button class="filter-btn" data-cat="tulip">Tulip</button>
+            <button class="filter-btn" data-cat="peony">Peony</button>
+            <button class="filter-btn" data-cat="other">Lainnya</button>
+        </div>
+    </div>
+
+    <div class="produk-grid" id="produkGrid"></div>
+</section>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3><i class="fas fa-shopping-bag"></i> Keranjang Bloomé</h3>
+        <button class="cart-close" id="cartClose" aria-label="Tutup keranjang">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total</span>
+            <span id="cartTotal">Rp 0</span>
+        </div>
+        <button class="btn-checkout" id="btnCheckout">
+            <i class="fas fa-check-circle"></i> Checkout Sekarang
+        </button>
+    </div>
+</aside>
+
+<div class="flower-modal" id="flowerModal">
+    <div class="flower-modal-overlay"></div>
+    <div class="flower-modal-content">
+        <button class="flower-modal-close" id="flowerModalClose" aria-label="Tutup detail">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="flower-modal-image">
+            <img id="modalFlowerImage" src="" alt="Foto bunga">
+        </div>
+
+        <div class="flower-modal-info">
+            <span class="modal-category" id="modalFlowerCategory">FLOWER</span>
+            <h2 id="modalFlowerName">Nama Bunga</h2>
+            <p class="modal-description" id="modalFlowerDescription">Deskripsi bunga.</p>
+
+            <div class="modal-price">
+                <span id="modalFlowerPrice">Rp 0</span>
+                <small>per bouquet</small>
+            </div>
+
+            <button class="modal-add-cart" id="modalAddCart">
+                <i class="fas fa-shopping-bag"></i> Tambahkan ke Keranjang
+            </button>
+        </div>
+    </div>
 </div>
 
-<div class="decor one">✦</div>
-<div class="decor two">✿</div>
-<div class="decor three">♡</div>
-<div class="decor four">✦</div>
-
-<div class="container">
-
-<button id="btnKembali" class="btn-kembali">
-Kembali ke Profil
-</button>
-
-<div class="header">
-<h1>Novrist Novi Florist</h1>
-<p class="tagline">Bunga cantik untuk setiap momen</p>
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Berhasil</span>
 </div>
 
-<div class="section">
+<footer class="footer">
+    <div class="footer-logo">Bloomé</div>
+    <p>Flowers for Every Moment</p>
+    <div class="footer-line"></div>
+    <small>© 2026 Bloomé by Novi Aulia</small>
+</footer>
 
-<h2>Daftar Bunga</h2>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<div id="productList" class="produk"></div>
+<script>
+$(document).ready(function () {
 
-</div>
+    const produkData = [
+        {id:1,nama:'Pink Lily',harga:35000,kategori:'lily',gambar:'pinklily.jpg',desc:'Lily pink segar dengan kelopak lembut.',badge:'Favorit',badgeType:''},
+        {id:2,nama:'White Lily',harga:38000,kategori:'lily',gambar:'whitelily.jpg',desc:'Lily putih dengan tampilan bersih dan elegan.',badge:'',badgeType:''},
+        {id:3,nama:'Stargazer Lily',harga:45000,kategori:'lily',gambar:'stargizerlily.jpg',desc:'Lily pink dengan corak dan bintik khas.',badge:'Best Seller',badgeType:'hot'},
+        {id:4,nama:'Oriental Lily',harga:48000,kategori:'lily',gambar:'orientallily.jpg',desc:'Lily berukuran besar dengan aroma harum.',badge:'',badgeType:''},
+        {id:5,nama:'Casablanca Lily',harga:50000,kategori:'lily',gambar:'casablancalily.jpg',desc:'Lily putih elegan untuk hadiah spesial.',badge:'Premium',badgeType:''},
+        {id:6,nama:'Pink Rose',harga:30000,kategori:'rose',gambar:'pinkrose.jpg',desc:'Mawar pink segar dengan warna lembut.',badge:'Favorit',badgeType:''},
+        {id:7,nama:'Red Rose',harga:35000,kategori:'rose',gambar:'redrose.jpg',desc:'Mawar merah klasik untuk berbagai momen.',badge:'Best Seller',badgeType:'hot'},
+        {id:8,nama:'Peach Rose',harga:38000,kategori:'rose',gambar:'peachrose.jpg',desc:'Mawar peach dengan warna hangat dan lembut.',badge:'New',badgeType:''},
+        {id:9,nama:'Pink Tulip',harga:40000,kategori:'tulip',gambar:'pinktulip.jpg',desc:'Tulip pink dengan bentuk kelopak yang cantik.',badge:'Favorit',badgeType:''},
+        {id:10,nama:'White Tulip',harga:42000,kategori:'tulip',gambar:'whitetulip.jpg',desc:'Tulip putih dengan tampilan minimalis.',badge:'',badgeType:''},
+        {id:11,nama:'Pink Peony',harga:55000,kategori:'peony',gambar:'pinkpeony.jpg',desc:'Peony pink dengan kelopak yang penuh dan lembut.',badge:'Premium',badgeType:''},
+        {id:12,nama:'Pink Hydrangea',harga:45000,kategori:'other',gambar:'pinkhydrengea.jpg',desc:'Hydrangea pink dengan kumpulan bunga yang cantik.',badge:'New',badgeType:''},
+        {id:13,nama:"Baby's Breath",harga:25000,kategori:'other',gambar:'babybreath.jpg',desc:'Bunga kecil putih untuk pelengkap rangkaian.',badge:'',badgeType:''},
+        {id:14,nama:'Sunflower',harga:30000,kategori:'other',gambar:'sunflower.jpg',desc:'Bunga matahari cerah dengan warna kuning khas.',badge:'Popular',badgeType:''}
+    ];
 
-<div class="section">
+    let cart = [];
+    let currentFilter = 'all';
+    let searchKeyword = '';
 
-<h2>Keranjang Belanja</h2>
+    function getImagePath(namaFile) {
+        return 'pictures/' + namaFile;
+    }
 
-<div id="cartList" class="cart-empty">
-Keranjang masih kosong.
-</div>
+    function renderProduk() {
+        const $grid = $('#produkGrid');
+        $grid.empty();
 
-<div id="cartTotal" class="total-box">
-Total: Rp 0
-</div>
+        const filtered = produkData.filter(function (p) {
+            const matchKategori =
+                currentFilter === 'all' || p.kategori === currentFilter;
 
-<button id="btnCheckout">
-Checkout
-</button>
+            const keyword = searchKeyword.toLowerCase();
 
-</div>
+            const matchSearch =
+                p.nama.toLowerCase().includes(keyword) ||
+                p.desc.toLowerCase().includes(keyword);
 
-<div class="section">
+            return matchKategori && matchSearch;
+        });
 
-<h2 id="historyTitle">Riwayat Pembelian</h2>
+        if (filtered.length === 0) {
+            $grid.html(`
+                <div class="no-product">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Bunga tidak ditemukan</h3>
+                    <p>Coba kata kunci atau kategori lain.</p>
+                </div>
+            `);
+            return;
+        }
 
-<div id="historyList">
-Belum ada riwayat pembelian.
-</div>
+        filtered.forEach(function (p) {
+            const badgeHtml = p.badge
+                ? `<div class="produk-badge ${p.badgeType}">${p.badge}</div>`
+                : '';
 
-</div>
+            const card = `
+                <div class="produk-card" data-id="${p.id}">
+                    ${badgeHtml}
+                    <div class="produk-img">
+                        <img src="${getImagePath(p.gambar)}" alt="${p.nama}">
+                    </div>
+                    <div class="produk-info">
+                        <h3>${p.nama}</h3>
+                        <p class="desc">${p.desc}</p>
+                        <div class="produk-footer">
+                            <div class="produk-price">
+                                Rp ${p.harga.toLocaleString('id-ID')}
+                                <small>per bouquet</small>
+                            </div>
+                            <button type="button" class="btn-add-cart"
+                                    data-id="${p.id}" title="Tambah ke keranjang">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            $grid.append(card);
+        });
+    }
 
-</div>
+    $('.nav-link').click(function (e) {
+        e.preventDefault();
 
-<div id="buyerModal" class="modal">
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
 
-<div class="modal-box">
+        currentFilter = $(this).data('filter');
 
-<h2>Data Pembeli</h2>
+        $('.filter-btn').removeClass('active');
+        $(`.filter-btn[data-cat="${currentFilter}"]`).addClass('active');
 
-<form id="buyerForm">
+        renderProduk();
 
-<label for="buyerName">Nama</label>
-<input type="text" id="buyerName" placeholder="Masukkan nama">
-<div id="errBuyerName" class="err">
-Nama minimal 3 karakter.
-</div>
+        const target = $(this).attr('href');
 
-<label for="buyerAddress">Alamat Lengkap</label>
-<textarea id="buyerAddress" placeholder="Contoh: Jl. Ahmad Yani No. 10, Pontianak, Kalimantan Barat"></textarea>
+        if (target && target !== '#') {
+            $('html, body').animate({
+                scrollTop: $(target).offset().top - 80
+            }, 500);
+        }
 
-<small style="display:block;margin-top:5px;color:#8a6875;">
-Isi alamat lengkap, seperti nama jalan, nomor rumah, kota, dan provinsi.
-</small>
+        if (window.innerWidth <= 768) {
+            $('#navMenu').removeClass('show');
+            $('#hamburger i').removeClass('fa-times').addClass('fa-bars');
+        }
+    });
 
-<div id="errBuyerAddress" class="err">
-Alamat harus diisi minimal 10 karakter.
-</div>
+    $('.filter-btn').click(function () {
+        $('.filter-btn').removeClass('active');
+        $(this).addClass('active');
 
-<label for="buyerPhone">Nomor HP</label>
-<input type="text" id="buyerPhone" placeholder="Contoh: 081234567890">
-<div id="errBuyerPhone" class="err">
-Nomor HP harus diawali 08 dan terdiri dari 10-15 angka.
-</div>
+        currentFilter = $(this).data('cat');
 
-<div class="modal-buttons">
+        $('.nav-link').removeClass('active');
 
-<button id="btnConfirm" type="submit">
-Konfirmasi
-</button>
+        const navLink = $(`.nav-link[data-filter="${currentFilter}"]`);
 
-<button id="btnClose" type="button">
-Batal
-</button>
+        if (navLink.length) {
+            navLink.addClass('active');
+        } else {
+            $('.nav-link[data-filter="all"]').addClass('active');
+        }
 
-</div>g
+        renderProduk();
+    });
 
-</form>
+    $('#searchProduk').on('input', function () {
+        searchKeyword = $(this).val();
+        renderProduk();
+    });
 
-</div>
+    $(document).on('click', '.produk-card', function () {
+        const id = Number($(this).data('id'));
+        const produk = produkData.find(function (p) {
+            return p.id === id;
+        });
 
-</div>
+        if (!produk) return;
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="script.js"></script>
+        $('#modalFlowerImage')
+            .attr('src', getImagePath(produk.gambar))
+            .attr('alt', produk.nama);
 
+        $('#modalFlowerName').text(produk.nama);
+        $('#modalFlowerDescription').text(produk.desc);
+        $('#modalFlowerPrice').text('Rp ' + produk.harga.toLocaleString('id-ID'));
+        $('#modalFlowerCategory').text(produk.kategori);
+        $('#modalAddCart').data('id', produk.id);
+
+        $('#flowerModal').addClass('show');
+        $('body').css('overflow', 'hidden');
+    });
+
+    $(document).on('click', '.btn-add-cart', function (e) {
+        e.stopPropagation();
+
+        const id = Number($(this).data('id'));
+        addToCart(id);
+
+        const button = this;
+
+        $(button).css('transform', 'rotate(90deg) scale(1.3)');
+
+        setTimeout(function () {
+            $(button).css('transform', '');
+        }, 300);
+    });
+
+    function addToCart(id) {
+        const produk = produkData.find(function (p) {
+            return p.id === id;
+        });
+
+        if (!produk) return;
+
+        const existing = cart.find(function (item) {
+            return item.id === id;
+        });
+
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            cart.push({
+                id: produk.id,
+                nama: produk.nama,
+                harga: produk.harga,
+                gambar: produk.gambar,
+                qty: 1
+            });
+        }
+
+        updateCartUI();
+
+        $('#cartBadge').css('transform', 'scale(1.4)');
+
+        setTimeout(function () {
+            $('#cartBadge').css('transform', 'scale(1)');
+        }, 200);
+
+        showToast(`🌷 ${produk.nama} ditambahkan ke keranjang!`);
+    }
+
+    function updateCartUI() {
+        const $cartItems = $('#cartItems');
+
+        const totalQty = cart.reduce(function (sum, item) {
+            return sum + item.qty;
+        }, 0);
+
+        const totalHarga = cart.reduce(function (sum, item) {
+            return sum + item.harga * item.qty;
+        }, 0);
+
+        $('#cartBadge').text(totalQty);
+        $('#cartTotal').text('Rp ' + totalHarga.toLocaleString('id-ID'));
+
+        if (cart.length === 0) {
+            $cartItems.html(`
+                <div class="cart-empty">
+                    <i class="fas fa-seedling"></i>
+                    <p>Keranjang masih kosong</p>
+                    <small>Yuk pilih bunga favoritmu!</small>
+                </div>
+            `);
+            return;
+        }
+
+        let html = '';
+
+        cart.forEach(function (item) {
+            html += `
+                <div class="cart-item" data-id="${item.id}">
+                    <div class="cart-item-icon">
+                        <img src="${getImagePath(item.gambar)}" alt="${item.nama}">
+                    </div>
+                    <div class="cart-item-info">
+                        <h5>${item.nama}</h5>
+                        <div class="price">
+                            Rp ${(item.harga * item.qty).toLocaleString('id-ID')}
+                        </div>
+                        <div class="qty-control">
+                            <button type="button" class="qty-btn"
+                                    data-action="minus" data-id="${item.id}">−</button>
+                            <span class="qty-value">${item.qty}</span>
+                            <button type="button" class="qty-btn"
+                                    data-action="plus" data-id="${item.id}">+</button>
+                        </div>
+                    </div>
+                    <button type="button" class="cart-item-remove"
+                            data-id="${item.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+        });
+
+        $cartItems.html(html);
+    }
+
+    $(document).on('click', '.qty-btn', function () {
+        const action = $(this).data('action');
+        const id = Number($(this).data('id'));
+
+        const item = cart.find(function (i) {
+            return i.id === id;
+        });
+
+        if (!item) return;
+
+        if (action === 'plus') {
+            item.qty += 1;
+        }
+
+        if (action === 'minus') {
+            item.qty -= 1;
+
+            if (item.qty <= 0) {
+                cart = cart.filter(function (i) {
+                    return i.id !== id;
+                });
+            }
+        }
+
+        updateCartUI();
+    });
+
+    $(document).on('click', '.cart-item-remove', function () {
+        const id = Number($(this).data('id'));
+
+        cart = cart.filter(function (i) {
+            return i.id !== id;
+        });
+
+        updateCartUI();
+        showToast('Bunga dihapus dari keranjang');
+    });
+
+    $('#cartBtn').click(function () {
+        $('#cartSidebar').addClass('open');
+        $('#cartOverlay').fadeIn(300);
+    });
+
+    $('#cartClose, #cartOverlay').click(function () {
+        $('#cartSidebar').removeClass('open');
+        $('#cartOverlay').fadeOut(300);
+    });
+
+    function closeFlowerModal() {
+        $('#flowerModal').removeClass('show');
+        $('body').css('overflow', '');
+    }
+
+    $('#flowerModalClose, .flower-modal-overlay').click(function () {
+        closeFlowerModal();
+    });
+
+    $(document).keydown(function (e) {
+        if (e.key === 'Escape' && $('#flowerModal').hasClass('show')) {
+            closeFlowerModal();
+        }
+    });
+
+    $('#modalAddCart').click(function () {
+        const id = Number($(this).data('id'));
+        addToCart(id);
+        closeFlowerModal();
+    });
+
+    $('#btnCheckout').click(function () {
+        if (cart.length === 0) {
+            showToast('Keranjang masih kosong!');
+            return;
+        }
+
+        const total = cart.reduce(function (sum, item) {
+            return sum + item.harga * item.qty;
+        }, 0);
+
+        const totalQty = cart.reduce(function (sum, item) {
+            return sum + item.qty;
+        }, 0);
+
+        const $btn = $(this);
+
+        $btn.html('<i class="fas fa-spinner fa-spin"></i> Memproses...')
+            .prop('disabled', true);
+
+        setTimeout(function () {
+            cart = [];
+            updateCartUI();
+
+            $('#cartSidebar').removeClass('open');
+            $('#cartOverlay').fadeOut(300);
+
+            $btn.html('<i class="fas fa-check-circle"></i> Checkout Sekarang')
+                .prop('disabled', false);
+
+            showToast(
+                `Checkout berhasil! ${totalQty} item · Rp ${total.toLocaleString('id-ID')}`
+            );
+        }, 1500);
+    });
+
+    let toastTimer;
+
+    function showToast(message) {
+        clearTimeout(toastTimer);
+
+        $('#toastMsg').text(message);
+        $('#toast').addClass('show');
+
+        toastTimer = setTimeout(function () {
+            $('#toast').removeClass('show');
+        }, 2500);
+    }
+
+    $('#hamburger').click(function () {
+        $('#navMenu').toggleClass('show');
+
+        const icon = $(this).find('i');
+
+        if ($('#navMenu').hasClass('show')) {
+            icon.removeClass('fa-bars').addClass('fa-times');
+        } else {
+            icon.removeClass('fa-times').addClass('fa-bars');
+        }
+    });
+
+    $(document).on('mousemove', function (e) {
+        if (Math.random() > 0.35) return;
+
+        const flowers = ['🌸','🌷','🌹','🌺','💮','❀'];
+        const flower = flowers[Math.floor(Math.random() * flowers.length)];
+        const $flower = $('<span class="mouse-flower"></span>');
+
+        $flower.text(flower);
+
+        $flower.css({
+            left: e.clientX + 'px',
+            top: e.clientY + 'px',
+            fontSize: (16 + Math.random() * 12) + 'px'
+        });
+
+        $('body').append($flower);
+
+        setTimeout(function () {
+            $flower.remove();
+        }, 1200);
+    });
+
+    renderProduk();
+    updateCartUI();
+
+    console.log('Bloomé - Flowers for Every Moment');
+    console.log('by Novi Aulia');
+    console.log('Total produk: ' + produkData.length);
+});
+</script>
 </body>
 </html>
