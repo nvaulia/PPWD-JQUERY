@@ -1,1216 +1,1031 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bloomé - Flowers for Every Moment</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-:root {
-    --pink: #b85d78;
-    --pink-dark: #8f3f5b;
-    --rose: #f8e9ed;
-    --cream: #fffaf8;
-    --text: #45353b;
-    --muted: #88777d;
-    --shadow: 0 10px 28px rgba(117,62,79,.10);
-}
-
-* { box-sizing: border-box; }
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
-
-body {
-    margin: 0;
-    background: var(--cream);
-    color: var(--text);
-    font-family: 'Poppins', sans-serif;
-}
-
-button, input { font: inherit; }
-button { cursor: pointer; }
-
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(255,250,248,.96);
-    box-shadow: 0 2px 14px rgba(80,45,55,.07);
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--pink-dark);
-}
-
-.logo > i { font-size: 30px; }
-
-.logo-name {
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: 25px;
-    font-weight: 700;
-}
-
-.logo small {
-    font-size: 11px;
-    color: var(--muted);
-}
-
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-left: auto;
-}
-
-.nav-link {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 13px;
-    padding: 8px 0;
-    border-bottom: 2px solid transparent;
-}
-
-.nav-link:hover,
-.nav-link.active {
-    color: var(--pink-dark);
-    border-color: var(--pink);
-}
-
-.cart-btn, .hamburger {
-    border: 0;
-    background: var(--pink);
-    color: white;
-    border-radius: 24px;
-    padding: 11px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.cart-badge {
-    background: white;
-    color: var(--pink-dark);
-    border-radius: 20px;
-    padding: 2px 7px;
-    font-size: 11px;
-}
-
-.hamburger { display: none; }
-
-.hero {
-    min-height: 440px;
-    position: relative;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 75px 20px;
-    background: linear-gradient(135deg,#f8e7ec,#fff7f0 55%,#f4e4e9);
-    overflow: hidden;
-}
-
-.hero-content {
-    max-width: 720px;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-small, .section-small {
-    letter-spacing: 3px;
-    color: var(--pink-dark);
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.hero h1 {
-    font: 700 clamp(56px,9vw,92px)/1.1 'Playfair Display',serif;
-    color: var(--pink-dark);
-    margin: 12px 0;
-}
-
-.hero h2 {
-    font: 500 22px 'Playfair Display',serif;
-    margin: 0 0 10px;
-}
-
-.hero p {
-    font-size: 17px;
-    letter-spacing: 1px;
-}
-
-.hero-description {
-    color: var(--muted);
-    font-size: 14px;
-    margin: 14px auto 25px;
-}
-
-.flower-decoration {
-    position: absolute;
-    color: #d89aad;
-    font-size: 70px;
-    opacity: .35;
-}
-
-.flower-one { top: 40px; left: 8%; }
-.flower-two { right: 9%; bottom: 30px; }
-
-.search-box {
-    display: flex;
-    align-items: center;
-    background: white;
-    border-radius: 28px;
-    padding: 0 18px;
-    max-width: 460px;
-    margin: auto;
-    box-shadow: var(--shadow);
-}
-
-.search-box input {
-    border: 0;
-    outline: 0;
-    padding: 15px 0;
-    width: 100%;
-    background: transparent;
-}
-
-.search-box i { color: var(--pink); }
-
-.produk-section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 64px 24px;
-}
-
-.section-header {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-}
-
-.section-header h2 {
-    font: 600 34px 'Playfair Display',serif;
-    margin: 8px 0 0;
-}
-
-.section-header h2 i {
-    color: var(--pink);
-    font-size: 24px;
-}
-
-.filter-btns {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    border: 1px solid #ead5dc;
-    background: white;
-    color: var(--pink-dark);
-    border-radius: 22px;
-    padding: 8px 15px;
-    font-size: 12px;
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-    background: var(--pink);
-    border-color: var(--pink);
-    color: white;
-}
-
-.produk-grid {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 22px;
-}
-
-.produk-card {
-    position: relative;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: .2s;
-    cursor: pointer;
-}
-
-.produk-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 34px rgba(117,62,79,.15);
-}
-
-.produk-img {
-    height: 220px;
-    background: #f8edf0;
-    overflow: hidden;
-}
-
-.produk-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.produk-info { padding: 17px; }
-
-.produk-info h3 {
-    font: 600 19px 'Playfair Display',serif;
-    margin: 0 0 8px;
-}
-
-.desc {
-    font-size: 12px;
-    line-height: 1.7;
-    color: var(--muted);
-    min-height: 40px;
-}
-
-.produk-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    margin-top: 16px;
-}
-
-.produk-price {
-    font-weight: 600;
-    color: var(--pink-dark);
-    font-size: 15px;
-}
-
-.produk-price small {
-    display: block;
-    color: var(--muted);
-    font-size: 10px;
-    font-weight: 400;
-}
-
-.btn-add-cart, .modal-add-cart, .btn-checkout {
-    border: 0;
-    background: var(--pink);
-    color: white;
-    border-radius: 24px;
-    padding: 11px 14px;
-}
-
-.btn-add-cart {
-    width: 38px;
-    height: 38px;
-    padding: 0;
-}
-
-.produk-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    z-index: 2;
-    background: white;
-    color: var(--pink-dark);
-    border-radius: 16px;
-    padding: 6px 10px;
-    font-size: 10px;
-    box-shadow: var(--shadow);
-}
-
-.produk-badge.hot {
-    background: var(--pink-dark);
-    color: white;
-}
-
-.no-product {
-    grid-column: 1/-1;
-    text-align: center;
-    padding: 60px 15px;
-    color: var(--muted);
-}
-
-.cart-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(35,20,26,.4);
-    z-index: 90;
-}
-
-.cart-sidebar {
-    position: fixed;
-    z-index: 100;
-    right: -440px;
-    top: 0;
-    width: min(420px,100%);
-    height: 100vh;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow);
-    transition: right .3s;
-}
-
-.cart-sidebar.open { right: 0; }
-
-.cart-header, .cart-footer {
-    padding: 20px;
-    border-bottom: 1px solid #f0e4e8;
-}
-
-.cart-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.cart-header h3 {
-    font: 600 22px 'Playfair Display',serif;
-    margin: 0;
-}
-
-.cart-close {
-    border: 0;
-    background: transparent;
-    font-size: 22px;
-    color: var(--pink-dark);
-}
-
-.cart-items {
-    padding: 16px 20px;
-    overflow: auto;
-    flex: 1;
-}
-
-.cart-empty {
-    text-align: center;
-    color: var(--muted);
-    padding: 55px 10px;
-}
-
-.cart-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid #f2e7eb;
-}
-
-.cart-item-icon img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.cart-item-info { flex: 1; }
-.cart-item-info h5 { margin: 0 0 5px; font-size: 13px; }
-.cart-item-info .price { font-size: 12px; color: var(--pink-dark); }
-
-.qty-control {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 8px;
-}
-
-.qty-btn {
-    border: 1px solid #ead5dc;
-    background: white;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-}
-
-.cart-item-remove {
-    border: 0;
-    background: transparent;
-    color: #b76b7f;
-}
-
-.cart-total {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 600;
-    margin-bottom: 16px;
-}
-
-.flower-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 110;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.flower-modal.show { display: flex; }
-
-.flower-modal-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(35,20,26,.55);
-}
-
-.flower-modal-content {
-    position: relative;
-    z-index: 1;
-    background: white;
-    border-radius: 18px;
-    overflow: hidden;
-    max-width: 720px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    box-shadow: var(--shadow);
-}
-
-.flower-modal-close {
-    position: absolute;
-    right: 12px;
-    top: 12px;
-    z-index: 2;
-    border: 0;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    background: white;
-    color: var(--pink-dark);
-}
-
-.flower-modal-image {
-    min-height: 300px;
-    background: var(--rose);
-}
-
-.flower-modal-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.flower-modal-info {
-    padding: 35px 25px;
-    align-self: center;
-}
-
-.modal-category {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--pink);
-}
-
-.flower-modal-info h2 {
-    font: 600 30px 'Playfair Display',serif;
-}
-
-.modal-description {
-    font-size: 13px;
-    line-height: 1.8;
-    color: var(--muted);
-}
-
-.modal-price {
-    font-size: 23px;
-    color: var(--pink-dark);
-    font-weight: 600;
-    margin: 20px 0;
-}
-
-.modal-price small {
-    display: block;
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 400;
-}
-
-.toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translate(-50%,20px);
-    opacity: 0;
-    pointer-events: none;
-    background: #49333c;
-    color: white;
-    padding: 13px 20px;
-    border-radius: 28px;
-    z-index: 150;
-    transition: .25s;
-    box-shadow: var(--shadow);
-}
-
-.toast.show {
-    opacity: 1;
-    transform: translate(-50%,0);
-}
-
-.mouse-flower {
-    position: fixed;
-    z-index: 200;
-    pointer-events: none;
-    animation: floatAway 1.2s forwards;
-}
-
-@keyframes floatAway {
-    to {
-        transform: translateY(-35px) rotate(35deg);
-        opacity: 0;
-    }
-}
-
-.footer {
-    text-align: center;
-    padding: 35px 20px;
-    background: #f7e9ed;
-    color: var(--muted);
-}
-
-.footer-logo {
-    font: 700 30px 'Playfair Display',serif;
-    color: var(--pink-dark);
-}
-
-.footer-line {
-    width: 65px;
-    height: 2px;
-    background: var(--pink);
-    margin: 18px auto;
-}
-
-@media(max-width:950px) {
-    .produk-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
-    .nav-menu { gap: 12px; }
-}
-
-@media(max-width:700px) {
-    .nav-container { padding: 12px 16px; gap: 12px; }
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--cream);
-        padding: 18px 22px;
-        box-shadow: var(--shadow);
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .nav-menu.show { display: flex; }
-    .hamburger { display: block; margin-left: auto; padding: 11px 13px; }
-    .cart-btn { padding: 10px 12px; }
-    .cart-text { display: none; }
-    .produk-section { padding: 42px 16px; }
-    .section-header h2 { font-size: 29px; }
-    .produk-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; }
-    .produk-img { height: 175px; }
-    .produk-info { padding: 12px; }
-    .produk-info h3 { font-size: 16px; }
-    .desc { font-size: 11px; }
-    .produk-price { font-size: 13px; }
-    .flower-modal-content {
-        grid-template-columns: 1fr;
-        max-width: 420px;
-        max-height: 90vh;
-        overflow: auto;
-    }
-    .flower-modal-image { height: 220px; min-height: 0; }
-    .flower-modal-info { padding: 24px; }
-    .flower-modal-info h2 { font-size: 25px; }
-}
-
-@media(max-width:380px) {
-    .produk-grid { grid-template-columns: 1fr; }
-    .produk-img { height: 230px; }
-    .logo-name { font-size: 21px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Kopi Senja</title>
+
+    <!-- Library jQuery dan jQuery Validation Plugin -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coklat: #6f3e2e;
+            --coklat-tua: #3d241b;
+            --gelap: #251711;
+            --aksen: #a66a45;
+            --krem: #f5e8d5;
+            --krem-muda: #fffaf3;
+            --merah: #b83b32;
+            --hijau: #2e7d32;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #33251f;
+            background: var(--krem-muda);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        nav {
+            background: var(--gelap);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+        }
+
+        .logo {
+            color: var(--aksen);
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-list a,
+        .dropdown-btn {
+            color: #fff;
+            text-decoration: none;
+            background: none;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-list a:hover,
+        .dropdown-btn:hover {
+            color: var(--aksen);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 180px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 18px;
+            color: var(--gelap);
+            font-size: 14px;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--krem);
+            color: var(--coklat);
+        }
+
+        .dropdown.open .dropdown-menu {
+            display: block;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--coklat), var(--gelap));
+            color: #fff;
+            text-align: center;
+            padding: 90px 20px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin: 0 0 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #e8d5bd;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 60px 0;
+            scroll-margin-top: 85px;
+        }
+
+        section h2 {
+            font-size: 28px;
+            margin: 0 0 24px;
+            color: var(--coklat-tua);
+            text-align: center;
+        }
+
+        /* TAB MENU */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 30px;
+            background: #eadfce;
+            color: var(--gelap);
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .tab.active {
+            background: var(--coklat);
+            color: #fff;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--aksen);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-card h3 {
+            color: var(--coklat-tua);
+            margin: 0 0 8px;
+        }
+
+        .menu-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--aksen);
+            font-size: 16px;
+        }
+
+        /* FORM */
+        .form-section {
+            background: var(--krem);
+        }
+
+        .form-box {
+            background: #fff;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 36px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #fafafa;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--coklat);
+            background: #fff;
+        }
+
+        input.is-error,
+        select.is-error,
+        input.error,
+        select.error {
+            border-color: var(--merah);
+            background: #fff5f5;
+        }
+
+        input.is-valid,
+        select.is-valid {
+            border-color: var(--hijau);
+        }
+
+        label.error {
+            color: var(--merah);
+            font-size: 13px;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .hint {
+            display: block;
+            font-size: 13px;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: var(--coklat);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: var(--coklat-tua);
+        }
+
+        /* NOTIFIKASI */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            max-width: calc(100% - 40px);
+        }
+
+        #toast.success {
+            background: var(--hijau);
+        }
+
+        #toast.error {
+            background: var(--merah);
+        }
+
+        .sukses {
+            display: none;
+            margin-top: 20px;
+            padding: 16px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 8px;
+            border-left: 5px solid var(--hijau);
+            font-size: 15px;
+        }
+
+        /* TOMBOL KEMBALI KE ATAS */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--gelap);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 99;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: background 0.2s;
+        }
+
+        #backToTop:hover {
+            background: var(--coklat);
+        }
+
+        footer {
+            background: var(--gelap);
+            color: #aaa;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            nav .container {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-list {
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .form-box {
+                padding: 24px;
+            }
+
+            #backToTop {
+                left: 15px;
+                bottom: 15px;
+            }
+
+            #toast {
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="#home" class="logo">
-            <i class="fas fa-seedling"></i>
-            <div>
-                <span class="logo-name">Bloomé</span>
-                <small>by Novi Aulia</small>
-            </div>
-        </a>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="container">
+            <a href="#beranda" class="logo">Kopi Senja</a>
 
-        <div class="nav-menu" id="navMenu">
-            <a href="#produk" class="nav-link active" data-filter="all">Semua</a>
-            <a href="#produk" class="nav-link" data-filter="lily">Lily</a>
-            <a href="#produk" class="nav-link" data-filter="rose">Rose</a>
-            <a href="#produk" class="nav-link" data-filter="tulip">Tulip</a>
-            <a href="#produk" class="nav-link" data-filter="peony">Peony</a>
-            <a href="#produk" class="nav-link" data-filter="other">Lainnya</a>
+            <ul class="nav-list">
+                <li><a href="#beranda">Beranda</a></li>
+
+                <li class="dropdown">
+                    <button
+                        class="dropdown-btn"
+                        type="button"
+                        aria-expanded="false">
+                        Menu Kopi ▼
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#menu" data-menu="kopi">
+                                Espresso Based
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#menu" data-menu="nonkopi">
+                                Non-Coffee
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#menu" data-menu="snack">
+                                Camilan
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#pesan">Pesan</a></li>
+                <li><a href="#member">Member</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <button type="button" class="cart-btn" id="cartBtn">
-            <i class="fas fa-shopping-bag"></i>
-            <span class="cart-text">Keranjang</span>
-            <span class="cart-badge" id="cartBadge">0</span>
-        </button>
-
-        <button type="button" class="hamburger" id="hamburger" aria-label="Buka menu">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-</nav>
-
-<section class="hero" id="home">
-    <div class="flower-decoration flower-one">❀</div>
-    <div class="flower-decoration flower-two">✿</div>
-
-    <div class="hero-content">
-        <div class="hero-small">WELCOME TO</div>
-        <h1>Bloomé</h1>
-        <h2>by Novi Aulia</h2>
-        <p>Flowers for Every Moment</p>
-        <div class="hero-description">
-            Temukan bunga cantik untuk menemani setiap momen spesialmu.
+    <!-- BERANDA -->
+    <header id="beranda" class="hero">
+        <div class="container">
+            <h1>Selamat Datang di Kopi Senja</h1>
+            <p>
+                Temukan rasa kopi favoritmu dan nikmati suasana santai
+                bersama Kopi Senja.
+            </p>
         </div>
+    </header>
 
-        <div class="search-box">
-            <input type="text" id="searchProduk"
-                   placeholder="Cari bunga favoritmu..." autocomplete="off">
-            <i class="fas fa-search"></i>
-        </div>
-    </div>
-</section>
+    <!-- DAFTAR MENU -->
+    <section id="menu" class="container">
+        <h2>Daftar Menu Pilihan</h2>
 
-<section class="produk-section" id="produk">
-    <div class="section-header">
-        <div>
-            <div class="section-small">OUR COLLECTION</div>
-            <h2>Pilihan Bunga <i class="fas fa-seedling"></i></h2>
-        </div>
+        <div class="tabs">
+            <button
+                class="tab active"
+                type="button"
+                data-target="#tab-kopi">
+                Kopi Klasik
+            </button>
 
-        <div class="filter-btns">
-            <button class="filter-btn active" data-cat="all">Semua</button>
-            <button class="filter-btn" data-cat="lily">Lily</button>
-            <button class="filter-btn" data-cat="rose">Rose</button>
-            <button class="filter-btn" data-cat="tulip">Tulip</button>
-            <button class="filter-btn" data-cat="peony">Peony</button>
-            <button class="filter-btn" data-cat="other">Lainnya</button>
-        </div>
-    </div>
+            <button
+                class="tab"
+                type="button"
+                data-target="#tab-nonkopi">
+                Non-Kopi
+            </button>
 
-    <div class="produk-grid" id="produkGrid"></div>
-</section>
-
-<div class="cart-overlay" id="cartOverlay"></div>
-
-<aside class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-        <h3><i class="fas fa-shopping-bag"></i> Keranjang Bloomé</h3>
-        <button class="cart-close" id="cartClose" aria-label="Tutup keranjang">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-
-    <div class="cart-items" id="cartItems"></div>
-
-    <div class="cart-footer">
-        <div class="cart-total">
-            <span>Total</span>
-            <span id="cartTotal">Rp 0</span>
-        </div>
-        <button class="btn-checkout" id="btnCheckout">
-            <i class="fas fa-check-circle"></i> Checkout Sekarang
-        </button>
-    </div>
-</aside>
-
-<div class="flower-modal" id="flowerModal">
-    <div class="flower-modal-overlay"></div>
-    <div class="flower-modal-content">
-        <button class="flower-modal-close" id="flowerModalClose" aria-label="Tutup detail">
-            <i class="fas fa-times"></i>
-        </button>
-
-        <div class="flower-modal-image">
-            <img id="modalFlowerImage" src="" alt="Foto bunga">
-        </div>
-
-        <div class="flower-modal-info">
-            <span class="modal-category" id="modalFlowerCategory">FLOWER</span>
-            <h2 id="modalFlowerName">Nama Bunga</h2>
-            <p class="modal-description" id="modalFlowerDescription">Deskripsi bunga.</p>
-
-            <div class="modal-price">
-                <span id="modalFlowerPrice">Rp 0</span>
-                <small>per bouquet</small>
-            </div>
-
-            <button class="modal-add-cart" id="modalAddCart">
-                <i class="fas fa-shopping-bag"></i> Tambahkan ke Keranjang
+            <button
+                class="tab"
+                type="button"
+                data-target="#tab-snack">
+                Camilan
             </button>
         </div>
-    </div>
-</div>
 
-<div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Berhasil</span>
-</div>
+        <!-- MENU KOPI -->
+        <div id="tab-kopi" class="tab-panel menu-grid">
+            <div class="menu-card">
+                <h3>Caffe Latte</h3>
+                <p>
+                    Espresso pilihan dipadu dengan susu steamed
+                    bertekstur lembut.
+                </p>
+                <div class="price">Rp 28.000</div>
+            </div>
 
-<footer class="footer">
-    <div class="footer-logo">Bloomé</div>
-    <p>Flowers for Every Moment</p>
-    <div class="footer-line"></div>
-    <small>© 2026 Bloomé by Novi Aulia</small>
-</footer>
+            <div class="menu-card">
+                <h3>Americano</h3>
+                <p>
+                    Double shot espresso dengan tambahan air panas segar.
+                </p>
+                <div class="price">Rp 22.000</div>
+            </div>
+        </div>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- MENU NON-KOPI -->
+        <div
+            id="tab-nonkopi"
+            class="tab-panel menu-grid"
+            style="display: none;">
 
-<script>
-$(document).ready(function () {
+            <div class="menu-card">
+                <h3>Matcha Latte</h3>
+                <p>
+                    Minuman matcha dengan susu segar yang lembut.
+                </p>
+                <div class="price">Rp 30.000</div>
+            </div>
 
-    const produkData = [
-        {id:1,nama:'Pink Lily',harga:35000,kategori:'lily',gambar:'pinklily.jpg',desc:'Lily pink segar dengan kelopak lembut.',badge:'Favorit',badgeType:''},
-        {id:2,nama:'White Lily',harga:38000,kategori:'lily',gambar:'whitelily.jpg',desc:'Lily putih dengan tampilan bersih dan elegan.',badge:'',badgeType:''},
-        {id:3,nama:'Stargazer Lily',harga:45000,kategori:'lily',gambar:'stargizerlily.jpg',desc:'Lily pink dengan corak dan bintik khas.',badge:'Best Seller',badgeType:'hot'},
-        {id:4,nama:'Oriental Lily',harga:48000,kategori:'lily',gambar:'orientallily.jpg',desc:'Lily berukuran besar dengan aroma harum.',badge:'',badgeType:''},
-        {id:5,nama:'Casablanca Lily',harga:50000,kategori:'lily',gambar:'casablancalily.jpg',desc:'Lily putih elegan untuk hadiah spesial.',badge:'Premium',badgeType:''},
-        {id:6,nama:'Pink Rose',harga:30000,kategori:'rose',gambar:'pinkrose.jpg',desc:'Mawar pink segar dengan warna lembut.',badge:'Favorit',badgeType:''},
-        {id:7,nama:'Red Rose',harga:35000,kategori:'rose',gambar:'redrose.jpg',desc:'Mawar merah klasik untuk berbagai momen.',badge:'Best Seller',badgeType:'hot'},
-        {id:8,nama:'Peach Rose',harga:38000,kategori:'rose',gambar:'peachrose.jpg',desc:'Mawar peach dengan warna hangat dan lembut.',badge:'New',badgeType:''},
-        {id:9,nama:'Pink Tulip',harga:40000,kategori:'tulip',gambar:'pinktulip.jpg',desc:'Tulip pink dengan bentuk kelopak yang cantik.',badge:'Favorit',badgeType:''},
-        {id:10,nama:'White Tulip',harga:42000,kategori:'tulip',gambar:'whitetulip.jpg',desc:'Tulip putih dengan tampilan minimalis.',badge:'',badgeType:''},
-        {id:11,nama:'Pink Peony',harga:55000,kategori:'peony',gambar:'pinkpeony.jpg',desc:'Peony pink dengan kelopak yang penuh dan lembut.',badge:'Premium',badgeType:''},
-        {id:12,nama:'Pink Hydrangea',harga:45000,kategori:'other',gambar:'pinkhydrengea.jpg',desc:'Hydrangea pink dengan kumpulan bunga yang cantik.',badge:'New',badgeType:''},
-        {id:13,nama:"Baby's Breath",harga:25000,kategori:'other',gambar:'babybreath.jpg',desc:'Bunga kecil putih untuk pelengkap rangkaian.',badge:'',badgeType:''},
-        {id:14,nama:'Sunflower',harga:30000,kategori:'other',gambar:'sunflower.jpg',desc:'Bunga matahari cerah dengan warna kuning khas.',badge:'Popular',badgeType:''}
-    ];
+            <div class="menu-card">
+                <h3>Chocolate Regal</h3>
+                <p>
+                    Susu cokelat lezat dengan topping biskuit regal.
+                </p>
+                <div class="price">Rp 26.000</div>
+            </div>
+        </div>
 
-    let cart = [];
-    let currentFilter = 'all';
-    let searchKeyword = '';
+        <!-- MENU CAMILAN -->
+        <div
+            id="tab-snack"
+            class="tab-panel menu-grid"
+            style="display: none;">
 
-    function getImagePath(namaFile) {
-        return 'pictures/' + namaFile;
-    }
+            <div class="menu-card">
+                <h3>Croissant Butter</h3>
+                <p>
+                    Pastry renyah beraroma mentega gurih yang dipanggang hangat.
+                </p>
+                <div class="price">Rp 20.000</div>
+            </div>
 
-    function renderProduk() {
-        const $grid = $('#produkGrid');
-        $grid.empty();
+            <div class="menu-card">
+                <h3>French Fries</h3>
+                <p>
+                    Kentang goreng renyah disajikan dengan saus spesial.
+                </p>
+                <div class="price">Rp 18.000</div>
+            </div>
+        </div>
+    </section>
 
-        const filtered = produkData.filter(function (p) {
-            const matchKategori =
-                currentFilter === 'all' || p.kategori === currentFilter;
+    <!-- TENTANG KAMI -->
+    <section id="tentang" style="background: #fff;">
+        <div
+            class="container"
+            style="max-width: 700px; text-align: center;">
 
-            const keyword = searchKeyword.toLowerCase();
+            <h2>Tentang Kopi Senja</h2>
 
-            const matchSearch =
-                p.nama.toLowerCase().includes(keyword) ||
-                p.desc.toLowerCase().includes(keyword);
+            <p>
+                Kopi Senja merupakan tempat untuk menikmati seduhan kopi
+                berkualitas dengan suasana santai dan nyaman.
+                Cocok untuk mahasiswa, pekerja, dan pencinta kopi yang
+                ingin mengerjakan tugas ataupun berkumpul bersama teman.
+            </p>
+        </div>
+    </section>
 
-            return matchKategori && matchSearch;
-        });
+    <!-- FORM PESANAN -->
+    <section id="pesan" class="form-section">
+        <div class="container">
+            <h2>Pesan Menu Favoritmu</h2>
 
-        if (filtered.length === 0) {
-            $grid.html(`
-                <div class="no-product">
-                    <i class="fas fa-seedling"></i>
-                    <h3>Bunga tidak ditemukan</h3>
-                    <p>Coba kata kunci atau kategori lain.</p>
+            <form id="formPesan" class="form-box" novalidate>
+                <div class="form-group">
+                    <label for="nama">Nama Pemesan</label>
+
+                    <input
+                        type="text"
+                        id="nama"
+                        name="nama"
+                        placeholder="Masukkan nama Anda">
+
+                    <small class="hint">
+                        Nama diperlukan untuk memanggil pesanan Anda.
+                    </small>
                 </div>
-            `);
-            return;
-        }
 
-        filtered.forEach(function (p) {
-            const badgeHtml = p.badge
-                ? `<div class="produk-badge ${p.badgeType}">${p.badge}</div>`
-                : '';
+                <div class="form-group">
+                    <label for="pilihMenu">Pilih Menu Favorit</label>
 
-            const card = `
-                <div class="produk-card" data-id="${p.id}">
-                    ${badgeHtml}
-                    <div class="produk-img">
-                        <img src="${getImagePath(p.gambar)}" alt="${p.nama}">
-                    </div>
-                    <div class="produk-info">
-                        <h3>${p.nama}</h3>
-                        <p class="desc">${p.desc}</p>
-                        <div class="produk-footer">
-                            <div class="produk-price">
-                                Rp ${p.harga.toLocaleString('id-ID')}
-                                <small>per bouquet</small>
-                            </div>
-                            <button type="button" class="btn-add-cart"
-                                    data-id="${p.id}" title="Tambah ke keranjang">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
+                    <select id="pilihMenu" name="pilihMenu">
+                        <option value="">-- Pilih Menu --</option>
+                        <option value="Caffe Latte">Caffe Latte</option>
+                        <option value="Americano">Americano</option>
+                        <option value="Matcha Latte">Matcha Latte</option>
+                        <option value="Chocolate Regal">Chocolate Regal</option>
+                        <option value="Croissant Butter">Croissant Butter</option>
+                        <option value="French Fries">French Fries</option>
+                    </select>
+
+                    <small class="hint">
+                        Silakan pilih salah satu menu di atas.
+                    </small>
                 </div>
-            `;
-            $grid.append(card);
-        });
-    }
 
-    $('.nav-link').click(function (e) {
-        e.preventDefault();
+                <button type="submit" class="btn">
+                    Kirim Pesanan
+                </button>
+            </form>
+        </div>
+    </section>
 
-        $('.nav-link').removeClass('active');
-        $(this).addClass('active');
+    <!-- FORM PENDAFTARAN MEMBER -->
+    <section id="member">
+        <div class="container">
+            <h2>Pendaftaran Member Kopi Senja</h2>
 
-        currentFilter = $(this).data('filter');
+            <form id="formMember" class="form-box">
+                <div class="form-group">
+                    <label for="mNama">Nama Lengkap</label>
 
-        $('.filter-btn').removeClass('active');
-        $(`.filter-btn[data-cat="${currentFilter}"]`).addClass('active');
-
-        renderProduk();
-
-        const target = $(this).attr('href');
-
-        if (target && target !== '#') {
-            $('html, body').animate({
-                scrollTop: $(target).offset().top - 80
-            }, 500);
-        }
-
-        if (window.innerWidth <= 768) {
-            $('#navMenu').removeClass('show');
-            $('#hamburger i').removeClass('fa-times').addClass('fa-bars');
-        }
-    });
-
-    $('.filter-btn').click(function () {
-        $('.filter-btn').removeClass('active');
-        $(this).addClass('active');
-
-        currentFilter = $(this).data('cat');
-
-        $('.nav-link').removeClass('active');
-
-        const navLink = $(`.nav-link[data-filter="${currentFilter}"]`);
-
-        if (navLink.length) {
-            navLink.addClass('active');
-        } else {
-            $('.nav-link[data-filter="all"]').addClass('active');
-        }
-
-        renderProduk();
-    });
-
-    $('#searchProduk').on('input', function () {
-        searchKeyword = $(this).val();
-        renderProduk();
-    });
-
-    $(document).on('click', '.produk-card', function () {
-        const id = Number($(this).data('id'));
-        const produk = produkData.find(function (p) {
-            return p.id === id;
-        });
-
-        if (!produk) return;
-
-        $('#modalFlowerImage')
-            .attr('src', getImagePath(produk.gambar))
-            .attr('alt', produk.nama);
-
-        $('#modalFlowerName').text(produk.nama);
-        $('#modalFlowerDescription').text(produk.desc);
-        $('#modalFlowerPrice').text('Rp ' + produk.harga.toLocaleString('id-ID'));
-        $('#modalFlowerCategory').text(produk.kategori);
-        $('#modalAddCart').data('id', produk.id);
-
-        $('#flowerModal').addClass('show');
-        $('body').css('overflow', 'hidden');
-    });
-
-    $(document).on('click', '.btn-add-cart', function (e) {
-        e.stopPropagation();
-
-        const id = Number($(this).data('id'));
-        addToCart(id);
-
-        const button = this;
-
-        $(button).css('transform', 'rotate(90deg) scale(1.3)');
-
-        setTimeout(function () {
-            $(button).css('transform', '');
-        }, 300);
-    });
-
-    function addToCart(id) {
-        const produk = produkData.find(function (p) {
-            return p.id === id;
-        });
-
-        if (!produk) return;
-
-        const existing = cart.find(function (item) {
-            return item.id === id;
-        });
-
-        if (existing) {
-            existing.qty += 1;
-        } else {
-            cart.push({
-                id: produk.id,
-                nama: produk.nama,
-                harga: produk.harga,
-                gambar: produk.gambar,
-                qty: 1
-            });
-        }
-
-        updateCartUI();
-
-        $('#cartBadge').css('transform', 'scale(1.4)');
-
-        setTimeout(function () {
-            $('#cartBadge').css('transform', 'scale(1)');
-        }, 200);
-
-        showToast(`🌷 ${produk.nama} ditambahkan ke keranjang!`);
-    }
-
-    function updateCartUI() {
-        const $cartItems = $('#cartItems');
-
-        const totalQty = cart.reduce(function (sum, item) {
-            return sum + item.qty;
-        }, 0);
-
-        const totalHarga = cart.reduce(function (sum, item) {
-            return sum + item.harga * item.qty;
-        }, 0);
-
-        $('#cartBadge').text(totalQty);
-        $('#cartTotal').text('Rp ' + totalHarga.toLocaleString('id-ID'));
-
-        if (cart.length === 0) {
-            $cartItems.html(`
-                <div class="cart-empty">
-                    <i class="fas fa-seedling"></i>
-                    <p>Keranjang masih kosong</p>
-                    <small>Yuk pilih bunga favoritmu!</small>
+                    <input
+                        type="text"
+                        id="mNama"
+                        name="nama"
+                        placeholder="Nama lengkap Anda">
                 </div>
-            `);
-            return;
-        }
 
-        let html = '';
+                <div class="form-group">
+                    <label for="mEmail">Email Aktif</label>
 
-        cart.forEach(function (item) {
-            html += `
-                <div class="cart-item" data-id="${item.id}">
-                    <div class="cart-item-icon">
-                        <img src="${getImagePath(item.gambar)}" alt="${item.nama}">
-                    </div>
-                    <div class="cart-item-info">
-                        <h5>${item.nama}</h5>
-                        <div class="price">
-                            Rp ${(item.harga * item.qty).toLocaleString('id-ID')}
-                        </div>
-                        <div class="qty-control">
-                            <button type="button" class="qty-btn"
-                                    data-action="minus" data-id="${item.id}">−</button>
-                            <span class="qty-value">${item.qty}</span>
-                            <button type="button" class="qty-btn"
-                                    data-action="plus" data-id="${item.id}">+</button>
-                        </div>
-                    </div>
-                    <button type="button" class="cart-item-remove"
-                            data-id="${item.id}">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <input
+                        type="email"
+                        id="mEmail"
+                        name="email"
+                        placeholder="nama@domain.com">
                 </div>
-            `;
-        });
 
-        $cartItems.html(html);
-    }
+                <div class="form-group">
+                    <label for="mHp">Nomor WhatsApp / HP</label>
 
-    $(document).on('click', '.qty-btn', function () {
-        const action = $(this).data('action');
-        const id = Number($(this).data('id'));
+                    <input
+                        type="text"
+                        id="mHp"
+                        name="hp"
+                        placeholder="10-13 digit angka">
+                </div>
 
-        const item = cart.find(function (i) {
-            return i.id === id;
-        });
+                <div class="form-group">
+                    <label for="mUsia">Usia</label>
 
-        if (!item) return;
+                    <input
+                        type="number"
+                        id="mUsia"
+                        name="usia"
+                        placeholder="Minimal 17 tahun">
+                </div>
 
-        if (action === 'plus') {
-            item.qty += 1;
-        }
+                <div class="form-group">
+                    <label for="mPassword">Password</label>
 
-        if (action === 'minus') {
-            item.qty -= 1;
+                    <input
+                        type="password"
+                        id="mPassword"
+                        name="password"
+                        placeholder="Minimal 8 karakter, ada huruf dan angka">
 
-            if (item.qty <= 0) {
-                cart = cart.filter(function (i) {
-                    return i.id !== id;
-                });
-            }
-        }
+                    <small class="hint">
+                        Password harus berisi huruf dan angka.
+                    </small>
+                </div>
 
-        updateCartUI();
-    });
+                <div class="form-group">
+                    <label for="mKonfirmasi">Konfirmasi Password</label>
 
-    $(document).on('click', '.cart-item-remove', function () {
-        const id = Number($(this).data('id'));
+                    <input
+                        type="password"
+                        id="mKonfirmasi"
+                        name="konfirmasi"
+                        placeholder="Ulangi password yang sama">
+                </div>
 
-        cart = cart.filter(function (i) {
-            return i.id !== id;
-        });
+                <button type="submit" class="btn">
+                    Daftar Member
+                </button>
 
-        updateCartUI();
-        showToast('Bunga dihapus dari keranjang');
-    });
+                <div class="sukses" id="sukses">
+                    <strong>Pendaftaran Berhasil!</strong>
+                    Selamat bergabung menjadi member resmi Kopi Senja.
+                </div>
+            </form>
+        </div>
+    </section>
 
-    $('#cartBtn').click(function () {
-        $('#cartSidebar').addClass('open');
-        $('#cartOverlay').fadeIn(300);
-    });
+    <!-- NOTIFIKASI -->
+    <div id="toast" role="status" aria-live="polite"></div>
 
-    $('#cartClose, #cartOverlay').click(function () {
-        $('#cartSidebar').removeClass('open');
-        $('#cartOverlay').fadeOut(300);
-    });
+    <!-- TOMBOL KEMBALI KE ATAS -->
+    <button
+        id="backToTop"
+        type="button"
+        aria-label="Kembali ke atas">
+        ↑
+    </button>
 
-    function closeFlowerModal() {
-        $('#flowerModal').removeClass('show');
-        $('body').css('overflow', '');
-    }
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Kopi Senja. Praktikum Pemrograman Web.</p>
+    </footer>
 
-    $('#flowerModalClose, .flower-modal-overlay').click(function () {
-        closeFlowerModal();
-    });
+    <script>
+        $(document).ready(function () {
 
-    $(document).keydown(function (e) {
-        if (e.key === 'Escape' && $('#flowerModal').hasClass('show')) {
-            closeFlowerModal();
-        }
-    });
-
-    $('#modalAddCart').click(function () {
-        const id = Number($(this).data('id'));
-        addToCart(id);
-        closeFlowerModal();
-    });
-
-    $('#btnCheckout').click(function () {
-        if (cart.length === 0) {
-            showToast('Keranjang masih kosong!');
-            return;
-        }
-
-        const total = cart.reduce(function (sum, item) {
-            return sum + item.harga * item.qty;
-        }, 0);
-
-        const totalQty = cart.reduce(function (sum, item) {
-            return sum + item.qty;
-        }, 0);
-
-        const $btn = $(this);
-
-        $btn.html('<i class="fas fa-spinner fa-spin"></i> Memproses...')
-            .prop('disabled', true);
-
-        setTimeout(function () {
-            cart = [];
-            updateCartUI();
-
-            $('#cartSidebar').removeClass('open');
-            $('#cartOverlay').fadeOut(300);
-
-            $btn.html('<i class="fas fa-check-circle"></i> Checkout Sekarang')
-                .prop('disabled', false);
-
-            showToast(
-                `Checkout berhasil! ${totalQty} item · Rp ${total.toLocaleString('id-ID')}`
+            // CUSTOM VALIDATION
+csj            $.validator.addMethod(
+                "hurufAngka",
+                function (value, element) {
+                    return this.optional(element) ||
+                        (/[A-Za-z]/.test(value) && /[0-9]/.test(value));
+                },
+                "Password harus mengandung huruf dan angka."
             );
-        }, 1500);
-    });
 
-    let toastTimer;
+            
+            // DROPDOWN
+    
+            $(".dropdown-btn").on("click", function (event) {
+                event.stopPropagation();
 
-    function showToast(message) {
-        clearTimeout(toastTimer);
+                const dropdown = $(this).closest(".dropdown");
 
-        $('#toastMsg').text(message);
-        $('#toast').addClass('show');
+                dropdown.toggleClass("open");
 
-        toastTimer = setTimeout(function () {
-            $('#toast').removeClass('show');
-        }, 2500);
-    }
+                $(this).attr(
+                    "aria-expanded",
+                    dropdown.hasClass("open")
+                );
+            });
 
-    $('#hamburger').click(function () {
-        $('#navMenu').toggleClass('show');
+            $(document).on("click", function () {
+                $(".dropdown").removeClass("open");
 
-        const icon = $(this).find('i');
+                $(".dropdown-btn").attr(
+                    "aria-expanded",
+                    "false"
+                );
+            });
 
-        if ($('#navMenu').hasClass('show')) {
-            icon.removeClass('fa-bars').addClass('fa-times');
-        } else {
-            icon.removeClass('fa-times').addClass('fa-bars');
-        }
-    });
+            
+            // JQUERY SMOOTH SCROLL
+            $('nav a[href^="#"]').on("click", function (event) {
+                const target = $(this).attr("href");
+                const tujuan = $(target);
 
-    $(document).on('mousemove', function (e) {
-        if (Math.random() > 0.35) return;
+                if (target !== "#" && tujuan.length) {
+                    event.preventDefault();
 
-        const flowers = ['🌸','🌷','🌹','🌺','💮','❀'];
-        const flower = flowers[Math.floor(Math.random() * flowers.length)];
-        const $flower = $('<span class="mouse-flower"></span>');
+                    $("html, body").stop().animate({
+                        scrollTop:
+                            tujuan.offset().top -
+                            $("nav").outerHeight()
+                    }, 600);
+                }
+            });
 
-        $flower.text(flower);
+            //  TAB MENU            
+            $(".tab").on("click", function () {
+                const target = $(this).data("target");
 
-        $flower.css({
-            left: e.clientX + 'px',
-            top: e.clientY + 'px',
-            fontSize: (16 + Math.random() * 12) + 'px'
+                $(".tab").removeClass("active");
+                $(this).addClass("active");
+
+                $(".tab-panel:visible")
+                    .stop(true, true)
+                    .fadeOut(150, function () {
+                        $(target)
+                            .stop(true, true)
+                            .fadeIn(150)
+                            .css("display", "grid");
+                    });
+            });
+
+            
+            //  * DROPDOWN MENU
+            $(".dropdown-menu a").on("click", function () {
+                const jenisMenu = $(this).data("menu");
+
+                const targetMap = {
+                    kopi: "#tab-kopi",
+                    nonkopi: "#tab-nonkopi",
+                    snack: "#tab-snack"
+                };
+
+                const target = targetMap[jenisMenu];
+
+                if (target) {
+                    $(".tab").removeClass("active");
+
+                    $('.tab[data-target="' + target + '"]')
+                        .addClass("active");
+
+                    $(".tab-panel").hide();
+
+                    $(target)
+                        .css("display", "grid")
+                        .hide()
+                        .fadeIn(200);
+                }
+
+                $(".dropdown").removeClass("open");
+
+                $(".dropdown-btn").attr(
+                    "aria-expanded",
+                    "false"
+                );
+            });
+
+            
+            // FUNGSI NOTIFIKASI
+            function tampilkanToast(pesan, tipe) {
+                $("#toast")
+                    .stop(true, true)
+                    .removeClass("success error")
+                    .addClass(tipe)
+                    .text(pesan)
+                    .fadeIn(200);
+
+                setTimeout(function () {
+                    $("#toast").fadeOut(300);
+                }, 3000);
+            }
+
+            /*
+             * VALIDASI FORM PESANAN
+             */
+            $("#formPesan").on("submit", function (event) {
+                event.preventDefault();
+
+                const nama = $("#nama").val().trim();
+                const menu = $("#pilihMenu").val();
+
+                $("#formPesan input, #formPesan select")
+                    .removeClass("is-error is-valid");
+
+                if (nama === "") {
+                    $("#nama")
+                        .addClass("is-error")
+                        .focus();
+
+                    tampilkanToast(
+                        "Nama pemesan wajib diisi.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+                if (menu === "") {
+                    $("#pilihMenu")
+                        .addClass("is-error")
+                        .focus();
+
+                    tampilkanToast(
+                        "Silakan pilih menu terlebih dahulu.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+                $("#nama, #pilihMenu").addClass("is-valid");
+
+                tampilkanToast(
+                    "Pesanan " + menu +
+                    " atas nama " + nama +
+                    " berhasil dicatat.",
+                    "success"
+                );
+
+                this.reset();
+
+                $("#formPesan input, #formPesan select")
+                    .removeClass("is-valid");
+            });
+
+            /*
+             * JQUERY VALIDATION
+             * Validasi pendaftaran member.
+             */
+            $("#formMember").validate({
+                rules: {
+                    nama: {
+                        required: true,
+                        minlength: 3
+                    },
+
+                    email: {
+                        required: true,
+                        email: true
+                    },
+
+                    hp: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 13
+                    },
+
+                    usia: {
+                        required: true,
+                        number: true,
+                        min: 17
+                    },
+
+                    password: {
+                        required: true,
+                        minlength: 8,
+                        hurufAngka: true
+                    },
+
+                    konfirmasi: {
+                        required: true,
+                        equalTo: "#mPassword"
+                    }
+                },
+
+                messages: {
+                    nama: {
+                        required: "Nama lengkap wajib diisi.",
+                        minlength: "Nama minimal 3 karakter."
+                    },
+
+                    email: {
+                        required: "Email wajib diisi.",
+                        email: "Masukkan alamat email yang valid."
+                    },
+
+                    hp: {
+                        required: "Nomor HP wajib diisi.",
+                        digits: "Nomor HP hanya boleh berisi angka.",
+                        minlength: "Nomor HP minimal 10 digit.",
+                        maxlength: "Nomor HP maksimal 13 digit."
+                    },
+
+                    usia: {
+                        required: "Usia wajib diisi.",
+                        number: "Usia harus berupa angka.",
+                        min: "Usia minimal 17 tahun."
+                    },
+
+                    password: {
+                        required: "Password wajib diisi.",
+                        minlength: "Password minimal 8 karakter.",
+                        hurufAngka:
+                            "Password harus mengandung huruf dan angka."
+                    },
+
+                    konfirmasi: {
+                        required: "Konfirmasi password wajib diisi.",
+                        equalTo: "Konfirmasi password harus sama."
+                    }
+                },
+
+                errorClass: "error",
+                validClass: "is-valid",
+                errorElement: "label",
+
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element);
+                },
+
+                highlight: function (element) {
+                    $(element)
+                        .addClass("is-error")
+                        .removeClass("is-valid");
+                },
+
+                unhighlight: function (element) {
+                    $(element)
+                        .removeClass("is-error")
+                        .addClass("is-valid");
+                },
+
+                submitHandler: function (form) {
+                    $("#sukses")
+                        .stop(true, true)
+                        .fadeIn(200);
+
+                    tampilkanToast(
+                        "Pendaftaran member berhasil divalidasi.",
+                        "success"
+                    );
+
+                    form.reset();
+
+                    $(form)
+                        .find("input")
+                        .removeClass("is-valid is-error");
+
+                    return false;
+                }
+            });
+
+            // TOMBOL KEMBALI KE ATAS
+    
+            $(window).on("scroll", function () {
+                if ($(this).scrollTop() > 300) {
+                    $("#backToTop").fadeIn(150);
+                } else {
+                    $("#backToTop").fadeOut(150);
+                }
+            });
+
+            $("#backToTop").on("click", function () {
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 400);
+            });
+
         });
+    </script>
 
-        $('body').append($flower);
-
-        setTimeout(function () {
-            $flower.remove();
-        }, 1200);
-    });
-
-    renderProduk();
-    updateCartUI();
-
-    console.log('Bloomé - Flowers for Every Moment');
-    console.log('by Novi Aulia');
-    console.log('Total produk: ' + produkData.length);
-});
-</script>
 </body>
 </html>
