@@ -1,0 +1,1031 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Kopi Senja</title>
+
+    <!-- Library jQuery dan jQuery Validation Plugin -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coklat: #6f3e2e;
+            --coklat-tua: #3d241b;
+            --gelap: #251711;
+            --aksen: #a66a45;
+            --krem: #f5e8d5;
+            --krem-muda: #fffaf3;
+            --merah: #b83b32;
+            --hijau: #2e7d32;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #33251f;
+            background: var(--krem-muda);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        nav {
+            background: var(--gelap);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+        }
+
+        .logo {
+            color: var(--aksen);
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-list a,
+        .dropdown-btn {
+            color: #fff;
+            text-decoration: none;
+            background: none;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-list a:hover,
+        .dropdown-btn:hover {
+            color: var(--aksen);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 180px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 18px;
+            color: var(--gelap);
+            font-size: 14px;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--krem);
+            color: var(--coklat);
+        }
+
+        .dropdown.open .dropdown-menu {
+            display: block;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--coklat), var(--gelap));
+            color: #fff;
+            text-align: center;
+            padding: 90px 20px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin: 0 0 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #e8d5bd;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 60px 0;
+            scroll-margin-top: 85px;
+        }
+
+        section h2 {
+            font-size: 28px;
+            margin: 0 0 24px;
+            color: var(--coklat-tua);
+            text-align: center;
+        }
+
+        /* TAB MENU */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 30px;
+            background: #eadfce;
+            color: var(--gelap);
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .tab.active {
+            background: var(--coklat);
+            color: #fff;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--aksen);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-card h3 {
+            color: var(--coklat-tua);
+            margin: 0 0 8px;
+        }
+
+        .menu-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--aksen);
+            font-size: 16px;
+        }
+
+        /* FORM */
+        .form-section {
+            background: var(--krem);
+        }
+
+        .form-box {
+            background: #fff;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 36px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #fafafa;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--coklat);
+            background: #fff;
+        }
+
+        input.is-error,
+        select.is-error,
+        input.error,
+        select.error {
+            border-color: var(--merah);
+            background: #fff5f5;
+        }
+
+        input.is-valid,
+        select.is-valid {
+            border-color: var(--hijau);
+        }
+
+        label.error {
+            color: var(--merah);
+            font-size: 13px;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .hint {
+            display: block;
+            font-size: 13px;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: var(--coklat);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: var(--coklat-tua);
+        }
+
+        /* NOTIFIKASI */
+        #toast {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            max-width: calc(100% - 40px);
+        }
+
+        #toast.success {
+            background: var(--hijau);
+        }
+
+        #toast.error {
+            background: var(--merah);
+        }
+
+        .sukses {
+            display: none;
+            margin-top: 20px;
+            padding: 16px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 8px;
+            border-left: 5px solid var(--hijau);
+            font-size: 15px;
+        }
+
+        /* TOMBOL KEMBALI KE ATAS */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--gelap);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 99;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: background 0.2s;
+        }
+
+        #backToTop:hover {
+            background: var(--coklat);
+        }
+
+        footer {
+            background: var(--gelap);
+            color: #aaa;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            nav .container {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-list {
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .form-box {
+                padding: 24px;
+            }
+
+            #backToTop {
+                left: 15px;
+                bottom: 15px;
+            }
+
+            #toast {
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="container">
+            <a href="#beranda" class="logo">Kopi Senja</a>
+
+            <ul class="nav-list">
+                <li><a href="#beranda">Beranda</a></li>
+
+                <li class="dropdown">
+                    <button
+                        class="dropdown-btn"
+                        type="button"
+                        aria-expanded="false">
+                        Menu Kopi ▼
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#menu" data-menu="kopi">
+                                Espresso Based
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#menu" data-menu="nonkopi">
+                                Non-Coffee
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#menu" data-menu="snack">
+                                Camilan
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#pesan">Pesan</a></li>
+                <li><a href="#member">Member</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- BERANDA -->
+    <header id="beranda" class="hero">
+        <div class="container">
+            <h1>Selamat Datang di Kopi Senja</h1>
+            <p>
+                Temukan rasa kopi favoritmu dan nikmati suasana santai
+                bersama Kopi Senja.
+            </p>
+        </div>
+    </header>
+
+    <!-- DAFTAR MENU -->
+    <section id="menu" class="container">
+        <h2>Daftar Menu Pilihan</h2>
+
+        <div class="tabs">
+            <button
+                class="tab active"
+                type="button"
+                data-target="#tab-kopi">
+                Kopi Klasik
+            </button>
+
+            <button
+                class="tab"
+                type="button"
+                data-target="#tab-nonkopi">
+                Non-Kopi
+            </button>
+
+            <button
+                class="tab"
+                type="button"
+                data-target="#tab-snack">
+                Camilan
+            </button>
+        </div>
+
+        <!-- MENU KOPI -->
+        <div id="tab-kopi" class="tab-panel menu-grid">
+            <div class="menu-card">
+                <h3>Caffe Latte</h3>
+                <p>
+                    Espresso pilihan dipadu dengan susu steamed
+                    bertekstur lembut.
+                </p>
+                <div class="price">Rp 28.000</div>
+            </div>
+
+            <div class="menu-card">
+                <h3>Americano</h3>
+                <p>
+                    Double shot espresso dengan tambahan air panas segar.
+                </p>
+                <div class="price">Rp 22.000</div>
+            </div>
+        </div>
+
+        <!-- MENU NON-KOPI -->
+        <div
+            id="tab-nonkopi"
+            class="tab-panel menu-grid"
+            style="display: none;">
+
+            <div class="menu-card">
+                <h3>Matcha Latte</h3>
+                <p>
+                    Minuman matcha dengan susu segar yang lembut.
+                </p>
+                <div class="price">Rp 30.000</div>
+            </div>
+
+            <div class="menu-card">
+                <h3>Chocolate Regal</h3>
+                <p>
+                    Susu cokelat lezat dengan topping biskuit regal.
+                </p>
+                <div class="price">Rp 26.000</div>
+            </div>
+        </div>
+
+        <!-- MENU CAMILAN -->
+        <div
+            id="tab-snack"
+            class="tab-panel menu-grid"
+            style="display: none;">
+
+            <div class="menu-card">
+                <h3>Croissant Butter</h3>
+                <p>
+                    Pastry renyah beraroma mentega gurih yang dipanggang hangat.
+                </p>
+                <div class="price">Rp 20.000</div>
+            </div>
+
+            <div class="menu-card">
+                <h3>French Fries</h3>
+                <p>
+                    Kentang goreng renyah disajikan dengan saus spesial.
+                </p>
+                <div class="price">Rp 18.000</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang" style="background: #fff;">
+        <div
+            class="container"
+            style="max-width: 700px; text-align: center;">
+
+            <h2>Tentang Kopi Senja</h2>
+
+            <p>
+                Kopi Senja merupakan tempat untuk menikmati seduhan kopi
+                berkualitas dengan suasana santai dan nyaman.
+                Cocok untuk mahasiswa, pekerja, dan pencinta kopi yang
+                ingin mengerjakan tugas ataupun berkumpul bersama teman.
+            </p>
+        </div>
+    </section>
+
+    <!-- FORM PESANAN -->
+    <section id="pesan" class="form-section">
+        <div class="container">
+            <h2>Pesan Menu Favoritmu</h2>
+
+            <form id="formPesan" class="form-box" novalidate>
+                <div class="form-group">
+                    <label for="nama">Nama Pemesan</label>
+
+                    <input
+                        type="text"
+                        id="nama"
+                        name="nama"
+                        placeholder="Masukkan nama Anda">
+
+                    <small class="hint">
+                        Nama diperlukan untuk memanggil pesanan Anda.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="pilihMenu">Pilih Menu Favorit</label>
+
+                    <select id="pilihMenu" name="pilihMenu">
+                        <option value="">-- Pilih Menu --</option>
+                        <option value="Caffe Latte">Caffe Latte</option>
+                        <option value="Americano">Americano</option>
+                        <option value="Matcha Latte">Matcha Latte</option>
+                        <option value="Chocolate Regal">Chocolate Regal</option>
+                        <option value="Croissant Butter">Croissant Butter</option>
+                        <option value="French Fries">French Fries</option>
+                    </select>
+
+                    <small class="hint">
+                        Silakan pilih salah satu menu di atas.
+                    </small>
+                </div>
+
+                <button type="submit" class="btn">
+                    Kirim Pesanan
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FORM PENDAFTARAN MEMBER -->
+    <section id="member">
+        <div class="container">
+            <h2>Pendaftaran Member Kopi Senja</h2>
+
+            <form id="formMember" class="form-box">
+                <div class="form-group">
+                    <label for="mNama">Nama Lengkap</label>
+
+                    <input
+                        type="text"
+                        id="mNama"
+                        name="nama"
+                        placeholder="Nama lengkap Anda">
+                </div>
+
+                <div class="form-group">
+                    <label for="mEmail">Email Aktif</label>
+
+                    <input
+                        type="email"
+                        id="mEmail"
+                        name="email"
+                        placeholder="nama@domain.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="mHp">Nomor WhatsApp / HP</label>
+
+                    <input
+                        type="text"
+                        id="mHp"
+                        name="hp"
+                        placeholder="10-13 digit angka">
+                </div>
+
+                <div class="form-group">
+                    <label for="mUsia">Usia</label>
+
+                    <input
+                        type="number"
+                        id="mUsia"
+                        name="usia"
+                        placeholder="Minimal 17 tahun">
+                </div>
+
+                <div class="form-group">
+                    <label for="mPassword">Password</label>
+
+                    <input
+                        type="password"
+                        id="mPassword"
+                        name="password"
+                        placeholder="Minimal 8 karakter, ada huruf dan angka">
+
+                    <small class="hint">
+                        Password harus berisi huruf dan angka.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="mKonfirmasi">Konfirmasi Password</label>
+
+                    <input
+                        type="password"
+                        id="mKonfirmasi"
+                        name="konfirmasi"
+                        placeholder="Ulangi password yang sama">
+                </div>
+
+                <button type="submit" class="btn">
+                    Daftar Member
+                </button>
+
+                <div class="sukses" id="sukses">
+                    <strong>Pendaftaran Berhasil!</strong>
+                    Selamat bergabung menjadi member resmi Kopi Senja.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- NOTIFIKASI -->
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <!-- TOMBOL KEMBALI KE ATAS -->
+    <button
+        id="backToTop"
+        type="button"
+        aria-label="Kembali ke atas">
+        ↑
+    </button>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Kopi Senja. Praktikum Pemrograman Web.</p>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+
+            // CUSTOM VALIDATION
+csj            $.validator.addMethod(
+                "hurufAngka",
+                function (value, element) {
+                    return this.optional(element) ||
+                        (/[A-Za-z]/.test(value) && /[0-9]/.test(value));
+                },
+                "Password harus mengandung huruf dan angka."
+            );
+
+            
+            // DROPDOWN
+    
+            $(".dropdown-btn").on("click", function (event) {
+                event.stopPropagation();
+
+                const dropdown = $(this).closest(".dropdown");
+
+                dropdown.toggleClass("open");
+
+                $(this).attr(
+                    "aria-expanded",
+                    dropdown.hasClass("open")
+                );
+            });
+
+            $(document).on("click", function () {
+                $(".dropdown").removeClass("open");
+
+                $(".dropdown-btn").attr(
+                    "aria-expanded",
+                    "false"
+                );
+            });
+
+            
+            // JQUERY SMOOTH SCROLL
+            $('nav a[href^="#"]').on("click", function (event) {
+                const target = $(this).attr("href");
+                const tujuan = $(target);
+
+                if (target !== "#" && tujuan.length) {
+                    event.preventDefault();
+
+                    $("html, body").stop().animate({
+                        scrollTop:
+                            tujuan.offset().top -
+                            $("nav").outerHeight()
+                    }, 600);
+                }
+            });
+
+            //  TAB MENU            
+            $(".tab").on("click", function () {
+                const target = $(this).data("target");
+
+                $(".tab").removeClass("active");
+                $(this).addClass("active");
+
+                $(".tab-panel:visible")
+                    .stop(true, true)
+                    .fadeOut(150, function () {
+                        $(target)
+                            .stop(true, true)
+                            .fadeIn(150)
+                            .css("display", "grid");
+                    });
+            });
+
+            
+            //  * DROPDOWN MENU
+            $(".dropdown-menu a").on("click", function () {
+                const jenisMenu = $(this).data("menu");
+
+                const targetMap = {
+                    kopi: "#tab-kopi",
+                    nonkopi: "#tab-nonkopi",
+                    snack: "#tab-snack"
+                };
+
+                const target = targetMap[jenisMenu];
+
+                if (target) {
+                    $(".tab").removeClass("active");
+
+                    $('.tab[data-target="' + target + '"]')
+                        .addClass("active");
+
+                    $(".tab-panel").hide();
+
+                    $(target)
+                        .css("display", "grid")
+                        .hide()
+                        .fadeIn(200);
+                }
+
+                $(".dropdown").removeClass("open");
+
+                $(".dropdown-btn").attr(
+                    "aria-expanded",
+                    "false"
+                );
+            });
+
+            
+            // FUNGSI NOTIFIKASI
+            function tampilkanToast(pesan, tipe) {
+                $("#toast")
+                    .stop(true, true)
+                    .removeClass("success error")
+                    .addClass(tipe)
+                    .text(pesan)
+                    .fadeIn(200);
+
+                setTimeout(function () {
+                    $("#toast").fadeOut(300);
+                }, 3000);
+            }
+
+            /*
+             * VALIDASI FORM PESANAN
+             */
+            $("#formPesan").on("submit", function (event) {
+                event.preventDefault();
+
+                const nama = $("#nama").val().trim();
+                const menu = $("#pilihMenu").val();
+
+                $("#formPesan input, #formPesan select")
+                    .removeClass("is-error is-valid");
+
+                if (nama === "") {
+                    $("#nama")
+                        .addClass("is-error")
+                        .focus();
+
+                    tampilkanToast(
+                        "Nama pemesan wajib diisi.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+                if (menu === "") {
+                    $("#pilihMenu")
+                        .addClass("is-error")
+                        .focus();
+
+                    tampilkanToast(
+                        "Silakan pilih menu terlebih dahulu.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+                $("#nama, #pilihMenu").addClass("is-valid");
+
+                tampilkanToast(
+                    "Pesanan " + menu +
+                    " atas nama " + nama +
+                    " berhasil dicatat.",
+                    "success"
+                );
+
+                this.reset();
+
+                $("#formPesan input, #formPesan select")
+                    .removeClass("is-valid");
+            });
+
+            /*
+             * JQUERY VALIDATION
+             * Validasi pendaftaran member.
+             */
+            $("#formMember").validate({
+                rules: {
+                    nama: {
+                        required: true,
+                        minlength: 3
+                    },
+
+                    email: {
+                        required: true,
+                        email: true
+                    },
+
+                    hp: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 13
+                    },
+
+                    usia: {
+                        required: true,
+                        number: true,
+                        min: 17
+                    },
+
+                    password: {
+                        required: true,
+                        minlength: 8,
+                        hurufAngka: true
+                    },
+
+                    konfirmasi: {
+                        required: true,
+                        equalTo: "#mPassword"
+                    }
+                },
+
+                messages: {
+                    nama: {
+                        required: "Nama lengkap wajib diisi.",
+                        minlength: "Nama minimal 3 karakter."
+                    },
+
+                    email: {
+                        required: "Email wajib diisi.",
+                        email: "Masukkan alamat email yang valid."
+                    },
+
+                    hp: {
+                        required: "Nomor HP wajib diisi.",
+                        digits: "Nomor HP hanya boleh berisi angka.",
+                        minlength: "Nomor HP minimal 10 digit.",
+                        maxlength: "Nomor HP maksimal 13 digit."
+                    },
+
+                    usia: {
+                        required: "Usia wajib diisi.",
+                        number: "Usia harus berupa angka.",
+                        min: "Usia minimal 17 tahun."
+                    },
+
+                    password: {
+                        required: "Password wajib diisi.",
+                        minlength: "Password minimal 8 karakter.",
+                        hurufAngka:
+                            "Password harus mengandung huruf dan angka."
+                    },
+
+                    konfirmasi: {
+                        required: "Konfirmasi password wajib diisi.",
+                        equalTo: "Konfirmasi password harus sama."
+                    }
+                },
+
+                errorClass: "error",
+                validClass: "is-valid",
+                errorElement: "label",
+
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element);
+                },
+
+                highlight: function (element) {
+                    $(element)
+                        .addClass("is-error")
+                        .removeClass("is-valid");
+                },
+
+                unhighlight: function (element) {
+                    $(element)
+                        .removeClass("is-error")
+                        .addClass("is-valid");
+                },
+
+                submitHandler: function (form) {
+                    $("#sukses")
+                        .stop(true, true)
+                        .fadeIn(200);
+
+                    tampilkanToast(
+                        "Pendaftaran member berhasil divalidasi.",
+                        "success"
+                    );
+
+                    form.reset();
+
+                    $(form)
+                        .find("input")
+                        .removeClass("is-valid is-error");
+
+                    return false;
+                }
+            });
+
+            // TOMBOL KEMBALI KE ATAS
+    
+            $(window).on("scroll", function () {
+                if ($(this).scrollTop() > 300) {
+                    $("#backToTop").fadeIn(150);
+                } else {
+                    $("#backToTop").fadeOut(150);
+                }
+            });
+
+            $("#backToTop").on("click", function () {
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 400);
+            });
+
+        });
+    </script>
+
+</body>
+</html>
