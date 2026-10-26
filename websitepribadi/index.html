@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Mahasiswa - Novi Aulia</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* HERO SECTION (gradient pink) */
+        .hero-section {
+            background: linear-gradient(135deg, #e84393 0%, #ff6b9d 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* SKILL CARD */
+        .skill-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            border-top: 4px solid #ff6b9d;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .skill-card .icon {
+            font-size: 3rem;
+            color: #ff6b9d;
+            margin-bottom: 15px;
+        }
+
+        /* PROGRESS BAR ikut warna pink */
+        .skill-card .progress-bar {
+            background-color: #ff6b9d !important;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 25px 0;
+        }
+
+        /* LATIHAN 2: WARNA PRIMARY BOOTSTRAP (pink) */
+        :root {
+            --bs-primary: #ff6b9d;
+            --bs-primary-rgb: 255, 107, 157;
+        }
+
+        .btn-primary {
+            --bs-btn-bg: #ff6b9d;
+            --bs-btn-border-color: #ff6b9d;
+            --bs-btn-hover-bg: #e84393;
+            --bs-btn-hover-border-color: #e84393;
+            --bs-btn-active-bg: #c2307a;
+            --bs-btn-active-border-color: #c2307a;
+        }
+
+        /* LATIHAN 2: CARD LEBIH BULAT */
+        .card {
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        /* LATIHAN 2: ANIMASI FADE-IN */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* DARK MODE */
+        [data-bs-theme="dark"] .skill-card,
+        [data-bs-theme="dark"] #pendidikan .card {
+            background-color: #252b30;
+            color: #f8f9fa;
+        }
+
+        [data-bs-theme="dark"] .skill-card .text-muted,
+        [data-bs-theme="dark"] #pendidikan .text-muted,
+        [data-bs-theme="dark"] #kontak .text-muted {
+            color: #c5cbd1 !important;
+        }
+
+        [data-bs-theme="dark"] .skill-card .icon {
+            color: #ff8fb8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="#beranda">
+                <i class="fas fa-user-graduate me-2"></i>
+                Novi Aulia
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu"
+                aria-expanded="false"
+                aria-label="Buka menu navigasi">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#beranda">Beranda</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skill">Skill</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pendidikan">Pendidikan</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kontak">Kontak</a>
+                    </li>
+
+                    <!-- TOMBOL DARK MODE -->
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-lg-3 mt-2 mt-lg-0"
+                            id="themeToggle"
+                            type="button"
+                            aria-label="Ganti tema">
+
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="beranda">
+        <div class="container text-center">
+
+            <img src="img/fotoku.webp"
+                alt="Foto Profil Novi Aulia"
+                class="profile-img mb-4">
+
+            <h1 class="display-4 fw-bold mb-3">
+                Novi Aulia
+            </h1>
+
+            <p class="lead mb-3">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Mahasiswa Sistem Informasi
+            </p>
+
+            <p class="mb-4">
+                Tertarik pada pengembangan web dan selalu belajar
+                hal baru setiap hari.
+            </p>
+
+            <div class="d-flex gap-2 justify-content-center flex-wrap">
+
+                <a href="#skill" class="btn btn-light btn-lg px-4">
+                    <i class="fas fa-code me-2"></i>
+                    Lihat Skill
+                </a>
+
+                <a href="#kontak" class="btn btn-outline-light btn-lg px-4">
+                    <i class="fas fa-envelope me-2"></i>
+                    Hubungi Saya
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION SKILL -->
+    <section class="py-5" id="skill">
+        <div class="container">
+
+            <div class="text-center mb-5 fade-in">
+                <h2 class="fw-bold">Skill Saya</h2>
+                <p class="text-muted">Teknologi yang saya kuasai</p>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- PYTHON -->
+                <div class="col-12 col-md-6 col-lg-4 fade-in">
+                    <div class="card skill-card h-100 text-center p-4">
+
+                        <div class="card-body">
+
+                            <div class="icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+
+                            <h5 class="card-title fw-bold">Python</h5>
+
+                            <p class="card-text text-muted">
+                                Pemrograman dasar dan pengolahan data sederhana.
+                            </p>
+
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-success"
+                                    style="width: 75%;">
+                                </div>
+                            </div>
+
+                            <small class="text-muted mt-2 d-block">
+                                75%
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOOTSTRAP -->
+                <div class="col-12 col-md-6 col-lg-4 fade-in">
+                    <div class="card skill-card h-100 text-center p-4">
+
+                        <div class="card-body">
+
+                            <div class="icon">
+                                <i class="fab fa-bootstrap"></i>
+                            </div>
+
+                            <h5 class="card-title fw-bold">Bootstrap</h5>
+
+                            <p class="card-text text-muted">
+                                Membuat layout responsif dengan grid dan komponen.
+                            </p>
+
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-info"
+                                    style="width: 80%;">
+                                </div>
+                            </div>
+
+                            <small class="text-muted mt-2 d-block">
+                                80%
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MYSQL -->
+                <div class="col-12 col-md-6 col-lg-4 fade-in">
+                    <div class="card skill-card h-100 text-center p-4">
+
+                        <div class="card-body">
+
+                            <div class="icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+
+                            <h5 class="card-title fw-bold">MySQL</h5>
+
+                            <p class="card-text text-muted">
+                                Perancangan dan query database dasar.
+                            </p>
+
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-warning"
+                                    style="width: 70%;">
+                                </div>
+                            </div>
+
+                            <small class="text-muted mt-2 d-block">
+                                70%
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PENDIDIKAN -->
+    <section class="py-5 bg-body-tertiary" id="pendidikan">
+        <div class="container">
+
+            <div class="text-center mb-5 fade-in">
+                <h2 class="fw-bold">Pendidikan</h2>
+                <p class="text-muted">Riwayat pendidikan saya</p>
+            </div>
+
+            <div class="row justify-content-center">
+
+                <div class="col-12 col-md-8 fade-in">
+
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+
+                            <h5 class="fw-bold mb-1">
+                                S1 Sistem Informasi
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                Universitas Tanjungpura · 2025–sekarang
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+
+                            <h5 class="fw-bold mb-1">
+                                SMAN 3 Singkawang
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                Jurusan MIPA · 2021–2024
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION KONTAK -->
+    <section class="py-5" id="kontak">
+        <div class="container">
+
+            <div class="text-center mb-5 fade-in">
+                <h2 class="fw-bold">Hubungi Saya</h2>
+                <p class="text-muted">
+                    Kirim pesan melalui formulir di bawah.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6 fade-in">
+
+                    <form id="contactForm">
+
+                        <div class="mb-3">
+                            <label for="nama" class="form-label fw-semibold">
+                                Nama Lengkap
+                            </label>
+
+                            <input type="text"
+                                class="form-control"
+                                id="nama"
+                                placeholder="Masukkan nama Anda"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">
+                                Email
+                            </label>
+
+                            <input type="email"
+                                class="form-control"
+                                id="email"
+                                placeholder="email@contoh.com"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="pesan" class="form-label fw-semibold">
+                                Pesan
+                            </label>
+
+                            <textarea class="form-control"
+                                id="pesan"
+                                rows="4"
+                                placeholder="Tulis pesan Anda"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane me-2"></i>
+                            Kirim Pesan
+                        </button>
+
+                        <div id="formMessage"
+                            class="alert alert-success mt-3 d-none"
+                            role="status">
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer text-center">
+        <div class="container">
+
+            <p class="mb-2">
+                &copy; 2026 Novi Aulia. All rights reserved.
+            </p>
+
+            <div class="d-flex gap-3 justify-content-center">
+
+                <a href="#" class="text-white" aria-label="GitHub">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+
+                <a href="#" class="text-white" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+
+                <a href="#" class="text-white" aria-label="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 1. ANIMASI FADE-IN SAAT SCROLL
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        document.querySelectorAll(".fade-in").forEach((element) => {
+            observer.observe(element);
+        });
+
+
+        // 2. DARK MODE TOGGLE
+        const themeToggle = document.getElementById("themeToggle");
+
+        themeToggle.addEventListener("click", () => {
+            const html = document.documentElement;
+
+            const isDark =
+                html.getAttribute("data-bs-theme") === "dark";
+
+            html.setAttribute(
+                "data-bs-theme",
+                isDark ? "light" : "dark"
+            );
+
+            themeToggle.innerHTML = isDark
+                ? '<i class="fas fa-moon"></i>'
+                : '<i class="fas fa-sun"></i>';
+        });
+
+
+        // 3. FORM KONTAK
+        const contactForm = document.getElementById("contactForm");
+        const formMessage = document.getElementById("formMessage");
+
+        contactForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const nama = document.getElementById("nama").value.trim();
+
+            formMessage.textContent =
+                `Terima kasih, ${nama}. Formulir berhasil divalidasi pada halaman ini.`;
+
+            formMessage.classList.remove("d-none");
+
+            contactForm.reset();
+        });
+    </script>
+
+</body>
+</html>

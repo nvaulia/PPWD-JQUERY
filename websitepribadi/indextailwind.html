@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Mahasiswa - Novi Aulia (Tailwind)</title>
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: { pinky: { DEFAULT: '#ff6b9d', dark: '#e84393', deeper: '#c2307a' } }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome & Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        /* animasi fade-in saat scroll */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+        .fade-in.show { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+
+<body class="font-sans bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- NAVBAR -->
+    <nav class="bg-gray-900 text-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+            <a href="#beranda" class="font-bold text-lg">
+                <i class="fas fa-user-graduate mr-2"></i>Novi Aulia
+            </a>
+
+            <!-- tombol hamburger (HP) -->
+            <button id="menuToggle" class="lg:hidden border border-gray-500 rounded px-3 py-1" aria-label="Buka menu navigasi">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- menu desktop -->
+            <ul class="hidden lg:flex items-center gap-6 text-gray-300">
+                <li><a class="hover:text-white" href="#beranda">Beranda</a></li>
+                <li><a class="hover:text-white" href="#skill">Skill</a></li>
+                <li><a class="hover:text-white" href="#pendidikan">Pendidikan</a></li>
+                <li><a class="hover:text-white" href="#kontak">Kontak</a></li>
+                <li>
+                    <button id="themeToggle" class="border border-white rounded px-3 py-1 text-sm hover:bg-white hover:text-gray-900" aria-label="Ganti tema">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- menu mobile -->
+        <ul id="mobileMenu" class="hidden lg:hidden px-4 pb-4 space-y-2 text-gray-300">
+            <li><a class="block hover:text-white" href="#beranda">Beranda</a></li>
+            <li><a class="block hover:text-white" href="#skill">Skill</a></li>
+            <li><a class="block hover:text-white" href="#pendidikan">Pendidikan</a></li>
+            <li><a class="block hover:text-white" href="#kontak">Kontak</a></li>
+            <li>
+                <button id="themeToggleMobile" class="border border-white rounded px-3 py-1 text-sm" aria-label="Ganti tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="bg-gradient-to-br from-pinky-dark to-pinky text-white py-20">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <img src="img/fotoku.webp" alt="Foto Profil Novi Aulia"
+                 class="w-44 h-44 rounded-full border-4 border-white object-cover mx-auto mb-6 shadow-xl">
+
+            <h1 class="text-4xl md:text-5xl font-bold mb-3">Novi Aulia</h1>
+
+            <p class="text-xl mb-3">
+                <i class="fas fa-graduation-cap mr-2"></i>Mahasiswa Sistem Informasi
+            </p>
+
+            <p class="mb-6">Tertarik pada pengembangan web dan selalu belajar hal baru setiap hari.</p>
+
+            <div class="flex flex-wrap gap-2 justify-center">
+                <a href="#skill" class="bg-white text-pinky-dark font-semibold text-lg py-3 px-6 rounded-lg hover:bg-gray-100 transition">
+                    <i class="fas fa-code mr-2"></i>Lihat Skill
+                </a>
+                <a href="#kontak" class="border-2 border-white text-white font-semibold text-lg py-3 px-6 rounded-lg hover:bg-white hover:text-pinky-dark transition">
+                    <i class="fas fa-envelope mr-2"></i>Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION SKILL -->
+    <section id="skill" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl font-bold">Skill Saya</h2>
+                <p class="text-gray-500 dark:text-gray-300">Teknologi yang saya kuasai</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- PYTHON -->
+                <div class="fade-in bg-white dark:bg-gray-800 rounded-3xl shadow-md border-t-4 border-pinky p-8 text-center hover:-translate-y-2 hover:shadow-xl transition">
+                    <div class="text-5xl text-pinky mb-4"><i class="fab fa-python"></i></div>
+                    <h5 class="font-bold text-lg mb-2">Python</h5>
+                    <p class="text-gray-500 dark:text-gray-300 mb-4">Pemrograman dasar dan pengolahan data sederhana.</p>
+                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-pinky" style="width: 75%"></div>
+                    </div>
+                    <small class="block mt-2 text-gray-500 dark:text-gray-300">75%</small>
+                </div>
+
+                <!-- BOOTSTRAP -->
+                <div class="fade-in bg-white dark:bg-gray-800 rounded-3xl shadow-md border-t-4 border-pinky p-8 text-center hover:-translate-y-2 hover:shadow-xl transition">
+                    <div class="text-5xl text-pinky mb-4"><i class="fab fa-bootstrap"></i></div>
+                    <h5 class="font-bold text-lg mb-2">Bootstrap</h5>
+                    <p class="text-gray-500 dark:text-gray-300 mb-4">Membuat layout responsif dengan grid dan komponen.</p>
+                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-pinky" style="width: 80%"></div>
+                    </div>
+                    <small class="block mt-2 text-gray-500 dark:text-gray-300">80%</small>
+                </div>
+
+                <!-- MYSQL -->
+                <div class="fade-in bg-white dark:bg-gray-800 rounded-3xl shadow-md border-t-4 border-pinky p-8 text-center hover:-translate-y-2 hover:shadow-xl transition">
+                    <div class="text-5xl text-pinky mb-4"><i class="fas fa-database"></i></div>
+                    <h5 class="font-bold text-lg mb-2">MySQL</h5>
+                    <p class="text-gray-500 dark:text-gray-300 mb-4">Perancangan dan query database dasar.</p>
+                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-pinky" style="width: 70%"></div>
+                    </div>
+                    <small class="block mt-2 text-gray-500 dark:text-gray-300">70%</small>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PENDIDIKAN -->
+    <section id="pendidikan" class="py-16 bg-gray-100 dark:bg-gray-800/50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl font-bold">Pendidikan</h2>
+                <p class="text-gray-500 dark:text-gray-300">Riwayat pendidikan saya</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto space-y-4 fade-in">
+                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow p-6">
+                    <h5 class="font-bold text-lg">S1 Sistem Informasi</h5>
+                    <p class="text-gray-500 dark:text-gray-300">Universitas Tanjungpura · 2025–sekarang</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow p-6">
+                    <h5 class="font-bold text-lg">SMAN 3 Singkawang</h5>
+                    <p class="text-gray-500 dark:text-gray-300">Jurusan MIPA · 2021–2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION KONTAK -->
+    <section id="kontak" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl font-bold">Hubungi Saya</h2>
+                <p class="text-gray-500 dark:text-gray-300">Kirim pesan melalui formulir di bawah.</p>
+            </div>
+
+            <div class="max-w-lg mx-auto fade-in">
+                <form id="contactForm" class="space-y-4">
+                    <div>
+                        <label for="nama" class="block font-semibold mb-1">Nama Lengkap</label>
+                        <input type="text" id="nama" placeholder="Masukkan nama Anda" required
+                               class="w-full rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pinky">
+                    </div>
+                    <div>
+                        <label for="email" class="block font-semibold mb-1">Email</label>
+                        <input type="email" id="email" placeholder="email@contoh.com" required
+                               class="w-full rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pinky">
+                    </div>
+                    <div>
+                        <label for="pesan" class="block font-semibold mb-1">Pesan</label>
+                        <textarea id="pesan" rows="4" placeholder="Tulis pesan Anda" required
+                                  class="w-full rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pinky"></textarea>
+                    </div>
+                    <button type="submit"
+                            class="w-full bg-pinky hover:bg-pinky-dark active:bg-pinky-deeper text-white font-semibold py-2 rounded-lg transition">
+                        <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+                    </button>
+                    <div id="formMessage" role="status"
+                         class="hidden rounded-lg bg-green-100 text-green-800 px-4 py-3"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-700 text-white text-center py-6">
+        <p class="mb-2">&copy; 2026 Novi Aulia. All rights reserved.</p>
+        <div class="flex gap-4 justify-center text-xl">
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Menu hamburger (di Tailwind harus dibuat sendiri)
+        document.getElementById("menuToggle").addEventListener("click", () => {
+            document.getElementById("mobileMenu").classList.toggle("hidden");
+        });
+
+        // 2. Animasi fade-in saat scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+
+        // 3. Dark mode toggle (class "dark" di <html>)
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle("dark");
+            const icon = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            document.getElementById("themeToggle").innerHTML = icon;
+            document.getElementById("themeToggleMobile").innerHTML = icon;
+        }
+        document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+        document.getElementById("themeToggleMobile").addEventListener("click", toggleTheme);
+
+        // 4. Form kontak
+        const contactForm = document.getElementById("contactForm");
+        const formMessage = document.getElementById("formMessage");
+        contactForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const nama = document.getElementById("nama").value.trim();
+            formMessage.textContent = `Terima kasih, ${nama}. Formulir berhasil divalidasi pada halaman ini.`;
+            formMessage.classList.remove("hidden");
+            contactForm.reset();
+        });
+    </script>
+
+</body>
+</html>
