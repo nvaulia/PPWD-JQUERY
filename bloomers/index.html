@@ -2,633 +2,433 @@
 <html lang="id">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloomé - Flowers for Every Moment</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <title>
-        Bloomé - Flowers for Every Moment
-    </title>
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
-    <!-- =====================================================
-         GOOGLE FONT
-         ===================================================== -->
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- =====================================================
-         FONT AWESOME
-         ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-
-    <!-- =====================================================
-         CSS
-         ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
-    <!-- =====================================================
-         NAVBAR
-         ===================================================== -->
-
+    <!-- NAVBAR -->
     <nav class="navbar">
-
         <div class="nav-container">
 
-
-            <!-- LOGO -->
-
-            <a
-                href="#home"
-                class="logo"
-            >
-
+            <!-- LOGO DENGAN EFEK KETIK -->
+            <a href="#home" class="logo">
                 <i class="fas fa-seedling"></i>
-
                 <div>
-
-                    <span class="logo-name">
-                        Bloomé
-                    </span>
-
-                    <small>
-                        by Novi Aulia
-                    </small>
-
+                    <span class="logo-name typewriter-logo" id="typewriterLogo"></span>
+                    <small>by Novi Aulia</small>
                 </div>
-
             </a>
 
-
             <!-- MENU -->
-
-            <div
-                class="nav-menu"
-                id="navMenu"
-            >
-
-                <a
-                    href="#produk"
-                    class="nav-link active"
-                    data-filter="all"
-                >
-                    Semua
-                </a>
-
-                <a
-                    href="#produk"
-                    class="nav-link"
-                    data-filter="lily"
-                >
-                    Lily
-                </a>
-
-                <a
-                    href="#produk"
-                    class="nav-link"
-                    data-filter="rose"
-                >
-                    Rose
-                </a>
-
-                <a
-                    href="#produk"
-                    class="nav-link"
-                    data-filter="tulip"
-                >
-                    Tulip
-                </a>
-
-                <a
-                    href="#produk"
-                    class="nav-link"
-                    data-filter="peony"
-                >
-                    Peony
-                </a>
-
-                <a
-                    href="#produk"
-                    class="nav-link"
-                    data-filter="other"
-                >
-                    Lainnya
-                </a>
-
+            <div class="nav-menu" id="navMenu">
+                <a href="#produk" class="nav-link active" data-filter="all">Semua</a>
+                <a href="#produk" class="nav-link" data-filter="lily">Lily</a>
+                <a href="#produk" class="nav-link" data-filter="rose">Rose</a>
+                <a href="#produk" class="nav-link" data-filter="tulip">Tulip</a>
+                <a href="#produk" class="nav-link" data-filter="peony">Peony</a>
+                <a href="#produk" class="nav-link" data-filter="other">Lainnya</a>
             </div>
 
+            <!-- AUTH & CART CONTAINER -->
+            <div class="nav-right-actions">
+                <button type="button" class="cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-text">Keranjang</span>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
 
-            <!-- CART -->
-
-            <button
-                type="button"
-                class="cart-btn"
-                id="cartBtn"
-            >
-
-                <i class="fas fa-shopping-bag"></i>
-
-                <span class="cart-text">
-                    Keranjang
-                </span>
-
-                <span
-                    class="cart-badge"
-                    id="cartBadge"
-                >
-                    0
-                </span>
-
-            </button>
-
+                <!-- AUTH BUTTON & USER DROPDOWN -->
+                <div class="auth-box" id="authBox">
+                    <button type="button" class="btn-login-nav" id="btnLoginNav">
+                        <i class="fas fa-user"></i> <span id="navUserText">Login</span>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown" style="display: none;">
+                        <a href="#" id="btnMenuHistory"><i class="fas fa-history"></i> Riwayat Pesanan</a>
+                        <a href="#" id="btnMenuAdmin" style="display: none;"><i class="fas fa-cog"></i> Panel Admin</a>
+                        <a href="#" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+                    </div>
+                </div>
+            </div>
 
             <!-- HAMBURGER -->
-
-            <button
-                type="button"
-                class="hamburger"
-                id="hamburger"
-                aria-label="Buka menu"
-            >
-
+            <button type="button" class="hamburger" id="hamburger" aria-label="Buka menu">
                 <i class="fas fa-bars"></i>
-
             </button>
 
         </div>
-
     </nav>
 
-
-
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
-
-    <section
-        class="hero"
-        id="home"
-    >
-
-
-        <!-- Dekorasi bunga -->
-
-        <div class="flower-decoration flower-one">
-            ❀
-        </div>
-
-        <div class="flower-decoration flower-two">
-            ✿
-        </div>
-
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="flower-decoration flower-one">❀</div>
+        <div class="flower-decoration flower-two">✿</div>
 
         <div class="hero-content">
+            <div class="hero-small">WELCOME TO</div>
+            
+            <!-- JUDUL HERO DENGAN EFEK KETIK -->
+            <h1 class="typewriter-hero" id="typewriterHero"></h1>
 
-            <div class="hero-small">
-                WELCOME TO
-            </div>
-
-
-            <h1>
-                Bloomé
-            </h1>
-
-
-            <h2>
-                by Novi Aulia
-            </h2>
-
-
-            <p>
-                Flowers for Every Moment
-            </p>
-
+            <h2>by Novi Aulia</h2>
+            <p>Flowers for Every Moment</p>
 
             <div class="hero-description">
-
-                Temukan bunga cantik untuk menemani
-                setiap momen spesialmu.
-
+                Temukan bunga cantik untuk menemani setiap momen spesialmu.
             </div>
-
 
             <!-- SEARCH -->
-
             <div class="search-box">
-
-                <input
-                    type="text"
-                    id="searchProduk"
-                    placeholder="Cari bunga favoritmu..."
-                    autocomplete="off"
-                >
-
+                <input type="text" id="searchProduk" placeholder="Cari bunga favoritmu..." autocomplete="off">
                 <i class="fas fa-search"></i>
-
             </div>
-
         </div>
-
     </section>
 
-
-
-    <!-- =====================================================
-         PRODUK
-         ===================================================== -->
-
-    <section
-        class="produk-section"
-        id="produk"
-    >
-
+    <!-- PRODUK SECTION -->
+    <section class="produk-section" id="produk">
         <div class="section-header">
-
-
             <div>
-
-                <div class="section-small">
-                    OUR COLLECTION
-                </div>
-
-
-                <h2>
-
-                    Pilihan Bunga
-
-                    <i class="fas fa-seedling"></i>
-
-                </h2>
-
+                <div class="section-small">OUR COLLECTION</div>
+                <h2>Pilihan Bunga <i class="fas fa-seedling"></i></h2>
             </div>
-
 
             <!-- FILTER -->
-
             <div class="filter-btns">
-
-                <button
-                    type="button"
-                    class="filter-btn active"
-                    data-cat="all"
-                >
-                    Semua
-                </button>
-
-                <button
-                    type="button"
-                    class="filter-btn"
-                    data-cat="lily"
-                >
-                    Lily
-                </button>
-
-                <button
-                    type="button"
-                    class="filter-btn"
-                    data-cat="rose"
-                >
-                    Rose
-                </button>
-
-                <button
-                    type="button"
-                    class="filter-btn"
-                    data-cat="tulip"
-                >
-                    Tulip
-                </button>
-
-                <button
-                    type="button"
-                    class="filter-btn"
-                    data-cat="peony"
-                >
-                    Peony
-                </button>
-
-                <button
-                    type="button"
-                    class="filter-btn"
-                    data-cat="other"
-                >
-                    Lainnya
-                </button>
-
+                <button type="button" class="filter-btn active" data-cat="all">Semua</button>
+                <button type="button" class="filter-btn" data-cat="lily">Lily</button>
+                <button type="button" class="filter-btn" data-cat="rose">Rose</button>
+                <button type="button" class="filter-btn" data-cat="tulip">Tulip</button>
+                <button type="button" class="filter-btn" data-cat="peony">Peony</button>
+                <button type="button" class="filter-btn" data-cat="other">Lainnya</button>
             </div>
-
         </div>
 
-
-        <!-- =================================================
-             TEMPAT CARD PRODUK
-             Produk akan dibuat oleh script.js
-             ================================================= -->
-
-        <div
-            class="produk-grid"
-            id="produkGrid"
-        >
-
-        </div>
-
+        <div class="produk-grid" id="produkGrid"></div>
     </section>
 
-
-
-    <!-- =====================================================
-         CART OVERLAY
-         ===================================================== -->
-
-    <div
-        class="cart-overlay"
-        id="cartOverlay"
-    ></div>
-
-
-
-    <!-- =====================================================
-         CART SIDEBAR
-         ===================================================== -->
-
-    <aside
-        class="cart-sidebar"
-        id="cartSidebar"
-    >
-
-
+    <!-- CART OVERLAY & SIDEBAR -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-
-            <h3>
-
-                <i class="fas fa-shopping-bag"></i>
-
-                Keranjang Bloomé
-
-            </h3>
-
-
-            <button
-                type="button"
-                class="cart-close"
-                id="cartClose"
-                aria-label="Tutup keranjang"
-            >
-
+            <h3><i class="fas fa-shopping-bag"></i> Keranjang Bloomé</h3>
+            <button type="button" class="cart-close" id="cartClose" aria-label="Tutup keranjang">
                 <i class="fas fa-times"></i>
-
             </button>
-
         </div>
 
-
-        <!-- Isi keranjang -->
-
-        <div
-            class="cart-items"
-            id="cartItems"
-        >
-
-        </div>
-
-
-        <!-- Footer keranjang -->
+        <div class="cart-items" id="cartItems"></div>
 
         <div class="cart-footer">
-
             <div class="cart-total">
-
-                <span>
-                    Total
-                </span>
-
-                <span
-                    class="total-price"
-                    id="cartTotal"
-                >
-                    Rp 0
-                </span>
-
+                <span>Total</span>
+                <span class="total-price" id="cartTotal">Rp 0</span>
             </div>
-
-
-            <button
-                type="button"
-                class="btn-checkout"
-                id="btnCheckout"
-            >
-
-                <i class="fas fa-check-circle"></i>
-
-                Checkout Sekarang
-
+            <button type="button" class="btn-checkout" id="btnCheckout">
+                <i class="fas fa-check-circle"></i> Checkout Sekarang
             </button>
-
         </div>
-
     </aside>
 
-
-
-    <!-- =====================================================
-         MODAL DETAIL BUNGA
-         ===================================================== -->
-
-    <div
-        class="flower-modal"
-        id="flowerModal"
-    >
-
-
-        <!-- Background modal -->
-
+    <!-- MODAL DETAIL BUNGA -->
+    <div class="flower-modal" id="flowerModal">
         <div class="flower-modal-overlay"></div>
-
-
-        <!-- Isi modal -->
-
         <div class="flower-modal-content">
-
-
-            <!-- Tombol close -->
-
-            <button
-                type="button"
-                class="flower-modal-close"
-                id="flowerModalClose"
-                aria-label="Tutup detail bunga"
-            >
-
+            <button type="button" class="flower-modal-close" id="flowerModalClose" aria-label="Tutup detail bunga">
                 <i class="fas fa-times"></i>
-
             </button>
-
-
-            <!-- FOTO BUNGA -->
-
             <div class="flower-modal-image">
+                <img id="modalFlowerImage" src="" alt="Foto bunga">
+            </div>
+            <div class="flower-modal-info">
+                <span class="modal-category" id="modalFlowerCategory">FLOWER</span>
+                <h2 id="modalFlowerName">Nama Bunga</h2>
+                <p class="modal-description" id="modalFlowerDescription">Deskripsi bunga.</p>
+                <div class="modal-price">
+                    <span id="modalFlowerPrice">Rp 0</span>
+                    <small>per bouquet</small>
+                </div>
+                <button type="button" class="modal-add-cart" id="modalAddCart">
+                    <i class="fas fa-shopping-bag"></i> Tambahkan ke Keranjang
+                </button>
+            </div>
+        </div>
+    </div>
 
-                <img
-                    id="modalFlowerImage"
-                    src=""
-                    alt="Foto bunga"
-                >
-
+    <!-- MODAL FORM CHECKOUT (DENGAN PILIHAN PEMBAYARAN) -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-modal-overlay"></div>
+        <div class="checkout-modal-content">
+            <button type="button" class="checkout-modal-close" id="checkoutModalClose" aria-label="Tutup form checkout">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="checkout-header">
+                <h3><i class="fas fa-clipboard-list"></i> Form Pre-Order Bloomé</h3>
+                <p>Lengkapi data pemesanan & metode pembayaran Anda</p>
             </div>
 
-
-            <!-- INFORMASI BUNGA -->
-
-            <div class="flower-modal-info">
-
-
-                <span
-                    class="modal-category"
-                    id="modalFlowerCategory"
-                >
-                    FLOWER
-                </span>
-
-
-                <h2
-                    id="modalFlowerName"
-                >
-                    Nama Bunga
-                </h2>
-
-
-                <p
-                    class="modal-description"
-                    id="modalFlowerDescription"
-                >
-                    Deskripsi bunga.
-                </p>
-
-
-                <div class="modal-price">
-
-                    <span
-                        id="modalFlowerPrice"
-                    >
-                        Rp 0
-                    </span>
-
-                    <small>
-                        per bouquet
-                    </small>
-
+            <form id="formCheckout" class="checkout-form" novalidate>
+                <div class="form-group">
+                    <label for="inputNama">Nama Lengkap *</label>
+                    <input type="text" id="inputNama" placeholder="Masukkan nama lengkap Anda" required>
+                    <small class="error-msg" id="errNama">Nama minimal 3 karakter</small>
                 </div>
 
+                <div class="form-group">
+                    <label for="inputWhatsapp">No. WhatsApp *</label>
+                    <input type="tel" id="inputWhatsapp" placeholder="Contoh: 081234567890" required>
+                    <small class="error-msg" id="errWhatsapp">No. WhatsApp harus 10-14 digit angka</small>
+                </div>
 
-                <button
-                    type="button"
-                    class="modal-add-cart"
-                    id="modalAddCart"
-                >
+                <div class="form-group">
+                    <label for="inputAlamat">Alamat Pengiriman *</label>
+                    <textarea id="inputAlamat" rows="3" placeholder="Masukkan alamat lengkap pengiriman" required></textarea>
+                    <small class="error-msg" id="errAlamat">Alamat pengiriman minimal 10 karakter</small>
+                </div>
 
-                    <i class="fas fa-shopping-bag"></i>
+                <div class="form-group">
+                    <label>Metode Pengambilan *</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="metodePengambilan" value="Ambil di Toko" checked>
+                            <span>Ambil di Toko</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="metodePengambilan" value="Diantar / Kurir">
+                            <span>Diantar Kurir</span>
+                        </label>
+                    </div>
+                </div>
 
-                    Tambahkan ke Keranjang
+                <!-- OPSI PILIHAN PEMBAYARAN -->
+                <div class="form-group">
+                    <label for="inputPembayaran">Metode Pembayaran *</label>
+                    <select id="inputPembayaran" class="admin-select" required>
+                        <option value="Transfer BCA">Transfer Bank BCA (8830xxxxxx)</option>
+                        <option value="Transfer Mandiri">Transfer Bank Mandiri (13700xxxxxx)</option>
+                        <option value="QRIS">QRIS All Payment</option>
+                        <option value="COD / Bayar di Tempat">COD / Bayar Saat Diambil</option>
+                    </select>
+                </div>
 
+                <div class="form-group">
+                    <label for="inputCatatan">Catatan Pesanan (Opsional)</label>
+                    <textarea id="inputCatatan" rows="2" placeholder="Pesan khusus untuk buket/bunga..."></textarea>
+                </div>
+
+                <div class="checkout-summary">
+                    <span>Total Pembayaran:</span>
+                    <strong id="modalTotalPay">Rp 0</strong>
+                </div>
+
+                <button type="submit" class="btn-submit-checkout" id="btnSubmitCheckout">
+                    <i class="fas fa-paper-plane"></i> Konfirmasi Pesanan
                 </button>
+            </form>
+        </div>
+    </div>
 
+    <!-- MODAL SUKSES CHECKOUT -->
+    <div class="success-modal" id="successModal">
+        <div class="success-modal-overlay"></div>
+        <div class="success-modal-content">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Pesanan Berhasil Disimpan!</h2>
+            <p id="successMessage">Terima kasih telah memesan di Bloomé.</p>
+            <button type="button" class="btn-success-close" id="btnSuccessClose">Selesai</button>
+        </div>
+    </div>
+
+    <!-- MODAL LOGIN & REGISTER -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-modal-overlay"></div>
+        <div class="auth-modal-content">
+            <button type="button" class="auth-modal-close" id="authModalClose"><i class="fas fa-times"></i></button>
+            <div class="auth-header">
+                <h3 id="authTitle"><i class="fas fa-user-lock"></i> Masuk Akun</h3>
+                <p id="authSubtitle">Masuk ke akun Bloomé Anda untuk belanja</p>
+            </div>
+            
+            <!-- FORM LOGIN -->
+            <form id="formLogin" class="auth-form">
+                <div class="form-group">
+                    <label>Username / Email</label>
+                    <input type="text" id="loginUser" placeholder="Masukkan username (admin / user)" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPass" placeholder="Masukkan password" required>
+                </div>
+                <button type="submit" class="btn-submit-checkout">Masuk</button>
+                <p class="auth-switch">Belum punya akun? <a href="#" id="switchToRegister">Daftar Akun</a></p>
+                <p class="auth-hint"><small>*Akun Admin Demo: <b>admin</b> / pass: <b>admin123</b></small></p>
+            </form>
+
+            <!-- FORM REGISTER -->
+            <form id="formRegister" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="regNama" placeholder="Nama lengkap Anda" required>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="regUser" placeholder="Username baru" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPass" placeholder="Password minimal 4 karakter" required>
+                </div>
+                <button type="submit" class="btn-submit-checkout">Daftar Sekarang</button>
+                <p class="auth-switch">Sudah punya akun? <a href="#" id="switchToLogin">Masuk</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL RIWAYAT PESANAN USER -->
+    <div class="history-modal" id="historyModal">
+        <div class="history-modal-overlay"></div>
+        <div class="history-modal-content">
+            <button type="button" class="history-modal-close" id="historyModalClose"><i class="fas fa-times"></i></button>
+            <div class="checkout-header">
+                <h3><i class="fas fa-history"></i> Riwayat Pesanan Saya</h3>
+            </div>
+            <div class="history-body" id="userHistoryList"></div>
+        </div>
+    </div>
+
+    <!-- SECTION DASHBOARD ADMIN (CRUD & PESANAN) -->
+    <section class="admin-section" id="adminSection" style="display: none;">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h2><i class="fas fa-user-shield"></i> Dashboard Admin Bloomé</h2>
+                <button type="button" class="btn-close-admin" id="btnCloseAdmin"><i class="fas fa-times"></i> Tutup Panel Admin</button>
             </div>
 
+            <div class="admin-tabs">
+                <button type="button" class="admin-tab-btn active" data-tab="tabProduk"><i class="fas fa-seedling"></i> Kelola Produk (CRUD)</button>
+                <button type="button" class="admin-tab-btn" data-tab="tabPesanan"><i class="fas fa-shopping-bag"></i> Kelola Pesanan Masuk</button>
+            </div>
+
+            <!-- TAB 1: CRUD PRODUK -->
+            <div class="admin-tab-content active" id="tabProduk">
+                <div class="crud-layout">
+                    <div class="crud-form-card">
+                        <h3 id="formProdukTitle">Tambah Produk Baru</h3>
+                        <form id="formProdukAdmin">
+                            <input type="hidden" id="adminProdId">
+                            <div class="form-group">
+                                <label>Nama Bunga *</label>
+                                <input type="text" id="adminProdNama" placeholder="Contoh: Red Rose" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Harga (Rp) *</label>
+                                <input type="number" id="adminProdHarga" placeholder="35000" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Kategori *</label>
+                                <select id="adminProdKategori" class="admin-select" required>
+                                    <option value="lily">Lily</option>
+                                    <option value="rose">Rose</option>
+                                    <option value="tulip">Tulip</option>
+                                    <option value="peony">Peony</option>
+                                    <option value="other">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama File Gambar *</label>
+                                <input type="text" id="adminProdGambar" placeholder="redrose.jpg" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Deskripsi *</label>
+                                <textarea id="adminProdDesc" rows="2" placeholder="Deskripsi singkat bunga..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Badge Label (Opsional)</label>
+                                <input type="text" id="adminProdBadge" placeholder="Best Seller / Favorit / New">
+                            </div>
+                            <div class="form-btn-group">
+                                <button type="submit" class="btn-submit-checkout" id="btnSaveProduk">Simpan Produk</button>
+                                <button type="button" class="btn-cancel-crud" id="btnCancelCrud" style="display: none;">Batal Edit</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="crud-table-card">
+                        <h3>Daftar Produk Aktif</h3>
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Gambar</th>
+                                        <th>Nama</th>
+                                        <th>Kategori</th>
+                                        <th>Harga</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminProdukTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: KELOLA PESANAN -->
+            <div class="admin-tab-content" id="tabPesanan" style="display: none;">
+                <div class="crud-table-card">
+                    <h3>Daftar Semua Pesanan Masuk</h3>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Kode / Waktu</th>
+                                    <th>Pemesan</th>
+                                    <th>WhatsApp</th>
+                                    <th>Pembayaran</th>
+                                    <th>Detail Pesanan</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Aksi Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminPesananTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </div>
-
-
-
-    <!-- =====================================================
-         TOAST NOTIFICATION
-         ===================================================== -->
-
-    <div
-        class="toast"
-        id="toast"
-    >
-
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
-
-        <span id="toastMsg">
-            Berhasil
-        </span>
-
+        <span id="toastMsg">Berhasil</span>
     </div>
 
-
-
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
-
+    <!-- FOOTER -->
     <footer class="footer">
-
-        <div class="footer-logo">
-            Bloomé
-        </div>
-
-
-        <p>
-            Flowers for Every Moment
-        </p>
-
-
+        <div class="footer-logo">Bloomé</div>
+        <p>Flowers for Every Moment</p>
         <div class="footer-line"></div>
-
-
-        <small>
-            © 2026 Bloomé by Novi Aulia
-        </small>
-
+        <small>© 2026 Bloomé by Novi Aulia</small>
     </footer>
 
-
-
-    <!-- =====================================================
-         JQUERY
-         HARUS DI ATAS SCRIPT.JS
-         ===================================================== -->
-
-    <script
-        src="https://code.jquery.com/jquery-3.7.1.min.js"
-    ></script>
-
-
-
-    <!-- =====================================================
-         JAVASCRIPT BLOOMÉ
-         ===================================================== -->
-
-    <script
-        src="script.js"
-    ></script>
-
+    <!-- JQUERY & SCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
 
 </body>
-
 </html>
