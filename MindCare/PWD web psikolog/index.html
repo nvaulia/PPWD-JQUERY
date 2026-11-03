@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MindCare membantu kamu menemukan psikolog dan memesan konsultasi online atau tatap muka.">
+    <title>MindCare | Konsultasi Psikolog Online</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Titan+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="common.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- TOMBOL KEMBALI KE PORTOFOLIO (IKON MURNI TANPA TEKS) -->
+    <a href="../../index.html" class="tombol-kembali" title="Kembali ke Portofolio" aria-label="Kembali ke Portofolio">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span class="label">Kembali ke Portofolio</span>
+    </a>
+
+    <a class="skip-link" href="#psikolog">Lewati ke daftar psikolog</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <a href="#beranda" class="brand">
+            <span class="brand-star" aria-hidden="true"></span>
+            <span class="brand-name">MindCare</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="Buka menu" aria-expanded="false" aria-controls="navbar">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="navbar" id="navbar" aria-label="Navigasi utama">
+            <a href="#beranda">Beranda</a>
+            <a href="#psikolog">Psikolog</a>
+            <a href="#booking-saya">Booking Saya</a>
+            <div class="auth-area" id="authArea"></div>
+        </nav>
+    </header>
+
+    <main>
+        <noscript>
+            <p class="empty-box">Website ini membutuhkan JavaScript. Aktifkan JavaScript di browser kamu.</p>
+        </noscript>
+
+        <!-- BERANDA -->
+        <section class="hero" id="beranda">
+            <span class="deco star-pink hero-star-a" aria-hidden="true"></span>
+            <span class="deco star-yellow hero-star-b" aria-hidden="true"></span>
+
+            <div class="hero-text">
+                <p class="pill pill-flat">Konsultasi online &amp; tatap muka</p>
+                <h1 class="bubble" data-text="Ngobrol sama psikolog, jadi lebih mudah">Ngobrol sama psikolog, jadi lebih mudah</h1>
+                <p class="lead">
+                    Cari psikolog sesuai kebutuhanmu, pilih jadwal yang kosong,
+                    lalu booking dan bayar dari satu website.
+                </p>
+                <div class="hero-actions">
+                    <a href="#psikolog" class="btn btn-pink">Cari Psikolog</a>
+                    <a href="#booking-saya" class="btn btn-white">Lihat Booking Saya</a>
+                </div>
+            </div>
+
+            <aside class="hero-card stack" aria-labelledby="howTitle">
+                <h2 class="card-title" id="howTitle">Cara booking</h2>
+                <ol class="pill-list">
+                    <li class="pill"><span class="num">1</span>Cari psikolog</li>
+                    <li class="pill"><span class="num">2</span>Pilih jadwal &amp; metode</li>
+                    <li class="pill"><span class="num">3</span>Masuk ke akunmu</li>
+                    <li class="pill"><span class="num">4</span>Isi data &amp; cek biaya</li>
+                    <li class="pill"><span class="num">5</span>Bayar konsultasi</li>
+                    <li class="pill"><span class="num">6</span>Pantau status booking</li>
+                </ol>
+            </aside>
+        </section>
+
+        <!-- BANNER PROMOSI -->
+        <section class="banner" id="banner" aria-roledescription="carousel" aria-label="Banner promosi">
+            <div class="banner-viewport">
+                <article class="banner-slide tone-yellow is-active" aria-label="1 dari 3">
+                    <p class="pill pill-flat">Promo layanan</p>
+                    <h2>Konsultasi online dari mana saja</h2>
+                    <p>Pilih psikolog, pilih jam favoritmu, dan mulai sesi tanpa perlu antre.</p>
+                    <a href="#psikolog" class="btn btn-pink btn-sm">Lihat psikolog</a>
+                </article>
+
+                <article class="banner-slide tone-pink" aria-label="2 dari 3" hidden>
+                    <p class="pill pill-flat">Promo layanan</p>
+                    <h2>Mau ketemu langsung? Bisa</h2>
+                    <p>Beberapa psikolog menerima sesi tatap muka. Cek metode konsultasi di tiap kartu.</p>
+                    <a href="#psikolog" class="btn btn-yellow btn-sm">Cek metode</a>
+                </article>
+
+                <article class="banner-slide tone-blue" aria-label="3 dari 3" hidden>
+                    <p class="pill pill-flat">Promo layanan</p>
+                    <h2>Booking sekali, semua terpantau</h2>
+                    <p>Lihat status pembayaran dan status konsultasimu kapan saja di Booking Saya.</p>
+                    <a href="#booking-saya" class="btn btn-yellow btn-sm">Buka Booking Saya</a>
+                </article>
+            </div>
+
+            <div class="banner-controls">
+                <button class="icon-btn" id="bannerPrev" type="button" aria-label="Banner sebelumnya">‹</button>
+                <div class="banner-dots" id="bannerDots" role="tablist" aria-label="Pilih banner"></div>
+                <button class="icon-btn" id="bannerNext" type="button" aria-label="Banner berikutnya">›</button>
+            </div>
+        </section>
+
+        <!-- KATALOG PSIKOLOG -->
+        <section class="section" id="psikolog">
+            <div class="section-head">
+                <h2 class="bubble bubble-md" data-text="Pilih Psikolog">Pilih Psikolog</h2>
+                <p>Cari berdasarkan nama atau spesialisasi, lalu cek jadwal, metode, dan biayanya.</p>
+            </div>
+
+            <div class="tools stack">
+                <div class="field grow">
+                    <label for="searchPsychologist">Cari psikolog</label>
+                    <input type="search" id="searchPsychologist"
+                           placeholder="Ketik nama atau spesialisasi"
+                           autocomplete="off">
+                </div>
+
+                <div class="field">
+                    <label for="specializationFilter">Spesialisasi</label>
+                    <select id="specializationFilter">
+                        <option value="">Semua spesialisasi</option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="pill pill-flat count-pill" id="psychologistCount" aria-live="polite">Memuat katalog...</p>
+
+            <div class="psychologist-grid" id="psychologistList"></div>
+
+            <div class="empty-box" id="emptyMessage" hidden></div>
+        </section>
+
+        <!-- BENEFIT -->
+        <section class="section" id="benefit">
+            <div class="benefit-card stack">
+                <h2 class="bubble bubble-md" data-text="Benefit">Benefit</h2>
+                <ul class="pill-cloud">
+                    <li class="pill">Online &amp; Tatap Muka</li>
+                    <li class="pill">Jadwal Jelas</li>
+                    <li class="pill">Booking Cepat</li>
+                    <li class="pill">Bayar Mudah</li>
+                    <li class="pill">Status Terpantau</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- BOOKING SAYA -->
+        <section class="section" id="booking-saya">
+            <div class="section-head">
+                <h2 class="bubble bubble-md" data-text="Booking Saya">Booking Saya</h2>
+                <p>Lihat nomor booking, jadwal, pembayaran, dan status konsultasimu.</p>
+            </div>
+
+            <div class="history-panel stack">
+                <div class="history-toolbar">
+                    <p>Status konsultasi: <strong>Menunggu</strong> → <strong>Dikonfirmasi</strong> → <strong>Selesai</strong> atau <strong>Dibatalkan</strong></p>
+                    <button class="btn btn-white btn-sm" id="refreshHistory" type="button">Perbarui</button>
+                </div>
+                <div id="bookingHistory" class="history-content"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL LOGIN / DAFTAR -->
+    <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" hidden>
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-card">
+            <button class="modal-close" type="button" data-close-modal aria-label="Tutup">×</button>
+            <h2 class="modal-title" id="authTitle">Masuk ke akunmu</h2>
+            <p class="modal-desc" id="authHint">Masuk dulu untuk membuat booking dan melihat booking milikmu.</p>
+
+            <div class="tabs" role="tablist">
+                <button type="button" role="tab" id="tabLogin" data-auth-tab="login" aria-selected="true">Masuk</button>
+                <button type="button" role="tab" id="tabRegister" data-auth-tab="register" aria-selected="false">Daftar</button>
+            </div>
+
+            <form id="loginForm">
+                <div class="field">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="nama@email.com" autocomplete="email" required>
+                </div>
+                <div class="field">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" autocomplete="current-password" required>
+                </div>
+                <p class="form-error" id="loginError" role="alert" hidden></p>
+                <button type="submit" class="btn btn-pink btn-block">Masuk</button>
+            </form>
+
+            <form id="registerForm" hidden>
+                <div class="field">
+                    <label for="registerName">Nama lengkap</label>
+                    <input type="text" id="registerName" autocomplete="name" maxlength="100" required>
+                </div>
+                <div class="field">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="nama@email.com" autocomplete="email" maxlength="150" required>
+                </div>
+                <div class="field">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" autocomplete="new-password" minlength="6" required>
+                    <small class="hint">Minimal 6 karakter.</small>
+                </div>
+                <p class="form-error" id="registerError" role="alert" hidden></p>
+                <button type="submit" class="btn btn-pink btn-block">Buat akun</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL BOOKING -->
+    <div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle" hidden>
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-card modal-wide">
+            <button class="modal-close" type="button" data-close-modal aria-label="Tutup">×</button>
+            <h2 class="modal-title" id="bookingTitle">Booking konsultasi</h2>
+
+            <ol class="steps" id="bookingSteps" aria-label="Langkah booking">
+                <li class="pill is-current"><span class="num">1</span>Jadwal</li>
+                <li class="pill"><span class="num">2</span>Data</li>
+                <li class="pill"><span class="num">3</span>Selesai</li>
+            </ol>
+
+            <!-- Langkah 1 -->
+            <section id="bookStep1">
+                <div class="mini-psy" id="bookPsychologist"></div>
+
+                <fieldset class="field">
+                    <legend>Metode konsultasi</legend>
+                    <div class="choice-row" id="methodChoices"></div>
+                </fieldset>
+
+                <div class="field">
+                    <label for="consultationDate">Tanggal konsultasi</label>
+                    <input type="date" id="consultationDate" required>
+                </div>
+
+                <fieldset class="field">
+                    <legend>Jam yang tersedia</legend>
+                    <p class="hint" id="slotHint"></p>
+                    <div class="choice-row" id="slotChoices"></div>
+                </fieldset>
+
+                <p class="form-error" id="step1Error" role="alert" hidden></p>
+                <button type="button" class="btn btn-pink btn-block" id="toStep2">Lanjut</button>
+            </section>
+
+            <!-- Langkah 2 -->
+            <form id="bookStep2" hidden>
+                <div class="field">
+                    <label for="customerName">Nama lengkap</label>
+                    <input type="text" id="customerName" maxlength="100" required>
+                </div>
+                <div class="field">
+                    <label for="customerPhone">Nomor WhatsApp / HP</label>
+                    <input type="tel" id="customerPhone" inputmode="tel" placeholder="08xxxxxxxxxx"
+                           maxlength="16" required>
+                </div>
+                <div class="field">
+                    <label for="customerEmail">Email akun</label>
+                    <input type="email" id="customerEmail" readonly>
+                </div>
+                <div class="field">
+                    <label for="bookingNotes">Catatan untuk psikolog (opsional)</label>
+                    <textarea id="bookingNotes" rows="3" maxlength="500"
+                              placeholder="Misalnya hal yang ingin kamu bahas"></textarea>
+                </div>
+
+                <div class="summary" id="bookSummary" aria-live="polite"></div>
+
+                <p class="form-error" id="step2Error" role="alert" hidden></p>
+                <div class="btn-row">
+                    <button type="button" class="btn btn-white" id="backToStep1">Kembali</button>
+                    <button type="submit" class="btn btn-pink">Konfirmasi pemesanan</button>
+                </div>
+            </form>
+
+            <!-- Langkah 3 -->
+            <section id="bookStep3" hidden>
+                <div class="success-note">
+                    <strong>Booking berhasil dibuat</strong>
+                    <span>Selesaikan pembayaran supaya admin bisa mengonfirmasi jadwalmu.</span>
+                </div>
+                <div class="summary" id="bookResult"></div>
+                <div class="btn-row">
+                    <button type="button" class="btn btn-white" id="payLater">Bayar nanti</button>
+                    <button type="button" class="btn btn-pink" id="payNow">Bayar sekarang</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- MODAL PEMBAYARAN -->
+    <div class="modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="paymentTitle" hidden>
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-card">
+            <button class="modal-close" type="button" data-close-modal aria-label="Tutup">×</button>
+            <h2 class="modal-title" id="paymentTitle">Pembayaran konsultasi</h2>
+
+            <div class="summary" id="paymentSummary" aria-live="polite"></div>
+
+            <form id="paymentForm">
+                <fieldset class="field">
+                    <legend>Metode pembayaran</legend>
+                    <div class="choice-row" id="paymentChoices"></div>
+                </fieldset>
+
+                <p class="notice">
+                    Ini simulasi pembayaran untuk prototype. Tidak ada uang yang ditransfer.
+                </p>
+
+                <p class="form-error" id="paymentError" role="alert" hidden></p>
+                <button type="submit" class="btn btn-pink btn-block" id="paySubmit">Bayar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOTIFIKASI -->
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <a href="#beranda" class="brand">
+            <span class="brand-star" aria-hidden="true"></span>
+            <span class="brand-name">MindCare</span>
+        </a>
+        <p>Satu langkah kecil untuk merawat dirimu sendiri.</p>
+        <nav class="footer-links" aria-label="Tautan footer">
+            <a href="#psikolog">Psikolog</a>
+            <a href="#booking-saya">Booking Saya</a>
+            <a href="admin.html">Halaman Admin</a>
+        </nav>
+        <p class="copyright">© 2026 MindCare. Prototype untuk keperluan proyek.</p>
+    </footer>
+
+</body>
+</html>

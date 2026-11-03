@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Warung Kopi Nusantara menyediakan kopi lokal, kopi bubuk, dan minuman kopi.">
+    <title>Warung Kopi Nusantara</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#beranda" class="brand">
+            <span class="brand-icon">☕</span>
+            <span>Warung Kopi Nusantara</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#produk">Produk</a>
+            <a href="#tentang">Tentang Kami</a>
+            <a href="#kontak">Kontak</a>
+        </nav>
+
+        <button id="cartBtn" class="cart-nav" type="button">
+            🛒 Keranjang <span id="cartCount">0</span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero" id="beranda">
+            <div class="hero-content">
+                <span class="eyebrow">KOPI LOKAL PILIHAN</span>
+                <h1>Kopi Nusantara,<br>Rasa Autentik!</h1>
+                <p>
+                    Dari petani lokal untuk pecinta kopi.
+                    Temukan cita rasa kopi Indonesia favoritmu.
+                </p>
+                <a href="#produk" class="btn-primary">Jelajahi Produk</a>
+            </div>
+        </section>
+
+        <section class="catalog section-wrap" id="produk">
+            <div class="section-heading">
+                <span class="eyebrow">PILIHAN UNTUKMU</span>
+                <h2>Katalog Kopi Kami</h2>
+                <p>Temukan kopi yang cocok untuk menemani harimu.</p>
+            </div>
+
+            <div class="search-box">
+                <span>⌕</span>
+                <input
+                    type="search"
+                    id="inputCari"
+                    placeholder="Cari nama atau jenis kopi..."
+                    aria-label="Cari produk kopi"
+                >
+            </div>
+
+            <div class="filter-container">
+                <button class="filter-btn active" data-kategori="semua">Semua</button>
+                <button class="filter-btn" data-kategori="biji">Biji Kopi</button>
+                <button class="filter-btn" data-kategori="bubuk">Kopi Bubuk</button>
+                <button class="filter-btn" data-kategori="minuman">Minuman</button>
+            </div>
+
+            <div id="produkGrid" class="produk-grid"></div>
+        </section>
+
+        <section class="about section-wrap" id="tentang">
+            <div class="about-decoration">❧</div>
+            <div class="about-content">
+                <span class="eyebrow">CERITA KAMI</span>
+                <h2>Secangkir Kopi,<br>Sejuta Cerita</h2>
+                <p>
+                    Warung Kopi Nusantara hadir untuk mengenalkan
+                    kekayaan kopi lokal Indonesia. Kami menyediakan
+                    biji kopi, kopi bubuk, dan minuman kopi yang
+                    cocok dinikmati kapan saja.
+                </p>
+                <a href="#produk" class="text-link">Lihat pilihan kopi →</a>
+            </div>
+        </section>
+
+        <section class="contact section-wrap" id="kontak">
+            <span class="eyebrow">KUNJUNGI KAMI</span>
+            <h2>Mari Menikmati Kopi</h2>
+            <p>Jl. Merdeka No. 45, Yogyakarta</p>
+            <p>Jam operasional: 08.00–21.00 WIB</p>
+            <p class="contact-note">
+                Pilih produk favoritmu dan lakukan pre-order melalui website.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#beranda" class="footer-brand">☕ Warung Kopi Nusantara</a>
+        <p>Dari petani lokal untuk pecinta kopi.</p>
+        <p class="copyright">© 2026 Warung Kopi Nusantara</p>
+    </footer>
+
+    <div id="pageOverlay" class="page-overlay"></div>
+
+    <aside id="cartSidebar" class="cart-sidebar" aria-label="Keranjang belanja">
+        <div class="cart-header">
+            <div>
+                <span class="eyebrow">PESANAN KAMU</span>
+                <h2>Keranjang Belanja</h2>
+            </div>
+            <button id="closeCart" class="icon-btn" type="button" aria-label="Tutup keranjang">✕</button>
+        </div>
+
+        <div id="cartItems" class="cart-items"></div>
+
+        <div class="cart-total">
+            <div class="total-row">
+                <span>Total Pesanan</span>
+                <strong id="cartTotal">Rp 0</strong>
+            </div>
+            <button id="checkoutBtn" class="btn-primary full-width" type="button">
+                Checkout Sekarang
+            </button>
+            <p class="secure-note">Periksa pesanan sebelum melanjutkan.</p>
+        </div>
+    </aside>
+
+    <div id="checkoutModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+        <div class="modal-content">
+            <div class="modal-heading">
+                <div>
+                    <span class="eyebrow">SELANGKAH LAGI</span>
+                    <h2 id="checkoutTitle">Data Pemesan</h2>
+                </div>
+                <button id="closeCheckout" class="icon-btn" type="button" aria-label="Tutup checkout">✕</button>
+            </div>
+
+            <form id="checkoutForm" novalidate>
+                <label for="inputNama">Nama Lengkap</label>
+                <input type="text" id="inputNama" placeholder="Masukkan nama lengkap" autocomplete="name">
+                <small class="error" id="errorNama"></small>
+
+                <label for="inputWA">No. WhatsApp</label>
+                <input type="tel" id="inputWA" placeholder="Contoh: 081234567890" inputmode="numeric" autocomplete="tel">
+                <small class="error" id="errorWA"></small>
+
+                <label for="inputAlamat">Alamat Pengiriman</label>
+                <textarea id="inputAlamat" placeholder="Masukkan alamat lengkap" autocomplete="street-address"></textarea>
+                <small class="error" id="errorAlamat"></small>
+
+                <fieldset>
+                    <legend>Metode Pengambilan</legend>
+                    <label class="radio-label">
+                        <input type="radio" name="metode" value="Ambil di Warung">
+                        Ambil di Warung
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="metode" value="Diantar">
+                        Diantar
+                    </label>
+                    <small class="error" id="errorMetode"></small>
+                </fieldset>
+
+                <label for="inputCatatan">Catatan (opsional)</label>
+                <textarea id="inputCatatan" placeholder="Catatan tambahan jika ada"></textarea>
+
+                <div class="checkout-summary">
+                    <span>Total pembayaran</span>
+                    <strong id="checkoutTotal">Rp 0</strong>
+                </div>
+
+                <button type="submit" class="btn-primary full-width">
+                    Konfirmasi Pesanan
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+        <div class="modal-content success-content">
+            <div class="success-icon">✓</div>
+            <span class="eyebrow">PESANAN DITERIMA</span>
+            <h2 id="successTitle">Terima Kasih!</h2>
+            <p id="successMessage">Pesanan kamu berhasil dibuat.</p>
+            <p id="orderNumber" class="order-number"></p>
+            <button id="closeSuccess" class="btn-primary full-width" type="button">
+                Selesai
+            </button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>

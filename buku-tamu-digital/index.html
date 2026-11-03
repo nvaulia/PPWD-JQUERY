@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Buku Tamu Digital | Novi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">♡</span>
+            <div>
+                <h2>Novi</h2>
+                <p>Personal Portfolio</p>
+            </div>
+        </div>
+
+        <a href="../index.html" class="tombol-kembali">
+            <span>←</span> Kembali ke Portofolio
+        </a>
+    </header>
+
+    <!-- Konten utama -->
+    <main class="container">
+
+        <section class="hero">
+            <p class="label">DIGITAL PROJECT</p>
+            <h1>Buku Tamu Digital</h1>
+            <p class="deskripsi">
+                Formulir pencatatan tamu untuk memudahkan
+                pengelolaan data kunjungan kantor.
+            </p>
+        </section>
+
+        <!-- Form Buku Tamu -->
+        <section class="kotak">
+            <h2>Formulir Buku Tamu</h2>
+            <p class="subjudul">Silakan isi data kunjungan Anda.</p>
+
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input
+                    type="text"
+                    id="nama"
+                    placeholder="Masukkan nama lengkap"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="instansi">Instansi</label>
+                <input
+                    type="text"
+                    id="instansi"
+                    placeholder="Masukkan nama instansi"
+                >
+            </div>
+
+            <button id="simpan">Simpan Data</button>
+
+            <div class="daftar-container">
+                <h3>Daftar Tamu</h3>
+                <ul id="daftar"></ul>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 Novi Aulia. Buku Tamu Digital.
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

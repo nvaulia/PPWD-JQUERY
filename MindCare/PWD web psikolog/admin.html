@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Admin | MindCare</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Titan+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="common.js" defer></script>
+    <script src="admin.js" defer></script>
+</head>
+<body class="admin-page">
+
+    <header class="site-header">
+        <a href="admin.html" class="brand">
+            <span class="brand-star" aria-hidden="true"></span>
+            <span class="brand-name">MindCare</span>
+            <span class="pill pill-flat pill-xs">Admin</span>
+        </a>
+        <nav class="navbar open-always" aria-label="Navigasi admin">
+            <a href="index.html">Lihat situs pasien</a>
+            <button class="btn btn-white btn-sm" id="logoutAdmin" type="button" hidden>Keluar</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- LOGIN ADMIN -->
+        <section class="section login-wrap" id="adminLogin">
+            <div class="login-card stack">
+                <h1 class="bubble bubble-md" data-text="Login Admin">Login Admin</h1>
+                <p class="modal-desc">Halaman ini khusus untuk mengelola layanan konsultasi.</p>
+
+                <form id="adminLoginForm">
+                    <div class="field">
+                        <label for="adminEmail">Email admin</label>
+                        <input type="email" id="adminEmail" autocomplete="username" required>
+                    </div>
+                    <div class="field">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" autocomplete="current-password" required>
+                    </div>
+                    <p class="form-error" id="adminLoginError" role="alert" hidden></p>
+                    <button type="submit" class="btn btn-pink btn-block">Masuk</button>
+                </form>
+
+                <p class="notice">
+                    Akun prototype: <strong>admin@mindcare.id</strong> / <strong>admin123</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- DASHBOARD ADMIN -->
+        <div id="adminApp" hidden>
+            <section class="section">
+                <div class="section-head">
+                    <h1 class="bubble bubble-md" data-text="Kelola Layanan">Kelola Layanan</h1>
+                    <p>Atur data psikolog, jadwal praktik, harga, dan booking pasien.</p>
+                </div>
+
+                <ul class="pill-cloud" id="adminStats" aria-label="Ringkasan"></ul>
+
+                <div class="tabs tabs-admin" role="tablist">
+                    <button type="button" role="tab" id="tabPsy" data-admin-tab="psy" aria-selected="true">Psikolog &amp; Jadwal</button>
+                    <button type="button" role="tab" id="tabBook" data-admin-tab="book" aria-selected="false">Booking Pasien</button>
+                </div>
+
+                <!-- PSIKOLOG DAN JADWAL -->
+                <div id="panelPsy">
+                    <div class="admin-toolbar">
+                        <button class="btn btn-pink" id="addPsychologist" type="button">+ Tambah psikolog</button>
+                    </div>
+
+                    <div class="admin-form-panel stack" id="adminFormPanel" hidden>
+                        <h2 class="card-title" id="adminFormTitle">Tambah psikolog</h2>
+
+                        <form id="psychologistForm" novalidate>
+                            <input type="hidden" id="editPsychologistId">
+
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label for="adminName">Nama psikolog</label>
+                                    <input type="text" id="adminName" maxlength="100" required>
+                                </div>
+                                <div class="field">
+                                    <label for="adminSpecialization">Spesialisasi</label>
+                                    <input type="text" id="adminSpecialization" list="specializationOptions" maxlength="60" required>
+                                    <datalist id="specializationOptions"></datalist>
+                                </div>
+                                <div class="field">
+                                    <label for="adminPrice">Harga konsultasi (Rp)</label>
+                                    <input type="number" id="adminPrice" min="1" step="1000" inputmode="numeric" required>
+                                </div>
+                                <div class="field">
+                                    <label for="adminAvailability">Ketersediaan</label>
+                                    <select id="adminAvailability">
+                                        <option value="Tersedia">Tersedia</option>
+                                        <option value="Tidak tersedia">Tidak tersedia</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <fieldset class="field">
+                                <legend>Metode konsultasi</legend>
+                                <div class="choice-row" id="adminMethods"></div>
+                            </fieldset>
+
+                            <fieldset class="field">
+                                <legend>Hari praktik</legend>
+                                <div class="choice-row" id="adminDays"></div>
+                            </fieldset>
+
+                            <fieldset class="field">
+                                <legend>Jam praktik</legend>
+                                <div class="choice-row" id="adminTimes"></div>
+                            </fieldset>
+
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label for="adminPhoto">Link foto (opsional)</label>
+                                    <input type="url" id="adminPhoto" placeholder="https://...">
+                                    <small class="hint">Kosongkan untuk memakai ilustrasi bawaan.</small>
+                                </div>
+                                <div class="field">
+                                    <label for="adminDescription">Deskripsi singkat (opsional)</label>
+                                    <textarea id="adminDescription" rows="3" maxlength="200"></textarea>
+                                </div>
+                            </div>
+
+                            <p class="form-error" id="psychologistError" role="alert" hidden></p>
+                            <div class="btn-row">
+                                <button type="button" class="btn btn-white" id="cancelPsychologistForm">Batal</button>
+                                <button type="submit" class="btn btn-pink">Simpan psikolog</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="table-panel stack">
+                        <h2 class="card-title">Data psikolog</h2>
+                        <div class="table-scroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Psikolog</th>
+                                        <th>Spesialisasi</th>
+                                        <th>Harga</th>
+                                        <th>Metode</th>
+                                        <th>Jadwal praktik</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminPsychologistTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOOKING PASIEN -->
+                <div id="panelBook" hidden>
+                    <div class="table-panel stack">
+                        <div class="table-head">
+                            <h2 class="card-title">Booking pasien</h2>
+                            <div class="field field-inline">
+                                <label for="bookingFilter">Tampilkan</label>
+                                <select id="bookingFilter">
+                                    <option value="">Semua status</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-scroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>No. booking</th>
+                                        <th>Pasien</th>
+                                        <th>Psikolog</th>
+                                        <th>Jadwal</th>
+                                        <th>Total</th>
+                                        <th>Pembayaran</th>
+                                        <th>Status konsultasi</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminBookingTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- MODAL DETAIL BOOKING -->
+    <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle" hidden>
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-card">
+            <button class="modal-close" type="button" data-close-modal aria-label="Tutup">×</button>
+            <h2 class="modal-title" id="detailTitle">Detail booking</h2>
+            <div class="summary" id="detailBody"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <footer class="site-footer">
+        <p class="copyright">© 2026 MindCare. Prototype untuk keperluan proyek.</p>
+    </footer>
+
+</body>
+</html>

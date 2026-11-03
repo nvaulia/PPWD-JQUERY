@@ -1,0 +1,218 @@
+
+:root {
+    --pink: #e88da3;
+    --pink-tua: #c45c79;
+    --pink-muda: #fff0f3;
+    --putih: #ffffff;
+    --teks: #593b45;
+    --teks-pudar: #947781;
+    --border: #f5d5de;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff8f6;
+    color: var(--teks);
+}
+
+/* Navbar */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 5%;
+    background: var(--putih);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 38px;
+    color: var(--pink);
+}
+
+.logo h2 {
+    margin: 0;
+    color: var(--pink-tua);
+    font-family: Georgia, serif;
+    font-size: 25px;
+}
+
+.logo p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--teks-pudar);
+}
+
+.tombol-kembali {
+    text-decoration: none;
+    color: var(--pink-tua);
+    border: 1px solid var(--pink);
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.tombol-kembali:hover {
+    background: var(--pink-muda);
+}
+
+.tombol-kembali span {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+/* Konten */
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 45px 24px;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.label {
+    color: var(--pink);
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    color: var(--pink-tua);
+    font-size: 42px;
+    margin: 10px 0;
+}
+
+.deskripsi {
+    color: var(--teks-pudar);
+    line-height: 1.7;
+}
+
+/* Form */
+.kotak {
+    background: var(--putih);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(196, 92, 121, 0.10);
+    border: 1px solid var(--border);
+}
+
+.kotak h2 {
+    color: var(--pink-tua);
+    margin-top: 0;
+}
+
+.subjudul {
+    color: var(--teks-pudar);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    background: #fffafa;
+}
+
+.form-group input:focus {
+    border-color: var(--pink);
+}
+
+#simpan {
+    width: 100%;
+    padding: 14px;
+    background: var(--pink);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#simpan:hover {
+    background: var(--pink-tua);
+}
+
+/* Daftar tamu */
+.daftar-container {
+    margin-top: 30px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+.daftar-container h3 {
+    color: var(--pink-tua);
+}
+
+#daftar {
+    padding-left: 20px;
+    color: var(--teks-pudar);
+}
+
+#daftar li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 35px;
+    color: var(--teks-pudar);
+    font-size: 12px;
+}
+
+/* Tampilan HP */
+@media (max-width: 600px) {
+    .header {
+        padding: 15px;
+    }
+
+    .tombol-kembali {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .kotak {
+        padding: 22px;
+    }
+}

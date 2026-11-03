@@ -1,0 +1,28 @@
+body {
+    font-family : Arial,sans-serif;
+    padding : 30px
+}
+
+h1 {
+    color : #8b2626
+}
+
+input, select {
+    padding : 8px;
+    margin-top : 5px;
+}
+
+button {
+    padding : 8px 15px;
+    cursor : pointer;
+}
+
+button : hover {
+    background-color : #8B2626;
+    color : white;
+}
+
+#hasil {
+    margin-top : 20px;
+    font-weight:bold
+}

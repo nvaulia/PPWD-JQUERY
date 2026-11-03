@@ -51,10 +51,61 @@ button.ghost{color:#8d5871;background:#fff5f2;border:2px solid #c993aa}
 .err{display:none;margin:2px 0 5px;color:#b95f7d;font-size:13px}
 .ok{display:none;margin-top:8px;padding:9px 12px;color:#61757b;background:#e3f0f2;border-left:4px solid #92b6c1;border-radius:5px;font-weight:bold}
 .toko-btn{display:block;margin:20px auto 5px;padding:11px 28px;font-size:15px}
-@media(max-width:600px){body{padding:10px}.wrap{padding:14px}.card{align-items:flex-start}.produk{grid-template-columns:1fr}button{width:100%;margin:4px 0}}
+
+/* Gaya Tombol Kembali (Ikon Murni) */
+.tombol-kembali {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff4ee;
+    color: #8d5871;
+    border: 2px solid #d58ca7;
+    border-radius: 50%;
+    box-shadow: 3px 3px 0 #b9cad5;
+    text-decoration: none;
+    z-index: 9999;
+    transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+.tombol-kembali:hover {
+    background: #f7dbe5;
+    color: #914f70;
+    transform: translate(-1px, -2px);
+    box-shadow: 5px 5px 0 #a9bdc9;
+}
+.tombol-kembali svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+.tombol-kembali .label {
+    display: none;
+}
+
+@media(max-width:600px){
+    body{padding:10px}
+    .wrap{padding:14px}
+    .card{align-items:flex-start}
+    .produk{grid-template-columns:1fr}
+    button{width:100%;margin:4px 0}
+    .tombol-kembali{top:12px;left:12px;width:42px;height:42px;}
+}
 </style>
 </head>
+
 <body>
+    <!-- Tombol Kembali ke Portofolio (Hanya Ikon Panah SVG) -->
+    <a href="../index.html" class="tombol-kembali" title="Kembali ke Portofolio" aria-label="Kembali ke Portofolio">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span class="label">Kembali ke halaman utama</span>
+    </a>
 
 <div class="mouse-light"></div>
 <div class="butterfly"><span></span></div>

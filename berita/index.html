@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Negeri | Portal Berita & Isu Nasional Indonesia</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #fcfcfc;
+            --bg-surface: #ffffff;
+            --bg-subtle: #f5f5f5;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --text-light: #777777;
+            --border-color: #e2e2e2;
+            --border-strong: #111111;
+            
+            /* Warna Merah Berita Tegas */
+            --red-primary: #c62828;
+            --red-dark: #b71c1c;
+            --red-light: #ffebee;
+            --red-accent: #e53935;
+
+            --font-serif: 'Merriweather', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        [data-bs-theme="dark"] {
+            --bg-main: #121212;
+            --bg-surface: #1e1e1e;
+            --bg-subtle: #252525;
+            --text-main: #f1f1f1;
+            --text-muted: #b0b0b0;
+            --text-light: #888888;
+            --border-color: #333333;
+            --border-strong: #ffffff;
+
+            --red-primary: #ef5350;
+            --red-dark: #e53935;
+            --red-light: #2c1618;
+            --red-accent: #ff6b6b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* BAR NAVIGASI KEMBALI KE PORTOFOLIO UTAMA */
+        .back-nav-bar {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #333;
+        }
+
+        .btn-back-portofolio {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back-portofolio:hover {
+            color: #ffffff;
+            background: var(--red-primary);
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--red-dark);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Header / Brand Area */
+        .header-brand-area {
+            border-bottom: 3px solid var(--text-main);
+            padding: 20px 0 15px 0;
+            background: var(--bg-main);
+        }
+
+        .brand-logo {
+            font-family: var(--font-serif);
+            font-weight: 900;
+            font-size: clamp(32px, 5vw, 48px);
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -1.5px;
+            text-transform: lowercase;
+            line-height: 1;
+        }
+
+        .brand-logo span {
+            color: var(--red-primary);
+        }
+
+        .brand-tagline {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Bar */
+        .news-nav {
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .nav-link-news {
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 12px 16px !important;
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+
+        .nav-link-news:hover, .nav-link-news.active {
+            color: var(--red-primary);
+        }
+
+        /* Category Pills Bar */
+        .category-bar {
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            background: var(--bg-subtle);
+        }
+
+        .cat-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cat-btn:hover, .cat-btn.active {
+            background: var(--red-primary);
+            color: #ffffff;
+            border-color: var(--red-primary);
+        }
+
+        /* News Typography & Components */
+        .news-category-tag {
+            color: var(--red-primary);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .headline-title {
+            font-family: var(--font-serif);
+            font-weight: 900;
+            line-height: 1.25;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .headline-title:hover {
+            color: var(--red-primary);
+        }
+
+        .news-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .news-excerpt {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .news-img {
+            width: 100%;
+            object-fit: cover;
+            filter: brightness(0.96);
+            transition: filter 0.2s ease;
+        }
+
+        .news-img:hover {
+            filter: brightness(1);
+        }
+
+        /* Layout Grid Lines */
+        .border-right-md {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .border-bottom-line {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .border-bottom-strong {
+            border-bottom: 2px solid var(--border-strong);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Trending List Sidebar */
+        .trending-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+
+        .trending-num {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--red-primary);
+            line-height: 1;
+            min-width: 30px;
+        }
+
+        .trending-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            line-height: 1.35;
+        }
+
+        .trending-title:hover {
+            color: var(--red-primary);
+        }
+
+        /* Search Input */
+        .search-box {
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            color: var(--text-main);
+            border-radius: 0;
+            font-size: 13px;
+            padding: 6px 12px;
+        }
+
+        .search-box:focus {
+            background: var(--bg-surface);
+            color: var(--text-main);
+            border-color: var(--red-primary);
+            box-shadow: none;
+        }
+
+        /* Dark Mode Toggle Button */
+        .btn-theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-theme-toggle:hover {
+            background: var(--bg-subtle);
+        }
+
+        /* Official Links Widget */
+        .official-links-box {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--red-primary);
+            padding: 16px;
+        }
+
+        .official-link-item {
+            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .official-link-item:last-child {
+            border-bottom: none;
+        }
+
+        .official-link-item:hover {
+            color: var(--red-primary);
+            padding-left: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f0f;
+            color: #dddddd;
+            border-top: 4px solid var(--red-primary);
+        }
+
+        footer a {
+            color: #bbbbbb;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 767px) {
+            .border-right-md {
+                border-right: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR KEMBALI KE PORTOFOLIO UTAMA (HANYA TOMBOL DI KIRI) -->
+    <div class="back-nav-bar">
+        <div class="container d-flex justify-content-start align-items-center">
+            <a href="../index.html" class="btn-back-portofolio">
+                &#8592; Kembali ke Portofolio Utama
+            </a>
+        </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <div class="top-bar py-1">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                <span>🇮🇩 PORTAL BERITA NASIONAL INDONESIA 2026</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <span id="liveDate">Selasa, 27 Oktober 2026</span>
+                <button class="btn-theme-toggle ms-2" id="themeToggleBtn" aria-label="Ganti Tema">
+                    🌙 Dark Mode
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BRAND HEADER AREA -->
+    <header class="header-brand-area text-center">
+        <div class="container">
+            <a href="#" class="brand-logo">ruang<span>negeri</span></a>
+            <div class="brand-tagline mt-1">Independen · Faktual · Transparan</div>
+        </div>
+    </header>
+
+    <!-- MAIN NAVBAR -->
+    <nav class="news-nav">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="d-flex flex-wrap align-items-center">
+                    <a href="#beranda" class="nav-link-news active">Beranda</a>
+                    <a href="#nasional" class="nav-link-news">Karhutla & Lingkungan</a>
+                    <a href="#ekonomi" class="nav-link-news">Pajak & Coretax</a>
+                    <a href="#kebijakan" class="nav-link-news">Efisiensi APBN</a>
+                    <a href="#digital" class="nav-link-news">GovTech & IKN</a>
+                </div>
+
+                <div class="py-2 py-md-0 ms-auto">
+                    <input type="search" id="searchInput" class="form-control search-box" placeholder="Cari berita 2026..." aria-label="Cari berita">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FILTER CATEGORY BAR -->
+    <div class="category-bar">
+        <div class="container d-flex align-items-center gap-2 flex-wrap">
+            <span class="small fw-bold text-uppercase me-2 text-muted">Topik Hangat:</span>
+            <button class="cat-btn active" data-filter="all">Semua Isu</button>
+            <button class="cat-btn" data-filter="karhutla">Karhutla 2026</button>
+            <button class="cat-btn" data-filter="pajak">Core Tax DJP</button>
+            <button class="cat-btn" data-filter="apbn">Inpres Efisiensi APBN</button>
+            <button class="cat-btn" data-filter="mbg">Program Makan Bergizi</button>
+            <button class="cat-btn" data-filter="ikn">Transisi IKN</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="container py-4" id="beranda">
+
+        <!-- SECTION 1: MAIN HEADLINE & LEADING STORIES -->
+        <section class="row g-4 border-bottom-line">
+            
+            <!-- MAIN UTAMA -->
+            <div class="col-12 col-lg-7 border-right-md pe-lg-4 news-card-item" data-category="karhutla">
+                <span class="news-category-tag">Laporan Khusus · Karhutla 2026</span>
+                
+                <h1 class="headline-title fs-2 mb-2">
+                    <a href="https://www.menlhk.go.id/" target="_blank" rel="noopener" class="headline-title">
+                        Kesiapsiagaan Karhutla 2026: KLHK & Pemprov Sumatra-Kalimantan Perketat Pantauan Titik Panas di Lahan Gambut
+                    </a>
+                </h1>
+                
+                <div class="news-meta">
+                    Oleh <strong>Redaksi Ruang Negeri</strong> · 27 Oktober 2026 · Sumber: KLHK & BRGM RI
+                </div>
+
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=85" alt="Kebakaran Hutan dan Penanganan Lahan Gambut" class="news-img mb-3" style="height: 340px;">
+
+                <p class="news-excerpt fs-6">
+                    Memasuki puncak musim kemarau 2026, Kementerian Lingkungan Hidup dan Kehutanan (KLHK) bersama Badan Restorasi Gambut dan Mangrove (BRGM) mengaktifkan status siaga darurat Karhutla di wilayah rawan seperti Riau, Jambi, Kalimantan Barat, dan Kalimantan Tengah. Pemantauan satelit real-time dan rekayasa cuaca mulai dikerahkan guna mencegah terulangnya kabut asap lintas batas.
+                </p>
+
+                <a href="https://www.menlhk.go.id/" target="_blank" rel="noopener" class="fw-bold text-danger text-decoration-none small text-uppercase">
+                    Baca Selengkapnya di Portal Resmi KLHK ↗
+                </a>
+            </div>
+
+            <!-- SUB HEADLINES -->
+            <div class="col-12 col-lg-5 ps-lg-4">
+                <div class="border-bottom-strong">
+                    <h3 class="fs-6 text-uppercase fw-bold m-0" style="letter-spacing: 1px;">Sorotan Ekonomi & Fiskal</h3>
+                </div>
+
+                <!-- SUB ITEM 1 -->
+                <div class="border-bottom-line news-card-item" data-category="pajak">
+                    <span class="news-category-tag">Perpajakan Nasional</span>
+                    <h2 class="headline-title fs-5 mb-1">
+                        <a href="https://www.pajak.go.id/" target="_blank" rel="noopener" class="headline-title">
+                            Implementasi Penuh Coretax DJP 2026: NIK Terintegrasi NPWP untuk Transparansi Wajib Pajak
+                        </a>
+                    </h2>
+                    <div class="news-meta">27 Oktober 2026 · Sumber: Ditjen Pajak Kemenkeu</div>
+                    <p class="news-excerpt small mb-2">
+                        Sistem Inti Administrasi Perpajakan (Core Tax Administration System) resmi berjalan penuh. Wajib Pajak kini dapat mengolah laporan SPT secara otomatis dengan pemadanan data real-time berbasis NIK kependudukan.
+                    </p>
+                </div>
+
+                <!-- SUB ITEM 2 -->
+                <div class="border-bottom-line news-card-item" data-category="apbn">
+                    <span class="news-category-tag">Kebijakan Anggaran</span>
+                    <h2 class="headline-title fs-5 mb-1">
+                        <a href="https://www.setkab.go.id/" target="_blank" rel="noopener" class="headline-title">
+                            Inpres Efisiensi APBN 2026: Pemerintah Pangkas Perjalanan Dinas & Honorarium ASN
+                        </a>
+                    </h2>
+                    <div class="news-meta">26 Oktober 2026 · Sumber: Sekretariat Kabinet</div>
+                    <p class="news-excerpt small mb-2">
+                        Presiden merilis instruksi ketat penghematan belanja operasional kementerian/lembaga hingga 30%. Anggaran dialihkan langsung ke pos pembangunan infrastruktur dasar dan pelayanan gizi publik.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: GRID BERITA FAKTUAL 2026 -->
+        <section class="py-4">
+            <div class="border-bottom-strong d-flex justify-content-between align-items-end">
+                <h3 class="fs-5 text-uppercase fw-bold m-0" style="letter-spacing: 1px;">Kabar Nusantara & Pelayanan Publik</h3>
+                <span class="small text-muted">Memuat Isu Resmi 2026</span>
+            </div>
+
+            <div class="row g-4 mt-1" id="newsGrid">
+
+                <!-- ARTICLE 1 -->
+                <div class="col-12 col-md-4 news-card-item" data-category="mbg">
+                    <article class="h-100">
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" alt="Program Makan Bergizi Sekolah" class="news-img mb-2" style="height: 180px;">
+                        <span class="news-category-tag">Program Strategis</span>
+                        <h3 class="headline-title fs-6 mb-1">
+                            <a href="https://kemdikbud.go.id/" target="_blank" rel="noopener" class="headline-title">
+                                Badan Gizi Nasional Uji Standar Nutrisi Makan Bergizi Gratis di Sekolah Daerah
+                            </a>
+                        </h3>
+                        <div class="news-meta">26 Oktober 2026 · Kemendikdasmen</div>
+                        <p class="news-excerpt small">
+                            Penyaluran program Makan Bergizi Gratis (MBG) diperketat melalui integrasi dengan rantai pasok komoditas pertanian lokal guna memberdayakan petani daerah.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- ARTICLE 2 -->
+                <div class="col-12 col-md-4 news-card-item" data-category="ikn">
+                    <article class="h-100">
+                        <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80" alt="Pembangunan Ibu Kota Nusantara" class="news-img mb-2" style="height: 180px;">
+                        <span class="news-category-tag">Infrastruktur & ASN</span>
+                        <h3 class="headline-title fs-6 mb-1">
+                            <a href="https://ikn.go.id/" target="_blank" rel="noopener" class="headline-title">
+                                Gelombang Pemindahan ASN ke IKN Berlanjut: Fasilitas Hunian Tahap II Siap Dihuni
+                            </a>
+                        </h3>
+                        <div class="news-meta">25 Oktober 2026 · Otorita IKN</div>
+                        <p class="news-excerpt small">
+                            Otorita Ibu Kota Nusantara menyelesaikan penataan perkantoran Kemenko dan tower rusun ASN. Skema perpindahan tahap selanjutnya difokuskan pada kementerian teknis.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- ARTICLE 3 -->
+                <div class="col-12 col-md-4 news-card-item" data-category="pajak">
+                    <article class="h-100">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80" alt="Grafik Keuangan Pajak" class="news-img mb-2" style="height: 180px;">
+                        <span class="news-category-tag">Fiskal & Keuangan</span>
+                        <h3 class="headline-title fs-6 mb-1">
+                            <a href="https://www.kemenkeu.go.id/" target="_blank" rel="noopener" class="headline-title">
+                                Target Penerimaan APBN 2026 Didorong Digitalisasi Sistem Pembayaran Pajak
+                            </a>
+                        </h3>
+                        <div class="news-meta">25 Oktober 2026 · Kemenkeu RI</div>
+                        <p class="news-excerpt small">
+                            Kementerian Keuangan optimistis tingkat kepatuhan pajak meningkat seiring kemudahan fitur pembetulan SPT dan pengawasan otomatis dalam Coretax.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- ARTICLE 4 -->
+                <div class="col-12 col-md-4 news-card-item" data-category="karhutla">
+                    <article class="h-100">
+                        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80" alt="Hutan Gambut Kalimantan" class="news-img mb-2" style="height: 180px;">
+                        <span class="news-category-tag">Restorasi Gambut</span>
+                        <h3 class="headline-title fs-6 mb-1">
+                            <a href="https://brgm.go.id/" target="_blank" rel="noopener" class="headline-title">
+                                BRGM Intensifkan Pembasahan Lahan Gambut Bersekat di Kalimantan Barat
+                            </a>
+                        </h3>
+                        <div class="news-meta">24 Oktober 2026 · BRGM RI</div>
+                        <p class="news-excerpt small">
+                            Guna mencegah kebakaran berulang di kedalaman gambut, pembangunan sekat kanal dan sumur bor terus diverifikasi jelang evaluasi akhir tahun 2026.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- ARTICLE 5 -->
+                <div class="col-12 col-md-4 news-card-item" data-category="apbn">
+                    <article class="h-100">
+                        <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" alt="Ekonomi Indonesia" class="news-img mb-2" style="height: 180px;">
+                        <span class="news-category-tag">Reformasi Birokrasi</span>
+                        <h3 class="headline-title fs-6 mb-1">
+                            <a href="https://www.menpan.go.id/" target="_blank" rel="noopener" class="headline-title">
+                                MenPAN-RB Tekankan Penyederhanaan Struktur Organisasi Instansi Pusat
+                            </a>
+                        </h3>
+                        <div class="news-meta">24 Oktober 2026 · KemenPANRB</div>
+                        <p class="news-excerpt small">
+                            Pemerintah merampingkan jabatan fungsional untuk mempercepat pengambil keputusan dan efisiensi belanja pegawai APBN 2026.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- ARTICLE 6 -->
+                <div class="col-12 col-md-4 news-card-item" data-category="mbg">
+                    <article class="h-100">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80" alt="Diskusi Kerja Vokasi" class="news-img mb-2" style="height: 180px;">
+                        <span class="news-category-tag">Ketenagakerjaan</span>
+                        <h3 class="headline-title fs-6 mb-1">
+                            <a href="https://kemnaker.go.id/" target="_blank" rel="noopener" class="headline-title">
+                                Kemnaker Tambah Alokasi Pelatihan Vokasi Kerja Terintegrasi Industri
+                            </a>
+                        </h3>
+                        <div class="news-meta">23 Oktober 2026 · Kemnaker RI</div>
+                        <p class="news-excerpt small">
+                            Menghadapi tantangan pasar kerja 2026, balai latihan kerja difokuskan pada keahlian energi terbarukan dan teknisi digital terapan.
+                        </p>
+                    </article>
+                </div>
+
+            </div>
+
+            <!-- NO RESULTS MESSAGE -->
+            <div id="noResults" class="text-center py-5 d-none">
+                <p class="fs-5 text-muted">Berita tidak ditemukan untuk kata kunci tersebut.</p>
+                <button class="btn btn-sm btn-outline-danger" onclick="resetSearch()">Tampilkan Semua Berita</button>
+            </div>
+        </section>
+
+        <!-- SECTION 3: TRENDING & OFFICIAL LINKS SIDEBAR SECTION -->
+        <section class="row g-4 pt-3 border-top-line">
+            <div class="col-12 col-lg-8 border-right-md pe-lg-4">
+                <div class="border-bottom-strong">
+                    <h3 class="fs-6 text-uppercase fw-bold m-0" style="letter-spacing: 1px;">Populer Dibaca Pembaca</h3>
+                </div>
+
+                <div class="trending-item">
+                    <div class="trending-num">01</div>
+                    <div>
+                        <span class="news-category-tag">Coretax 2026</span>
+                        <div><a href="https://www.pajak.go.id/" target="_blank" rel="noopener" class="trending-title">Panduan Lengkap Aktivasi Akun Coretax DJP Menggunakan NIK KTP</a></div>
+                        <div class="news-meta mb-0">Dibaca 45 ribu kali · Kemenkeu</div>
+                    </div>
+                </div>
+
+                <div class="trending-item">
+                    <div class="trending-num">02</div>
+                    <div>
+                        <span class="news-category-tag">Karhutla</span>
+                        <div><a href="https://www.menlhk.go.id/" target="_blank" rel="noopener" class="trending-title">Daftar Wilayah Status Siaga Darurat Karhutla di Riau dan Kalimantan Barat</a></div>
+                        <div class="news-meta mb-0">Dibaca 38 ribu kali · KLHK</div>
+                    </div>
+                </div>
+
+                <div class="trending-item">
+                    <div class="trending-num">03</div>
+                    <div>
+                        <span class="news-category-tag">Efisiensi APBN</span>
+                        <div><a href="https://www.setkab.go.id/" target="_blank" rel="noopener" class="trending-title">Rincian Komponen Anggaran Perjalanan Dinas ASN yang Dipangkas Tahun 2026</a></div>
+                        <div class="news-meta mb-0">Dibaca 31 ribu kali · Setkab</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VERIFIED OFFICIAL LINKS -->
+            <div class="col-12 col-lg-4 ps-lg-4">
+                <div class="border-bottom-strong">
+                    <h3 class="fs-6 text-uppercase fw-bold m-0" style="letter-spacing: 1px;">Sumber & Portal Resmi Negara</h3>
+                </div>
+
+                <div class="official-links-box">
+                    <div class="small fw-bold text-uppercase text-muted mb-2">Verifikasi Data Berita:</div>
+                    <a href="https://www.setneg.go.id/" target="_blank" rel="noopener" class="official-link-item">Kementerian Sekretariat Negara (Kemensetneg) ↗</a>
+                    <a href="https://www.setkab.go.id/" target="_blank" rel="noopener" class="official-link-item">Sekretariat Kabinet (Setkab RI) ↗</a>
+                    <a href="https://www.kemenkeu.go.id/" target="_blank" rel="noopener" class="official-link-item">Kementerian Keuangan RI ↗</a>
+                    <a href="https://www.pajak.go.id/" target="_blank" rel="noopener" class="official-link-item">Direktorat Jenderal Pajak (DJP) ↗</a>
+                    <a href="https://www.bappenas.go.id/" target="_blank" rel="noopener" class="official-link-item">Bappenas / Kementerian PPN ↗</a>
+                    <a href="https://www.menlhk.go.id/" target="_blank" rel="noopener" class="official-link-item">Kementerian LHK / Karhutla ↗</a>
+                    <a href="https://ikn.go.id/" target="_blank" rel="noopener" class="official-link-item">Otorita Ibu Kota Nusantara (OIKN) ↗</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-5">
+                    <div class="brand-logo text-white fs-3">ruang<span class="text-danger">negeri</span></div>
+                    <p class="small text-secondary mt-2">
+                        Ruang Negeri adalah portal informasi publik independen yang merangkum perkembangan kebijakan pemerintah, regulasi ekonomi, dan isu-isu strategis nasional Indonesia tahun 2026 secara lugas, transparan, dan dapat dipertanggungjawabkan.
+                    </p>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <h6 class="text-uppercase fw-bold small text-white mb-3">Kategori Berita</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#nasional">Karhutla & Restorasi Gambut</a></li>
+                        <li class="mb-2"><a href="#ekonomi">Core Tax DJP & Pajak</a></li>
+                        <li class="mb-2"><a href="#kebijakan">Efisiensi Belanja APBN 2026</a></li>
+                        <li class="mb-2"><a href="#digital">Infrastruktur IKN & GovTech</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-4">
+                    <h6 class="text-uppercase fw-bold small text-white mb-3">Literasi Informasi</h6>
+                    <p class="small text-secondary">
+                        Selalu pastikan keabsahan rilis undang-undang atau dokumen kebijakan melalui Lembaran Negara resmi dan portal kementerian terkait sebelum membagikan informasi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-top border-secondary pt-4 mt-4 text-center small text-secondary">
+                © 2026 Ruang Negeri Indonesia. Seluruh hak cipta dilindungi undang-undang.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Interactive Script -->
+    <script>
+        // Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            themeToggleBtn.textContent = '☀️ Light Mode';
+        } else {
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            themeToggleBtn.textContent = '🌙 Dark Mode';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.setAttribute('data-bs-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggleBtn.textContent = '🌙 Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggleBtn.textContent = '☀️ Light Mode';
+            }
+        });
+
+        // Category Filter
+        const filterBtns = document.querySelectorAll('.cat-btn');
+        const newsCards = document.querySelectorAll('.news-card-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                filterNews(filter, document.getElementById('searchInput').value);
+            });
+        });
+
+        // Search Input Filter
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const activeFilter = document.querySelector('.cat-btn.active').getAttribute('data-filter');
+            filterNews(activeFilter, e.target.value);
+        });
+
+        function filterNews(category, searchText) {
+            const query = searchText.toLowerCase().trim();
+            let visibleCount = 0;
+
+            newsCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                const textContent = card.textContent.toLowerCase();
+
+                const matchesCategory = (category === 'all' || cardCategory === category);
+                const matchesSearch = (query === '' || textContent.includes(query));
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('d-none');
+            } else {
+                noResults.classList.add('d-none');
+            }
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            document.querySelector('.cat-btn[data-filter="all"]').click();
+        }
+    </script>
+</body>
+</html>
